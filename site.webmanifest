@@ -1,0 +1,17 @@
+{
+  "name": "Vlad Portfolio",
+  "short_name": "Vlad",
+  "description": "Инженер под ключ для Telegram-ботов, AI-интеграций, сайтов и автоматизации малого бизнеса.",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#040405",
+  "theme_color": "#040405",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

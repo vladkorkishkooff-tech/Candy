@@ -1,0 +1,57 @@
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.hidden { display: none; }
+
+[data-tilt] {
+  will-change: transform;
+}
+
+::selection {
+  background: rgba(255, 255, 255, 0.22);
+  color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #050506;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 3px solid #050506;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Keep real README screenshots readable in the services showcase. */
+.service-showcase-panel .editorial-preview-card--wide,
+.service-showcase-panel .editorial-preview-card--photo {
+  width: 100%;
+  max-width: 700px;
+  height: auto !important;
+  aspect-ratio: 16 / 10 !important;
+}
+
+.service-showcase-panel .editorial-preview-card--portrait {
+  width: auto;
+  height: min(430px, calc(100% - 94px)) !important;
+  aspect-ratio: 0.96 !important;
+}
+
+.service-showcase-panel .editorial-preview-card--photo .screenshot-img {
+  object-fit: cover;
+  object-position: center;
+}
+
+.service-showcase-panel .editorial-preview-card--tall-ui .screenshot-img {
+  object-fit: cover;
+  object-position: center 18%;
+}
+
+@media (max-width: 620px) {
+  .service-showcase-panel .editorial-preview-card--portrait {
+    height: min(250px, calc(100% - 70px)) !important;
+  }
+}
