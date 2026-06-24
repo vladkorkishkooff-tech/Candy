@@ -54,7 +54,7 @@
         </div>
       </a>
 
-      <nav class="nav" aria-label="Основная навигация">
+      <nav class="nav header-nav-desktop" aria-label="Основная навигация">
         <ul class="nav-list">
           <li><a href="#about" class="nav-link" data-i18n="nav-about">Обо мне</a></li>
           <li><a href="#services" class="nav-link" data-i18n="nav-services">Что я создаю</a></li>
@@ -65,8 +65,7 @@
       </nav>
 
       <div class="header-right">
-        <!-- Language Switcher (Sliding Pill) -->
-        <div class="lang-switcher">
+        <div class="lang-switcher lang-switcher--top">
           <button class="lang-btn active" data-lang="ru">RU</button>
           <button class="lang-btn" data-lang="en">EN</button>
         </div>
@@ -76,7 +75,7 @@
           class="menu-btn"
           type="button"
           aria-label="Открыть меню"
-          aria-controls="mobile-menu"
+          aria-controls="header-nav-panel"
           aria-expanded="false"
         >
           <span></span>
@@ -85,15 +84,23 @@
         </button>
       </div>
     </div>
-  </header>
 
-  <nav class="mobile-nav" id="mobile-menu" aria-label="Мобильная навигация" aria-hidden="true">
-    <a href="#about" class="nav-link" data-i18n="nav-about">Обо мне</a>
-    <a href="#services" class="nav-link" data-i18n="nav-services">Что я создаю</a>
-    <a href="#cases" class="nav-link" data-i18n="nav-cases">Кейсы</a>
-    <a href="#process" class="nav-link" data-i18n="nav-process">Процесс работы</a>
-    <a href="#contact" class="nav-link" data-i18n="nav-contact">Контакты</a>
-  </nav>
+    <div class="header-nav-panel" id="header-nav-panel" aria-label="Мобильная навигация" aria-hidden="true">
+      <div class="container header-nav-panel-inner">
+        <nav class="header-nav-panel-links">
+          <a href="#about" class="nav-link" data-i18n="nav-about">Обо мне</a>
+          <a href="#services" class="nav-link" data-i18n="nav-services">Что я создаю</a>
+          <a href="#cases" class="nav-link" data-i18n="nav-cases">Кейсы</a>
+          <a href="#process" class="nav-link" data-i18n="nav-process">Процесс работы</a>
+          <a href="#contact" class="nav-link" data-i18n="nav-contact">Контакты</a>
+        </nav>
+        <div class="lang-switcher lang-switcher--panel">
+          <button class="lang-btn active" data-lang="ru">RU</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+      </div>
+    </div>
+  </header>
 
   <main>
     <section class="hero section-dark" aria-labelledby="hero-title">
@@ -339,6 +346,10 @@
               </div>
               
               <h3 class="showcase-title-main" id="showcase-title" data-i18n="showcase-web-title">WB/Ozon Dashboard: продажи, остатки и финансы</h3>
+              <p class="showcase-landing-meta" id="showcase-landing-meta" hidden>
+                <span data-landing-name>Сайт психолога</span>
+                <span class="landing-gallery-counter" data-landing-counter aria-live="polite">01 / 04</span>
+              </p>
               
               <!-- Problem ➔ Solution ➔ Result Flow -->
               <div class="showcase-steps-flow">
@@ -437,14 +448,9 @@
                 <div class="editorial-preview-card editorial-preview-card--wide editorial-preview-card--landing" data-tilt>
                   <img src="case_premium_visit_card.webp" alt="Сайт психолога" class="screenshot-img landing-gallery-image" data-landing-image loading="lazy" decoding="async">
                 </div>
-                <div class="landing-gallery-controls" data-landing-gallery aria-label="Галерея лендингов">
-                  <button type="button" class="landing-gallery-arrow" data-landing-prev aria-label="Предыдущий лендинг"><span aria-hidden="true">←</span></button>
-                  <div class="landing-gallery-status">
-                    <span data-landing-name>Сайт психолога</span>
-                    <span class="landing-gallery-counter" data-landing-counter aria-live="polite">01 / 04</span>
-                  </div>
-                  <div class="landing-gallery-dots" data-landing-dots aria-hidden="true"></div>
-                  <button type="button" class="landing-gallery-arrow" data-landing-next aria-label="Следующий лендинг"><span aria-hidden="true">→</span></button>
+                <div class="landing-gallery-nav" data-landing-gallery aria-label="Галерея лендингов" tabindex="0">
+                  <button type="button" class="landing-gallery-arrow landing-gallery-arrow--prev" data-landing-prev aria-label="Предыдущий лендинг"><span aria-hidden="true">←</span></button>
+                  <button type="button" class="landing-gallery-arrow landing-gallery-arrow--next" data-landing-next aria-label="Следующий лендинг"><span aria-hidden="true">→</span></button>
                 </div>
               </div>
 
@@ -1305,17 +1311,6 @@
 
           </div>
         </div>
-        <div class="reviews-carousel-controls" aria-label="Управление отзывами">
-          <button type="button" class="reviews-arrow" data-reviews-prev aria-label="Предыдущий отзыв"><span aria-hidden="true">←</span></button>
-          <div class="reviews-position">
-            <span data-reviews-current aria-live="polite">01</span>
-            <span aria-hidden="true">/</span>
-            <span data-reviews-total>10</span>
-          </div>
-          <div class="reviews-progress" aria-hidden="true"><span data-reviews-progress></span></div>
-          <button type="button" class="reviews-arrow" data-reviews-next aria-label="Следующий отзыв"><span aria-hidden="true">→</span></button>
-        </div>
-
       </div>
     </section>
 

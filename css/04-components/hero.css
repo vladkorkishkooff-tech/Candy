@@ -226,10 +226,35 @@ body.loaded .hero-directions { animation-delay: .7s; }
 @media (max-width: 900px) {
   .hero {
     align-items: center;
-    padding: 108px 0 28px;
+    padding: 96px 0 28px;
   }
+
   .hero-content-left { width: min(100%, 680px); }
   .hero-spline-shell spline-viewer { display: none; }
+
+  .hero-spline-fallback {
+    background:
+      radial-gradient(ellipse 90% 70% at 62% 42%, rgba(3, 234, 0, 0.16), transparent 58%),
+      radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.04), transparent 42%),
+      #0e0e0e;
+  }
+
+  .hero-fallback-orbit--one {
+    left: 58%;
+    width: min(92vw, 520px);
+  }
+
+  .hero-fallback-orbit--two {
+    left: 62%;
+    width: min(68vw, 360px);
+  }
+
+  .hero-fallback-glow {
+    left: 58%;
+    width: min(52vw, 280px);
+    filter: blur(18px);
+  }
+
   .hero-scene-overlay {
     background:
       linear-gradient(90deg, rgba(0,0,0,.78), rgba(0,0,0,.3) 72%, rgba(0,0,0,.35)),
@@ -240,8 +265,8 @@ body.loaded .hero-directions { animation-delay: .7s; }
 @media (max-width: 560px) {
   .hero {
     min-height: 100svh;
-    align-items: center;
-    padding: 92px 0 22px;
+    align-items: flex-start;
+    padding: 84px 0 22px;
   }
 
   .hero-scene-overlay {
@@ -250,9 +275,39 @@ body.loaded .hero-directions { animation-delay: .7s; }
       linear-gradient(90deg, rgba(0,0,0,.54), rgba(0,0,0,.18));
   }
 
+  .hero-spline-fallback {
+    background:
+      radial-gradient(ellipse 100% 80% at 50% 38%, rgba(3, 234, 0, 0.14), transparent 62%),
+      radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.035), transparent 45%),
+      #0a0a0a;
+  }
+
+  .hero-fallback-orbit--one {
+    left: 50%;
+    width: min(105vw, 420px);
+    opacity: 0.7;
+  }
+
+  .hero-fallback-orbit--two {
+    left: 54%;
+    width: min(78vw, 300px);
+  }
+
+  .hero-fallback-glow {
+    left: 52%;
+    width: min(70vw, 220px);
+    filter: blur(22px);
+    opacity: 0.85;
+  }
+
   .hero-eyebrow { margin-bottom: 12px; font-size: 8px; }
-  .hero-display-headline { font-size: clamp(2.12rem, 10.2vw, 2.65rem); line-height: .97; }
-  .hero-desc-para { max-width: 355px; margin-top: 14px; font-size: 13.5px; line-height: 1.44; }
+  .hero-display-headline {
+    font-size: clamp(1.75rem, 8.5vw, 2.35rem);
+    line-height: 1.02;
+    max-width: 11.5em;
+    text-wrap: balance;
+  }
+  .hero-desc-para { max-width: 100%; margin-top: 14px; font-size: 13.5px; line-height: 1.44; }
   .hero-action-buttons { display: grid; width: 100%; gap: 9px; margin-top: 17px; }
   .hero-action-buttons .btn { width: 100%; min-height: 44px; }
   .hero-directions { display: none; }

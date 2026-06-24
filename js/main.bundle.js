@@ -537,12 +537,16 @@
     const header = document.querySelector("[data-header]");
     if (!header) return;
 
+    const mobileMq = window.matchMedia("(max-width: 900px)");
+
     const update = rafThrottle(() => {
       header.classList.toggle("scrolled", window.scrollY > 24);
+      header.classList.toggle("is-compact", mobileMq.matches && window.scrollY > 48);
     });
 
     update();
     window.addEventListener("scroll", update, { passive: true });
+    mobileMq.addEventListener("change", update);
   };
 
   const initSmoothAnchors = () => {
@@ -565,54 +569,55 @@
   };
 
   const initMobileMenu = () => {
+    const header = document.querySelector("[data-header]");
     const button = document.querySelector("#menu-toggle");
-    const menu = document.querySelector("#mobile-menu");
-    if (!button || !menu) return;
+    const panel = document.querySelector("#header-nav-panel");
+    if (!header || !button || !panel) return;
 
     const focusableSelector = 'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])';
     let lastFocus = null;
     let focusTimer = 0;
+
+    const closeMenu = (returnFocus = true) => {
+      button.classList.remove("active");
+      button.setAttribute("aria-expanded", "false");
+      button.setAttribute("aria-label", "Открыть меню");
+      header.classList.remove("is-nav-open");
+      panel.setAttribute("aria-hidden", "true");
+      window.clearTimeout(focusTimer);
+      if (returnFocus && lastFocus) lastFocus.focus();
+    };
 
     const openMenu = () => {
       lastFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
       button.classList.add("active");
       button.setAttribute("aria-expanded", "true");
       button.setAttribute("aria-label", "Закрыть меню");
-      menu.classList.add("active");
-      menu.setAttribute("aria-hidden", "false");
-      document.body.classList.add("menu-open");
+      header.classList.add("is-nav-open");
+      panel.setAttribute("aria-hidden", "false");
       const focusFirst = () => {
-        if (menu.classList.contains("active")) menu.querySelector(focusableSelector)?.focus();
+        if (header.classList.contains("is-nav-open")) {
+          panel.querySelector(focusableSelector)?.focus();
+        }
       };
-      menu.addEventListener("transitionend", focusFirst, { once: true });
-      focusTimer = window.setTimeout(focusFirst, prefersReducedMotion.matches ? 0 : 600);
-    };
-
-    const closeMenu = (returnFocus = true) => {
-      button.classList.remove("active");
-      button.setAttribute("aria-expanded", "false");
-      button.setAttribute("aria-label", "Открыть меню");
-      menu.classList.remove("active");
-      menu.setAttribute("aria-hidden", "true");
-      document.body.classList.remove("menu-open");
-      window.clearTimeout(focusTimer);
-      if (returnFocus && lastFocus) lastFocus.focus();
+      panel.addEventListener("transitionend", focusFirst, { once: true });
+      focusTimer = window.setTimeout(focusFirst, prefersReducedMotion.matches ? 0 : 320);
     };
 
     button.addEventListener("click", () => {
-      if (menu.classList.contains("active")) {
+      if (header.classList.contains("is-nav-open")) {
         closeMenu(false);
       } else {
         openMenu();
       }
     });
 
-    menu.querySelectorAll("a").forEach((link) => {
+    panel.querySelectorAll("a").forEach((link) => {
       link.addEventListener("click", () => closeMenu(false));
     });
 
     document.addEventListener("keydown", (event) => {
-      if (!menu.classList.contains("active")) return;
+      if (!header.classList.contains("is-nav-open")) return;
 
       if (event.key === "Escape") {
         closeMenu();
@@ -621,12 +626,12 @@
 
       if (event.key !== "Tab") return;
 
-      const focusable = Array.from(menu.querySelectorAll(focusableSelector));
+      const focusable = Array.from(panel.querySelectorAll(focusableSelector));
       if (focusable.length === 0) return;
       const first = focusable[0];
       const last = focusable[focusable.length - 1];
 
-      if (!menu.contains(document.activeElement)) {
+      if (!panel.contains(document.activeElement)) {
         event.preventDefault();
         (event.shiftKey ? last : first).focus();
         return;
@@ -642,7 +647,7 @@
     });
 
     window.addEventListener("resize", () => {
-      if (window.innerWidth >= 901 && menu.classList.contains("active")) {
+      if (window.innerWidth >= 901 && header.classList.contains("is-nav-open")) {
         closeMenu(false);
       }
     });
@@ -721,19 +726,19 @@
 
   // Language Switcher Logic
   const initLanguageSwitcher = () => {
-    const switcher = document.querySelector(".lang-switcher");
-    if (!switcher) return;
+    const switchers = document.querySelectorAll(".lang-switcher");
+    if (!switchers.length) return;
 
     const translatePage = (lang) => {
       currentLang = lang;
       document.documentElement.lang = lang;
-      
-      // Update switcher active states
-      switcher.querySelectorAll(".lang-btn").forEach((btn) => {
-        btn.classList.toggle("active", btn.dataset.lang === lang);
+
+      switchers.forEach((switcher) => {
+        switcher.querySelectorAll(".lang-btn").forEach((btn) => {
+          btn.classList.toggle("active", btn.dataset.lang === lang);
+        });
       });
 
-      // Apply body fade transition effect
       document.body.style.transition = "opacity 0.18s cubic-bezier(0.16, 1, 0.3, 1)";
       document.body.style.opacity = "0.93";
 
@@ -742,7 +747,6 @@
           const key = el.dataset.i18n;
           if (!translations[key]) return;
 
-          // Hero title text splits automatically, set raw value first
           if (key === "hero-title") {
             el.innerHTML = translations[key][lang];
           } else if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
@@ -752,25 +756,22 @@
           }
         });
 
-        // Re-run typography splits and animations
         initTextSplit();
         animateHero();
-
-        // Sync bento categories text content dynamically
         syncBentoShowcase();
         syncLandingGallery();
-
-        // Keep chat dialogues current if stage 1 is active
         updateChatContent();
 
         document.body.style.opacity = "1";
       }, 180);
     };
 
-    switcher.addEventListener("click", (e) => {
-      const btn = e.target.closest(".lang-btn");
-      if (!btn || btn.classList.contains("active")) return;
-      translatePage(btn.dataset.lang);
+    switchers.forEach((switcher) => {
+      switcher.addEventListener("click", (e) => {
+        const btn = e.target.closest(".lang-btn");
+        if (!btn || btn.classList.contains("active")) return;
+        translatePage(btn.dataset.lang);
+      });
     });
   };
 
@@ -887,12 +888,37 @@
   ];
   let activeLandingIndex = 0;
 
+  const updateShowcaseScrollBtn = (data) => {
+    const scrollBtn = document.querySelector("#showcase-scroll-btn");
+    if (!scrollBtn) return;
+
+    if (data.url) {
+      scrollBtn.removeAttribute("onclick");
+      scrollBtn.onclick = (e) => {
+        e.preventDefault();
+        window.open(data.url, "_blank");
+      };
+      const textEl = scrollBtn.querySelector("span");
+      if (textEl) {
+        textEl.textContent = translations[data.ctaKey || "showcase-open-repo"][currentLang];
+      }
+    } else {
+      scrollBtn.onclick = () => {
+        document.querySelector("#cases")?.scrollIntoView({ behavior: "smooth" });
+      };
+      const textEl = scrollBtn.querySelector("span");
+      if (textEl) {
+        textEl.textContent = translations["widget-btn-examples"][currentLang];
+      }
+    }
+  };
+
   const syncLandingGallery = (animate = false) => {
     const image = document.querySelector("[data-landing-image]");
     const name = document.querySelector("[data-landing-name]");
     const counter = document.querySelector("[data-landing-counter]");
-    const dots = document.querySelector("[data-landing-dots]");
-    if (!image || !name || !counter || !dots) return;
+    const meta = document.querySelector("#showcase-landing-meta");
+    if (!image || !name || !counter) return;
 
     const slide = landingSlides[activeLandingIndex];
     const applySlide = () => {
@@ -900,9 +926,8 @@
       image.alt = slide.alt[currentLang];
       name.textContent = slide.name[currentLang];
       counter.textContent = `${String(activeLandingIndex + 1).padStart(2, "0")} / ${String(landingSlides.length).padStart(2, "0")}`;
-      dots.querySelectorAll("span").forEach((dot, index) => dot.classList.toggle("active", index === activeLandingIndex));
       bentoMockupData[8].url = slide.url;
-      if (activeBentoIndex === 8) syncBentoShowcase();
+      if (activeBentoIndex === 8) updateShowcaseScrollBtn(bentoMockupData[8]);
       image.classList.remove("is-changing");
     };
 
@@ -912,13 +937,13 @@
     } else {
       applySlide();
     }
+
+    if (meta) meta.hidden = activeBentoIndex !== 8;
   };
 
   const initLandingGallery = () => {
     const gallery = document.querySelector("[data-landing-gallery]");
     if (!gallery) return;
-    const dots = gallery.querySelector("[data-landing-dots]");
-    dots.innerHTML = landingSlides.map(() => "<span></span>").join("");
 
     const move = (direction) => {
       activeLandingIndex = (activeLandingIndex + direction + landingSlides.length) % landingSlides.length;
@@ -973,28 +998,11 @@
   });
 
   // Dynamic Scroll Button live URL bindings
-  const scrollBtn = document.querySelector("#showcase-scroll-btn");
-  if (scrollBtn) {
-    if (data.url) {
-      scrollBtn.removeAttribute("onclick");
-      scrollBtn.onclick = (e) => {
-        e.preventDefault();
-        window.open(data.url, '_blank');
-      };
-      const textEl = scrollBtn.querySelector("span");
-      if (textEl) {
-        textEl.textContent = translations[data.ctaKey || "showcase-open-repo"][currentLang];
-      }
-    } else {
-      scrollBtn.onclick = () => {
-        document.querySelector('#cases').scrollIntoView({behavior: 'smooth'});
-      };
-      const textEl = scrollBtn.querySelector("span");
-      if (textEl) {
-        textEl.textContent = translations["widget-btn-examples"][currentLang];
-      }
-    }
-  }
+  updateShowcaseScrollBtn(data);
+
+  const meta = document.querySelector("#showcase-landing-meta");
+  if (meta) meta.hidden = activeBentoIndex !== 8;
+  if (activeBentoIndex === 8) syncLandingGallery();
 };
 
   const initBentoShowcase = () => {
@@ -1241,6 +1249,21 @@
     });
   };
 
+  const initReviewsMarquee = () => {
+    const track = document.querySelector(".reviews-track");
+    if (!track || track.dataset.marqueeReady === "true") return;
+
+    const originals = Array.from(track.querySelectorAll(".review-item-card"));
+    if (originals.length === 0) return;
+
+    originals.forEach((card) => {
+      const clone = card.cloneNode(true);
+      clone.setAttribute("aria-hidden", "true");
+      track.appendChild(clone);
+    });
+
+    track.dataset.marqueeReady = "true";
+  };
 
   const init = () => {
     initTextSplit();
@@ -1258,6 +1281,7 @@
     initLanguageSwitcher();
     initBentoShowcase();
     initLandingGallery();
+    initReviewsMarquee();
     initChatToggler();
     initTestRunner();
     initHoverScrollMockups();
