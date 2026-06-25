@@ -1304,7 +1304,7 @@
   // -------------------------------------------------------------
   const initSplineBackground = () => {
     const shell = document.querySelector("[data-spline-shell]");
-    if (!shell || window.innerWidth <= 900 || !canHover.matches || prefersReducedMotion.matches || navigator.connection?.saveData) return;
+    if (!shell || prefersReducedMotion.matches || navigator.connection?.saveData) return;
 
     const mountViewer = () => {
       if (shell.querySelector("spline-viewer")) return;

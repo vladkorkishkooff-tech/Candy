@@ -230,7 +230,12 @@ body.loaded .hero-directions { animation-delay: .7s; }
   }
 
   .hero-content-left { width: min(100%, 680px); }
-  .hero-spline-shell spline-viewer { display: none; }
+
+  .hero-spline-shell spline-viewer {
+    display: block;
+    transform: scale(1.08);
+    transform-origin: 62% 42%;
+  }
 
   .hero-spline-fallback {
     background:
@@ -273,6 +278,11 @@ body.loaded .hero-directions { animation-delay: .7s; }
     background:
       linear-gradient(180deg, rgba(0,0,0,.2), rgba(0,0,0,.5) 40%, rgba(0,0,0,.86) 100%),
       linear-gradient(90deg, rgba(0,0,0,.54), rgba(0,0,0,.18));
+  }
+
+  .hero-spline-shell spline-viewer {
+    transform: scale(1.14);
+    transform-origin: 50% 36%;
   }
 
   .hero-spline-fallback {

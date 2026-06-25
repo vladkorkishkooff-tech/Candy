@@ -25,33 +25,31 @@
   background: rgba(255, 255, 255, 0.25);
 }
 
-/* Keep real README screenshots readable in the services showcase. */
+/* Keep real README screenshots fully visible in the services showcase. */
 .service-showcase-panel .editorial-preview-card--wide,
 .service-showcase-panel .editorial-preview-card--photo {
   width: 100%;
   max-width: 700px;
   height: auto !important;
-  aspect-ratio: 16 / 10 !important;
+  aspect-ratio: auto !important;
 }
 
 .service-showcase-panel .editorial-preview-card--portrait {
   width: auto;
-  height: min(430px, calc(100% - 94px)) !important;
-  aspect-ratio: 0.96 !important;
+  height: auto !important;
+  max-height: min(430px, calc(100% - 94px)) !important;
+  aspect-ratio: auto !important;
 }
 
-.service-showcase-panel .editorial-preview-card--photo .screenshot-img {
-  object-fit: cover;
-  object-position: center;
-}
-
-.service-showcase-panel .editorial-preview-card--tall-ui .screenshot-img {
-  object-fit: cover;
-  object-position: center 18%;
+.service-showcase-panel .editorial-preview-card--photo .screenshot-img,
+.service-showcase-panel .editorial-preview-card--tall-ui .screenshot-img,
+.service-showcase-panel .editorial-preview-card--wide .screenshot-img {
+  object-fit: contain;
+  object-position: center center;
 }
 
 @media (max-width: 620px) {
   .service-showcase-panel .editorial-preview-card--portrait {
-    height: min(250px, calc(100% - 70px)) !important;
+    max-height: min(280px, calc(100% - 70px)) !important;
   }
 }
