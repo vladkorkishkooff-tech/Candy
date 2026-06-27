@@ -20,20 +20,22 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Inter:wght@400;500;600;700;800&family=Syne:wght@700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://unpkg.com" crossorigin>
+  <link rel="preconnect" href="https://prod.spline.design" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 
-  <link rel="stylesheet" href="css/02-reset.css?v=v8-20260621">
+  <link rel="stylesheet" href="css/02-reset.css?v=v9-20260624">
   <link rel="stylesheet" href="css/04-components/header.css?v=v8-20260622">
-  <link rel="stylesheet" href="css/04-components/hero.css?v=v11-20260622">
-  <link rel="stylesheet" href="css/04-components/about.css?v=v13-20260622">
+  <link rel="stylesheet" href="css/04-components/hero.css?v=v17-20260627">
+  <link rel="stylesheet" href="css/04-components/about.css?v=v18-20260625">
   <link rel="stylesheet" href="css/04-components/decks.css?v=v7-20260621">
   <link rel="stylesheet" href="css/04-components/cases.css?v=v9-20260622">
   <link rel="stylesheet" href="css/04-components/process.css?v=v7-20260621">
-  <link rel="stylesheet" href="css/04-components/reviews.css?v=v7-20260621">
+  <link rel="stylesheet" href="css/04-components/reviews.css?v=v9-20260627">
   <link rel="stylesheet" href="css/04-components/contact.css?v=v8-20260622">
   <link rel="stylesheet" href="css/04-components/footer.css?v=v7-20260621">
   <link rel="stylesheet" href="css/05-animations.css?v=v7-20260621">
-  <link rel="stylesheet" href="css/06-utilities.css?v=v6-20260621">
+  <link rel="stylesheet" href="css/06-utilities.css?v=v19-20260627">
 
 </head>
 <body>
@@ -106,6 +108,14 @@
     <section class="hero section-dark" aria-labelledby="hero-title">
       <div class="hero-spline-shell" data-spline-shell aria-hidden="true">
         <div class="hero-spline-fallback">
+          <div class="hero-fallback-cube-wall" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
           <span class="hero-fallback-orbit hero-fallback-orbit--one"></span>
           <span class="hero-fallback-orbit hero-fallback-orbit--two"></span>
           <span class="hero-fallback-glow"></span>
@@ -155,10 +165,13 @@
               <div class="about-portrait-glow"></div>
               <div class="about-portrait-frame">
                 <img
-                  src="vlad_portrait.png"
+                  src="vlad_portrait.webp"
                   alt="Vlad Korkishko Portrait"
                   class="about-portrait-img"
                   loading="lazy"
+                  decoding="async"
+                  width="640"
+                  height="800"
                 />
               </div>
               <div class="about-status-pill">
@@ -354,21 +367,21 @@
               <!-- Problem ➔ Solution ➔ Result Flow -->
               <div class="showcase-steps-flow">
                 <div class="showcase-step-item">
-                  <span class="step-lbl" data-i18n="lbl-problem">ПРОБЛЕМА:</span>
+                  <span class="step-lbl" data-i18n="showcase-lbl-use">ПРИМЕНЕНИЕ:</span>
                   <p class="step-txt" id="showcase-problem" data-i18n="showcase-web-prob">Продажи, остатки и финансы WB/Ozon сложно сводить вручную</p>
                 </div>
                 <div class="showcase-step-arrow">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                 </div>
                 <div class="showcase-step-item">
-                  <span class="step-lbl" data-i18n="lbl-solution">РЕШЕНИЕ:</span>
+                  <span class="step-lbl" data-i18n="showcase-lbl-strength">СИЛЬНАЯ СТОРОНА:</span>
                   <p class="step-txt" id="showcase-solution" data-i18n="showcase-web-sol">Внутренний кабинет с графиками, товарами и операционными срезами</p>
                 </div>
                 <div class="showcase-step-arrow">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
                 </div>
                 <div class="showcase-step-item">
-                  <span class="step-lbl" data-i18n="lbl-result">РЕЗУЛЬТАТ:</span>
+                  <span class="step-lbl" data-i18n="showcase-lbl-where">ГДЕ ИСПОЛЬЗОВАТЬ:</span>
                   <p class="step-txt" id="showcase-result" data-i18n="showcase-web-res">Единая картина по маркетплейсам без ручного сведения таблиц</p>
                 </div>
               </div>
@@ -379,7 +392,7 @@
                 <span class="feature-bullet">Высокая скорость</span>
               </div>
 
-              <button class="btn btn-secondary btn-examples-scroll" id="showcase-scroll-btn" onclick="document.querySelector('#cases').scrollIntoView({behavior: 'smooth'})" style="margin-top: auto; align-self: flex-start; border-radius: var(--radius-sm); font-size: 11.5px; padding: 10px 16px;">
+              <button class="btn btn-secondary btn-examples-scroll" id="showcase-scroll-btn" onclick="document.querySelector('#cases').scrollIntoView({behavior: 'smooth'})" style="align-self: flex-start; border-radius: var(--radius-sm); font-size: 11.5px; padding: 10px 16px;">
                 <span data-i18n="widget-btn-examples">Примеры работ</span>
                 <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 6px; width: 12px; height: 12px;"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
               </button>
@@ -1103,9 +1116,9 @@
           </div>
         </div>
 
-        <div class="reviews-carousel-container" style="text-align: left; width: 100%;">
+        <div class="reviews-carousel-container" style="text-align: left; width: 100%;" tabindex="0" aria-roledescription="carousel" aria-label="Отзывы клиентов">
           <div class="reviews-horizontal-feed">
-            <div class="reviews-track">
+            <div class="reviews-track" aria-live="polite">
               
               <!-- GROUP 1: Cards 1-5 -->
               
@@ -1311,6 +1324,19 @@
 
           </div>
         </div>
+
+        <div class="reviews-carousel-controls" aria-label="Управление отзывами">
+          <button type="button" class="reviews-nav-btn" data-reviews-prev aria-label="Предыдущие отзывы">
+            <span aria-hidden="true">←</span>
+          </button>
+          <div class="reviews-carousel-status">
+            <span data-reviews-status aria-live="polite">01 / 10</span>
+            <div class="reviews-dots" data-reviews-dots aria-label="Позиция в карусели"></div>
+          </div>
+          <button type="button" class="reviews-nav-btn" data-reviews-next aria-label="Следующие отзывы">
+            <span aria-hidden="true">→</span>
+          </button>
+        </div>
       </div>
     </section>
 
@@ -1374,6 +1400,6 @@
     </div>
   </footer>
 
-  <script src="js/main.bundle.js?v=v19-20260624"></script>
+  <script src="js/main.bundle.js?v=v32-20260627"></script>
 </body>
 </html>

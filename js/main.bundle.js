@@ -106,46 +106,49 @@
     "showcase-api-title": { ru: "Интеграции внешних сервисов API", en: "External API Integrations" },
     "showcase-landings-title": { ru: "Лендинги и сайты: премиальная подача услуги", en: "Landings & websites: premium service presentation" },
 
-    // Problem-Solution-Result flow details
+    // Showcase value/application details
+    "showcase-lbl-use": { ru: "ПРИМЕНЕНИЕ:", en: "USE CASE:" },
+    "showcase-lbl-strength": { ru: "СИЛЬНАЯ СТОРОНА:", en: "STRENGTH:" },
+    "showcase-lbl-where": { ru: "ГДЕ ИСПОЛЬЗОВАТЬ:", en: "WHERE IT FITS:" },
     "lbl-problem": { ru: "ПРОБЛЕМА:", en: "PROBLEM:" },
     "lbl-solution": { ru: "РЕШЕНИЕ:", en: "SOLUTION:" },
     "lbl-result": { ru: "РЕЗУЛЬТАТ:", en: "RESULT:" },
 
-    "showcase-web-prob": { ru: "Данные WB/Ozon разбросаны", en: "WB/Ozon data is fragmented" },
-    "showcase-web-sol": { ru: "Кабинет с продажами, остатками и финансами", en: "Dashboard for sales, stock and finance" },
-    "showcase-web-res": { ru: "Один экран для решений", en: "One screen for decisions" },
+    "showcase-web-prob": { ru: "Контроль продаж, остатков и финансов WB/Ozon без ручной сводки.", en: "WB/Ozon sales, stock and finance without manual reports." },
+    "showcase-web-sol": { ru: "Товары, динамика, фильтры и финансы собраны в один кабинет.", en: "Products, trends, filters and finance in one dashboard." },
+    "showcase-web-res": { ru: "Ежедневный контроль магазина и решений по закупкам.", en: "Daily store control and purchasing decisions." },
 
-    "showcase-webapps-prob": { ru: "Сметы считают вручную", en: "Estimates are calculated manually" },
-    "showcase-webapps-sol": { ru: "SaaS-калькулятор с пакетами и итогом", en: "SaaS calculator with packages and total" },
-    "showcase-webapps-res": { ru: "Быстрый расчет для клиента", en: "Fast client-facing estimate" },
+    "showcase-webapps-prob": { ru: "Быстрый ориентир по бюджету ремонта до детальной сметы.", en: "A quick renovation budget estimate before a detailed quote." },
+    "showcase-webapps-sol": { ru: "Параметры, пакеты, опции и итог в одном пошаговом сценарии.", en: "Parameters, packages, options and total in one flow." },
+    "showcase-webapps-res": { ru: "Пресейл, лид-магнит или инструмент менеджера.", en: "Presales, lead magnet or manager tool." },
 
-    "showcase-saas-prob": { ru: "Бэкапы забывают запускать", en: "Backups are easy to forget" },
-    "showcase-saas-sol": { ru: "Расписание, логи, облако", en: "Schedule, logs, cloud storage" },
-    "showcase-saas-res": { ru: "Контроль без ручной рутины", en: "Control without manual routine" },
+    "showcase-saas-prob": { ru: "Регулярные бэкапы без зависимости от памяти человека.", en: "Regular backups without relying on memory." },
+    "showcase-saas-sol": { ru: "Расписание, логи и отправка копий в облако.", en: "Schedule, logs and cloud backup delivery." },
+    "showcase-saas-res": { ru: "Внутренние базы и небольшие SaaS без DevOps-команды.", en: "Internal databases and small SaaS without a DevOps team." },
 
-    "showcase-ai-prob": { ru: "Реестры неудобны для работы", en: "Registries are hard to use" },
-    "showcase-ai-sol": { ru: "Парсинг, нормализация, проверки", en: "Parsing, normalization, checks" },
-    "showcase-ai-res": { ru: "Данные готовы к анализу", en: "Data ready for analysis" },
+    "showcase-ai-prob": { ru: "Данные из реестров, сайтов и API нужно привести к работе.", en: "Registry, website and API data needs cleanup." },
+    "showcase-ai-sol": { ru: "Сбор, нормализация и проверки в едином пайплайне.", en: "Collection, normalization and checks in one pipeline." },
+    "showcase-ai-res": { ru: "Выгрузки, внутренние базы и обновление справочников.", en: "Exports, internal databases and directory updates." },
 
-    "showcase-dash-prob": { ru: "Метрики не видны сразу", en: "Metrics are not visible at a glance" },
-    "showcase-dash-sol": { ru: "Дашборд с ключевыми срезами", en: "Dashboard with key slices" },
-    "showcase-dash-res": { ru: "Быстрее видно динамику", en: "Trends are visible faster" },
+    "showcase-dash-prob": { ru: "Цифры есть, но решения тормозят разрозненные отчёты.", en: "Data exists, but fragmented reports slow decisions." },
+    "showcase-dash-sol": { ru: "Метрики, фильтры и срезы собраны в быстрый интерфейс.", en: "Metrics, filters and slices in a fast interface." },
+    "showcase-dash-res": { ru: "Продажи, склад, финансы, заявки или контент-план.", en: "Sales, stock, finance, leads or content planning." },
 
-    "showcase-scripts-prob": { ru: "Посты готовят и публикуют вручную", en: "Posts are prepared and published manually" },
-    "showcase-scripts-sol": { ru: "AI-генерация, превью, изображения и расписание", en: "AI generation, previews, images and scheduling" },
-    "showcase-scripts-res": { ru: "Стиль канала сохраняется в автоматическом потоке", en: "The channel style stays consistent in an automated flow" },
+    "showcase-scripts-prob": { ru: "Регулярные посты в Telegram без ручной подготовки с нуля.", en: "Regular Telegram posts without manual work from scratch." },
+    "showcase-scripts-sol": { ru: "AI собирает текст, изображение, превью и публикацию.", en: "AI prepares text, image, preview and publishing." },
+    "showcase-scripts-res": { ru: "Контент-каналы, рубрики, подборки и обучение.", en: "Content channels, columns, digests and education." },
 
-    "showcase-bots-prob": { ru: "Клиенты ждут ответа", en: "Clients wait for replies" },
-    "showcase-bots-sol": { ru: "Запись и оплата в Telegram", en: "Booking and payment in Telegram" },
-    "showcase-bots-res": { ru: "Заявка за 2 шага", en: "Booking in 2 steps" },
+    "showcase-bots-prob": { ru: "Запись прямо в Telegram без звонков и ожидания ответа.", en: "Booking in Telegram without calls or waiting." },
+    "showcase-bots-sol": { ru: "Услуга, время, подтверждение и заявка в одном сценарии.", en: "Service, time, confirmation and request in one flow." },
+    "showcase-bots-res": { ru: "Запись, консультации, мини-CRM и уведомления.", en: "Booking, consultations, mini-CRM and notifications." },
 
-    "showcase-api-prob": { ru: "CRM-система изолирована от платежей и таблиц", en: "CRM system isolated from billing and analytical spreadsheets" },
-    "showcase-api-sol": { ru: "Связующий слой на Node.js для обмена вебхуками", en: "Custom Node.js bridge orchestrating webhook queues" },
-    "showcase-api-res": { ru: "Отказоустойчивая интеграция amoCRM, Stripe и Google Sheets", en: "Fault-tolerant synchronization of amoCRM, Stripe and Sheets" },
+    "showcase-api-prob": { ru: "CRM, платежи и таблицы должны обмениваться данными.", en: "CRM, payments and sheets need data exchange." },
+    "showcase-api-sol": { ru: "Webhook-слой нормализует данные и синхронизирует сервисы.", en: "A webhook layer normalizes data and syncs services." },
+    "showcase-api-res": { ru: "Заявки, оплаты, отчёты, Sheets и уведомления.", en: "Leads, payments, reports, Sheets and notifications." },
 
-    "showcase-landings-prob": { ru: "Экспертной услуге нужен сайт, который выглядит дороже обычной визитки", en: "An expert service needs a site that feels stronger than a generic business card" },
-    "showcase-landings-sol": { ru: "Живой лендинг с аккуратной визуальной системой, адаптивом и понятным CTA", en: "A live landing page with a polished visual system, responsive layout and clear CTA" },
-    "showcase-landings-res": { ru: "Работу можно открыть, проверить и использовать как портфолио-кейс", en: "The work can be opened, checked and used as a portfolio case" },
+    "showcase-landings-prob": { ru: "Услуге нужен сайт с понятной подачей и быстрым путём к заявке.", en: "A service needs a clear site and a direct lead path." },
+    "showcase-landings-sol": { ru: "Визуальная система, адаптив и понятный путь к заявке.", en: "Visual system, responsive layout and a clear lead path." },
+    "showcase-landings-res": { ru: "Услуги, консультации, обучение и промо-страницы.", en: "Services, consultations, education and promo pages." },
     
     "feat-design": { ru: "Адаптивный дизайн", en: "Responsive Design" },
     "feat-speed": { ru: "Высокая скорость", en: "Ultimate Speed" },
@@ -171,6 +174,15 @@
     "feat-ui": { ru: "UI-состояния", en: "Responsive UI States" },
     "feat-live": { ru: "Live-сайт", en: "Live site" },
     "feat-vercel": { ru: "Vercel deploy", en: "Vercel deploy" },
+    "feat-ops": { ru: "Операционный контроль", en: "Operational control" },
+    "feat-presale": { ru: "Пресейл-инструмент", en: "Presales tool" },
+    "feat-client-flow": { ru: "Клиентский сценарий", en: "Client flow" },
+    "feat-backup": { ru: "Резервные процессы", en: "Backup routine" },
+    "feat-data-ready": { ru: "Данные к анализу", en: "Analysis-ready data" },
+    "feat-decisions": { ru: "Решения по цифрам", en: "Data decisions" },
+    "feat-content": { ru: "Регулярный контент", en: "Recurring content" },
+    "feat-booking": { ru: "Запись без менеджера", en: "Manager-free booking" },
+    "feat-leads": { ru: "Путь к заявке", en: "Lead path" },
  
     "widget-btn-examples": { ru: "Примеры проектов", en: "Project Examples" },
     "showcase-open-repo": { ru: "Открыть репозиторий", en: "Open Repository" },
@@ -786,9 +798,10 @@
     probKey: "showcase-web-prob",
     solKey: "showcase-web-sol",
     resKey: "showcase-web-res",
-    features: ["feat-d3", "feat-realtime", "feat-filter"],
+    features: ["feat-ops", "feat-decisions", "feat-filter"],
     url: "https://github.com/vladkorkishkooff-tech/WB-Ozon-Dashboard",
-    ctaKey: "showcase-open-repo"
+    ctaKey: "showcase-open-repo",
+    ratio: "1440 / 980"
   },
   {
     icon: `<svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>`,
@@ -797,9 +810,10 @@
     probKey: "showcase-webapps-prob",
     solKey: "showcase-webapps-sol",
     resKey: "showcase-webapps-res",
-    features: ["feat-ui", "feat-scale", "feat-security"],
+    features: ["feat-presale", "feat-client-flow", "feat-ui"],
     url: "https://github.com/vladkorkishkooff-tech/RepairCalc",
-    ctaKey: "showcase-open-repo"
+    ctaKey: "showcase-open-repo",
+    ratio: "1406 / 1464"
   },
   {
     icon: `<svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>`,
@@ -808,7 +822,7 @@
     probKey: "showcase-saas-prob",
     solKey: "showcase-saas-sol",
     resKey: "showcase-saas-res",
-    features: ["feat-cron", "feat-fault", "feat-security"],
+    features: ["feat-backup", "feat-cron", "feat-fault"],
     url: "https://github.com/vladkorkishkooff-tech/AgentBackup",
     ctaKey: "showcase-open-repo"
   },
@@ -819,7 +833,7 @@
     probKey: "showcase-ai-prob",
     solKey: "showcase-ai-sol",
     resKey: "showcase-ai-res",
-    features: ["feat-parsing", "feat-sync", "feat-fault"],
+    features: ["feat-parsing", "feat-data-ready", "feat-sync"],
     url: "https://github.com/vladkorkishkooff-tech/Parser-Rosaccreditation",
     ctaKey: "showcase-open-repo"
   },
@@ -830,9 +844,10 @@
     probKey: "showcase-dash-prob",
     solKey: "showcase-dash-sol",
     resKey: "showcase-dash-res",
-    features: ["feat-d3", "feat-realtime", "feat-filter"],
+    features: ["feat-decisions", "feat-d3", "feat-filter"],
     url: "https://github.com/vladkorkishkooff-tech/WB-Ozon-Dashboard",
-    ctaKey: "showcase-open-repo"
+    ctaKey: "showcase-open-repo",
+    ratio: "1440 / 980"
   },
   {
     icon: `<svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>`,
@@ -841,7 +856,7 @@
     probKey: "showcase-scripts-prob",
     solKey: "showcase-scripts-sol",
     resKey: "showcase-scripts-res",
-    features: ["feat-llm", "feat-cron", "feat-fault"],
+    features: ["feat-content", "feat-llm", "feat-cron"],
     url: "https://github.com/vladkorkishkooff-tech/AutoPostingTG",
     ctaKey: "showcase-open-repo"
   },
@@ -852,7 +867,7 @@
     probKey: "showcase-bots-prob",
     solKey: "showcase-bots-sol",
     resKey: "showcase-bots-res",
-    features: ["feat-python", "feat-payments", "feat-webapps"],
+    features: ["feat-booking", "feat-python", "feat-webapps"],
     url: "https://github.com/vladkorkishkooff-tech/ManicureBot",
     ctaKey: "showcase-open-repo"
   },
@@ -863,7 +878,7 @@
     probKey: "showcase-api-prob",
     solKey: "showcase-api-sol",
     resKey: "showcase-api-res",
-    features: ["feat-crm", "feat-webhooks", "feat-sync"],
+    features: ["feat-sync", "feat-webhooks", "feat-crm"],
     url: "https://github.com/vladkorkishkooff-tech/Parser-Rosaccreditation",
     ctaKey: "showcase-open-repo"
   },
@@ -874,19 +889,26 @@
     probKey: "showcase-landings-prob",
     solKey: "showcase-landings-sol",
     resKey: "showcase-landings-res",
-    features: ["feat-live", "feat-vercel", "feat-design"],
+    features: ["feat-leads", "feat-live", "feat-design"],
     url: "https://premium-visit-card.vercel.app/",
-    ctaKey: "showcase-open-site"
+    ctaKey: "showcase-open-site",
+    ratio: "1440 / 900"
   }
 ];
 
   const landingSlides = [
-    { name: { ru: "Сайт психолога", en: "Psychologist website" }, src: "case_premium_visit_card.webp", alt: { ru: "Сайт психолога", en: "Psychologist landing page" }, url: "https://premium-visit-card.vercel.app/" },
-    { name: { ru: "Fitness", en: "Fitness" }, src: "case_landing_fitness.webp", alt: { ru: "Лендинг фитнес-тренера", en: "Fitness coach landing page" }, url: "https://01-fitness-coach.vercel.app" },
-    { name: { ru: "Massage", en: "Massage" }, src: "case_landing_massage.webp", alt: { ru: "Лендинг массажной практики", en: "Massage practice landing page" }, url: "https://02-massage-therapist.vercel.app" },
-    { name: { ru: "English tutor", en: "English tutor" }, src: "case_landing_english_tutor.webp", alt: { ru: "Лендинг преподавателя английского", en: "English tutor landing page" }, url: "https://03-english-tutor.vercel.app" },
+    { name: { ru: "Сайт психолога", en: "Psychologist website" }, src: "case_premium_visit_card.webp", alt: { ru: "Сайт психолога", en: "Psychologist landing page" }, url: "https://premium-visit-card.vercel.app/", ratio: "1440 / 900" },
+    { name: { ru: "Fitness", en: "Fitness" }, src: "case_landing_fitness.webp", alt: { ru: "Лендинг фитнес-тренера", en: "Fitness coach landing page" }, url: "https://01-fitness-coach.vercel.app", ratio: "1440 / 1000" },
+    { name: { ru: "Massage", en: "Massage" }, src: "case_landing_massage.webp", alt: { ru: "Лендинг массажной практики", en: "Massage practice landing page" }, url: "https://02-massage-therapist.vercel.app", ratio: "1440 / 1000" },
+    { name: { ru: "English tutor", en: "English tutor" }, src: "case_landing_english_tutor.webp", alt: { ru: "Лендинг преподавателя английского", en: "English tutor landing page" }, url: "https://03-english-tutor.vercel.app", ratio: "1440 / 1000" },
   ];
   let activeLandingIndex = 0;
+
+  const setShowcaseRatio = (ratio = "16 / 10") => {
+    const visualZone = document.querySelector(".showcase-visual-zone");
+    if (!visualZone) return;
+    visualZone.style.setProperty("--showcase-ratio", ratio);
+  };
 
   const updateShowcaseScrollBtn = (data) => {
     const scrollBtn = document.querySelector("#showcase-scroll-btn");
@@ -896,7 +918,7 @@
       scrollBtn.removeAttribute("onclick");
       scrollBtn.onclick = (e) => {
         e.preventDefault();
-        window.open(data.url, "_blank");
+        window.open(data.url, "_blank", "noopener,noreferrer");
       };
       const textEl = scrollBtn.querySelector("span");
       if (textEl) {
@@ -927,6 +949,8 @@
       name.textContent = slide.name[currentLang];
       counter.textContent = `${String(activeLandingIndex + 1).padStart(2, "0")} / ${String(landingSlides.length).padStart(2, "0")}`;
       bentoMockupData[8].url = slide.url;
+      bentoMockupData[8].ratio = slide.ratio;
+      if (activeBentoIndex === 8) setShowcaseRatio(slide.ratio);
       if (activeBentoIndex === 8) updateShowcaseScrollBtn(bentoMockupData[8]);
       image.classList.remove("is-changing");
     };
@@ -960,6 +984,7 @@
 
   const syncBentoShowcase = () => {
     const data = bentoMockupData[activeBentoIndex];
+    setShowcaseRatio(data.ratio || "16 / 10");
     
     // Set showcase pill icon & title
     const pillIcon = document.querySelector(".showcase-cat-icon");
@@ -1016,6 +1041,17 @@
     if (nav && landingButton) nav.prepend(landingButton);
     if (thumbnails && landingThumb) thumbnails.prepend(landingThumb);
 
+    const keepActiveServiceTabVisible = (smooth = false) => {
+      if (!nav || window.innerWidth > 620) return;
+      const activeButton = nav.querySelector(".service-tab-btn.active");
+      if (!activeButton) return;
+
+      const behavior = smooth && !prefersReducedMotion.matches ? "smooth" : "auto";
+      window.requestAnimationFrame(() => {
+        activeButton.scrollIntoView({ behavior, block: "nearest", inline: "start" });
+      });
+    };
+
     const switchTab = (index) => {
       if (activeBentoIndex === index) return;
       activeBentoIndex = index;
@@ -1029,6 +1065,7 @@
 
       // Update thumbnails active classes
       thumbBtns.forEach((tb) => tb.classList.toggle("active", Number(tb.dataset.thumbIndex) === index));
+      keepActiveServiceTabVisible(true);
 
       // Apply showcase panel micro transitions
       const panel = document.querySelector("#service-showcase-panel");
@@ -1056,6 +1093,7 @@
     });
     thumbBtns.forEach((thumb) => thumb.classList.toggle("active", Number(thumb.dataset.thumbIndex) === activeBentoIndex));
     syncBentoShowcase();
+    keepActiveServiceTabVisible(false);
   };
 
   // Stage 1 Dialogue Content Updater
@@ -1249,20 +1287,129 @@
     });
   };
 
-  const initReviewsMarquee = () => {
+  const initReviewsCarousel = () => {
+    const container = document.querySelector(".reviews-carousel-container");
     const track = document.querySelector(".reviews-track");
-    if (!track || track.dataset.marqueeReady === "true") return;
+    if (!container || !track || track.dataset.carouselReady === "true") return;
 
-    const originals = Array.from(track.querySelectorAll(".review-item-card"));
-    if (originals.length === 0) return;
+    track.querySelectorAll('.review-item-card[aria-hidden="true"]').forEach((clone) => clone.remove());
 
-    originals.forEach((card) => {
-      const clone = card.cloneNode(true);
-      clone.setAttribute("aria-hidden", "true");
-      track.appendChild(clone);
+    const cards = Array.from(track.querySelectorAll(".review-item-card"));
+    if (cards.length === 0) return;
+
+    const prev = document.querySelector("[data-reviews-prev]");
+    const next = document.querySelector("[data-reviews-next]");
+    const status = document.querySelector("[data-reviews-status]");
+    const dotsWrap = document.querySelector("[data-reviews-dots]");
+
+    let index = 0;
+    let visibleCount = 3;
+    let maxIndex = 0;
+    let timer = 0;
+    let paused = false;
+    const autoplayEnabled = !prefersReducedMotion.matches;
+    const autoplayDelay = 6500;
+
+    const getVisibleCount = () => {
+      if (window.innerWidth <= 620) return 1;
+      if (window.innerWidth <= 980) return 2;
+      return 3;
+    };
+
+    const buildDots = () => {
+      if (!dotsWrap) return;
+      dotsWrap.innerHTML = "";
+      for (let i = 0; i <= maxIndex; i += 1) {
+        const dot = document.createElement("button");
+        dot.type = "button";
+        dot.className = "reviews-dot";
+        dot.setAttribute("aria-label", `Показать отзывы с ${i + 1}`);
+        dot.addEventListener("click", () => {
+          goTo(i, true);
+        });
+        dotsWrap.appendChild(dot);
+      }
+    };
+
+    const update = () => {
+      visibleCount = getVisibleCount();
+      maxIndex = Math.max(0, cards.length - visibleCount);
+      if (index > maxIndex) index = 0;
+
+      const cardWidth = cards[0].getBoundingClientRect().width;
+      if (cardWidth <= 0) return;
+      const trackStyles = window.getComputedStyle(track);
+      const gap = Number.parseFloat(trackStyles.columnGap || trackStyles.gap || "0") || 0;
+      const shift = index * (cardWidth + gap);
+      track.style.transform = `translate3d(${-Math.max(0, shift)}px, 0, 0)`;
+
+      const end = Math.min(cards.length, index + visibleCount);
+      if (status) status.textContent = `${String(index + 1).padStart(2, "0")}–${String(end).padStart(2, "0")} / ${String(cards.length).padStart(2, "0")}`;
+
+      if (dotsWrap) {
+        dotsWrap.querySelectorAll(".reviews-dot").forEach((dot, dotIndex) => {
+          dot.classList.toggle("is-active", dotIndex === index);
+          dot.setAttribute("aria-current", dotIndex === index ? "true" : "false");
+        });
+      }
+    };
+
+    const stop = () => {
+      if (!timer) return;
+      window.clearInterval(timer);
+      timer = 0;
+    };
+
+    const start = () => {
+      stop();
+      if (!autoplayEnabled || paused || document.hidden || maxIndex <= 0) return;
+      timer = window.setInterval(() => {
+        goTo(index >= maxIndex ? 0 : index + 1, false);
+      }, autoplayDelay);
+    };
+
+    var goTo = (nextIndex, manual = false) => {
+      index = nextIndex < 0 ? maxIndex : nextIndex > maxIndex ? 0 : nextIndex;
+      update();
+      if (manual) start();
+    };
+
+    const recalc = () => {
+      const prevMax = maxIndex;
+      visibleCount = getVisibleCount();
+      maxIndex = Math.max(0, cards.length - visibleCount);
+      if (prevMax !== maxIndex) buildDots();
+      update();
+      start();
+    };
+
+    buildDots();
+    update();
+
+    prev?.addEventListener("click", () => goTo(index - 1, true));
+    next?.addEventListener("click", () => goTo(index + 1, true));
+    container.addEventListener("keydown", (event) => {
+      if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+      event.preventDefault();
+      goTo(index + (event.key === "ArrowRight" ? 1 : -1), true);
     });
+    container.addEventListener("focusin", () => {
+      paused = true;
+      stop();
+    });
+    container.addEventListener("focusout", () => {
+      paused = false;
+      start();
+    });
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) stop();
+      else start();
+    });
+    window.addEventListener("resize", recalc);
 
-    track.dataset.marqueeReady = "true";
+    start();
+
+    track.dataset.carouselReady = "true";
   };
 
   const init = () => {
@@ -1273,7 +1420,6 @@
     initSmoothAnchors();
     initMobileMenu();
     initCounters();
-    initTilt();
     initSplineBackground();
     initCasesToggle();
     initAboutProof();
@@ -1281,43 +1427,68 @@
     initLanguageSwitcher();
     initBentoShowcase();
     initLandingGallery();
-    initReviewsMarquee();
+    initReviewsCarousel();
     initChatToggler();
-    initTestRunner();
-    initHoverScrollMockups();
     animateHero();
     document.body.classList.add("loaded");
-  };
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", init);
-  } else {
-    init();
-  }
+    const runDeferred = () => {
+      initTilt();
+      initHoverScrollMockups();
+      initTestRunner();
+    };
+
+    if ("requestIdleCallback" in window) {
+      window.requestIdleCallback(runDeferred, { timeout: 2200 });
+    } else {
+      window.setTimeout(runDeferred, 600);
+    }
+  };
 
 // -------------------------------------------------------------
 // Interactive Dual-Device Duet Screenshot Hover-Scrolling System
 // -------------------------------------------------------------
 
   // -------------------------------------------------------------
-  // Lazy Spline background with static fallbacks
+  // Lazy desktop Spline background with static fallbacks
   // -------------------------------------------------------------
   const initSplineBackground = () => {
     const shell = document.querySelector("[data-spline-shell]");
-    if (!shell || prefersReducedMotion.matches || navigator.connection?.saveData) return;
+    if (!shell) return;
+
+    const splineForcedOff = new URLSearchParams(window.location.search).get("spline") === "0";
+    if (splineForcedOff || prefersReducedMotion.matches || navigator.connection?.saveData) {
+      shell.classList.add("is-fallback-only");
+      return;
+    }
+
+    const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    const canRunSpline = canHover && window.innerWidth > 900;
+
+    if (!canRunSpline) {
+      shell.classList.add("is-fallback-only");
+      return;
+    }
 
     const mountViewer = () => {
       if (shell.querySelector("spline-viewer")) return;
 
       const viewer = document.createElement("spline-viewer");
       viewer.setAttribute("url", "https://prod.spline.design/Slk6b8kz3LRlKiyk/scene.splinecode");
-      viewer.setAttribute("loading", "lazy");
       viewer.setAttribute("unloadable", "");
       viewer.setAttribute("events-target", "global");
       viewer.setAttribute("loading-anim-type", "spinner-small-dark");
 
-      const revealScene = () => shell.classList.add("is-loaded");
+      const revealScene = () => {
+        shell.classList.add("is-loaded");
+        shell.classList.remove("is-loading-spline", "is-fallback-only", "has-spline-error");
+      };
+      const markError = () => {
+        shell.classList.add("has-spline-error");
+        shell.classList.remove("is-loading-spline");
+      };
       viewer.addEventListener("load-complete", revealScene);
+      viewer.addEventListener("error", markError);
       viewer.addEventListener("unload", () => shell.classList.remove("is-loaded"));
       shell.appendChild(viewer);
 
@@ -1332,18 +1503,78 @@
         return;
       }
 
+      if (!document.querySelector('link[href="https://prod.spline.design"]')) {
+        const splinePreconnect = document.createElement("link");
+        splinePreconnect.rel = "preconnect";
+        splinePreconnect.href = "https://prod.spline.design";
+        splinePreconnect.crossOrigin = "";
+        document.head.appendChild(splinePreconnect);
+      }
+
+      if (!document.querySelector('link[href="https://unpkg.com"]')) {
+        const preconnect = document.createElement("link");
+        preconnect.rel = "preconnect";
+        preconnect.href = "https://unpkg.com";
+        preconnect.crossOrigin = "";
+        document.head.appendChild(preconnect);
+      }
+
+      const existingScript = document.querySelector('script[data-spline-viewer="true"]');
+      if (existingScript) {
+        existingScript.addEventListener("load", mountViewer, { once: true });
+        return;
+      }
+
       const script = document.createElement("script");
       script.type = "module";
       script.src = "https://unpkg.com/@splinetool/viewer@1.12.97/build/spline-viewer.js";
+      script.dataset.splineViewer = "true";
       script.addEventListener("load", mountViewer, { once: true });
+      script.addEventListener("error", () => {
+        shell.classList.add("has-spline-error");
+        shell.classList.remove("is-loading-spline");
+      }, { once: true });
       document.head.appendChild(script);
     };
 
-    if ("requestIdleCallback" in window) {
-      window.requestIdleCallback(loadViewerModule, { timeout: 700 });
-    } else {
-      window.setTimeout(loadViewerModule, 200);
+    const scheduleLoad = () => {
+      shell.classList.add("is-loading-spline");
+      const loadAfterFirstPaint = () => {
+        if ("requestIdleCallback" in window) {
+          window.requestIdleCallback(loadViewerModule, { timeout: 650 });
+        } else {
+          window.setTimeout(loadViewerModule, 250);
+        }
+      };
+
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(loadAfterFirstPaint);
+      });
+
+      window.setTimeout(() => {
+        if (!shell.classList.contains("is-loaded")) {
+          shell.classList.add("is-fallback-only");
+        }
+      }, 5200);
+    };
+
+    const shellRect = shell.getBoundingClientRect();
+    if (shellRect.top < window.innerHeight && shellRect.bottom > 0) {
+      scheduleLoad();
+      return;
     }
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver((entries) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
+        observer.disconnect();
+        scheduleLoad();
+      }, { rootMargin: "120px" });
+      observer.observe(shell);
+      return;
+    }
+
+    scheduleLoad();
   };
 
   const initCasesToggle = () => {
@@ -1495,42 +1726,14 @@ const initHoverScrollMockups = () => {
     mockup.addEventListener('mouseleave', resetScroll);
   });
   
-  // 2. Bento Grid Case Cards Scrolling
-  document.querySelectorAll('.case-grid-unit').forEach(card => {
-    const screen = card.querySelector('.case-card-visual-holder');
-    const img = card.querySelector('.case-mockup-img') || card.querySelector('.screenshot-img');
-    if (!screen || !img) return;
-    
-    screen.style.setProperty('position', 'relative', 'important');
-    screen.style.setProperty('overflow', 'hidden', 'important');
-    
-    img.style.setProperty('position', 'absolute', 'important');
-    img.style.setProperty('top', '0', 'important');
-    img.style.setProperty('left', '0', 'important');
-    img.style.setProperty('width', '100%', 'important');
-    img.style.setProperty('height', 'auto', 'important');
-    img.style.setProperty('display', 'block', 'important');
-    img.style.setProperty('object-fit', 'contain', 'important');
-    img.style.setProperty('max-height', 'none', 'important');
-    img.style.setProperty('transition', 'transform 3.5s cubic-bezier(0.15, 0.85, 0.35, 1)', 'important');
-    img.style.setProperty('transform', 'translateY(0)', 'important');
-    img.style.setProperty('transform-origin', 'top center', 'important');
-    
-    const doScroll = () => {
-      const containerHeight = screen.clientHeight;
-      const imgHeight = img.getBoundingClientRect().height;
-      if (imgHeight > containerHeight) {
-        img.style.setProperty('transform', `translateY(-${imgHeight - containerHeight}px)`, 'important');
-      }
-    };
-    
-    const resetScroll = () => {
-      img.style.setProperty('transform', 'translateY(0)', 'important');
-    };
-    
-    card.addEventListener('mouseenter', doScroll);
-    card.addEventListener('mouseleave', resetScroll);
-  });
+  // Case cards intentionally do not use hover-scroll: portfolio previews must
+  // remain fully visible and stable at rest on every viewport.
 };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
 
 })();

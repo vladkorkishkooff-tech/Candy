@@ -1,0 +1,18 @@
+.git/
+.vercel/
+.playwright-mcp/
+node_modules/
+open-design/
+output/
+Reference/
+scratch/
+__pycache__/
+*.pyc
+
+# Local helper scripts, not part of the static portfolio deployment.
+agent_coach_hub.py
+fix_contacts.py
+fix_index.py
+optimize_skill.py
+server.py
+skill.md
