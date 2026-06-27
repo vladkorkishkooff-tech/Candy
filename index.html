@@ -1,0 +1,1405 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thor BakiN — Developer · AI Engineer · Entrepreneur</title>
+  <meta name="description" content="Разрабатываю премиальные цифровые продукты на стыке кода, AI и бизнеса. Опыт разработки 7 лет.">
+  <meta name="theme-color" content="#050506">
+  <link rel="canonical" href="https://vlad-korkishko-engineer.vercel.app/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Thor BakiN — Developer · AI Engineer · Entrepreneur">
+  <meta property="og:description" content="Разрабатываю премиальные цифровые продукты на стыке кода, AI и бизнеса. Опыт разработки 7 лет.">
+  <meta property="og:url" content="https://vlad-korkishko-engineer.vercel.app/">
+  <meta property="og:image" content="https://vlad-korkishko-engineer.vercel.app/reference.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Thor BakiN — Developer · AI Engineer · Entrepreneur">
+  <meta name="twitter:description" content="Реальные сайты, Telegram-боты, AI-инструменты, дашборды и автоматизация ручных процессов.">
+  <meta name="twitter:image" content="https://vlad-korkishko-engineer.vercel.app/reference.jpg">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://unpkg.com" crossorigin>
+  <link rel="preconnect" href="https://prod.spline.design" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/02-reset.css?v=v9-20260624">
+  <link rel="stylesheet" href="css/04-components/header.css?v=v8-20260622">
+  <link rel="stylesheet" href="css/04-components/hero.css?v=v17-20260627">
+  <link rel="stylesheet" href="css/04-components/about.css?v=v18-20260625">
+  <link rel="stylesheet" href="css/04-components/decks.css?v=v7-20260621">
+  <link rel="stylesheet" href="css/04-components/cases.css?v=v9-20260622">
+  <link rel="stylesheet" href="css/04-components/process.css?v=v7-20260621">
+  <link rel="stylesheet" href="css/04-components/reviews.css?v=v9-20260627">
+  <link rel="stylesheet" href="css/04-components/contact.css?v=v8-20260622">
+  <link rel="stylesheet" href="css/04-components/footer.css?v=v7-20260621">
+  <link rel="stylesheet" href="css/05-animations.css?v=v7-20260621">
+  <link rel="stylesheet" href="css/06-utilities.css?v=v19-20260627">
+
+</head>
+<body>
+  <div class="site-bg" aria-hidden="true">
+    <span class="bg-arc bg-arc-one"></span>
+    <span class="bg-arc bg-arc-two"></span>
+    <span class="bg-spark bg-spark-one"></span>
+    <span class="bg-spark bg-spark-two"></span>
+    <span class="bg-spark bg-spark-three"></span>
+  </div>
+  <header class="header" data-header>
+    <div class="container header-inner">
+      <a href="#" class="logo" aria-label="Thor BakiN, на первый экран">
+        <span class="logo-icon">T</span>
+        <div class="logo-text-group">
+          <span class="logo-name" data-i18n="logo-name">THOR BAKIN</span>
+          <span class="logo-sub" data-i18n="logo-sub">Разработка • AI • Бизнес</span>
+        </div>
+      </a>
+
+      <nav class="nav header-nav-desktop" aria-label="Основная навигация">
+        <ul class="nav-list">
+          <li><a href="#about" class="nav-link" data-i18n="nav-about">Обо мне</a></li>
+          <li><a href="#services" class="nav-link" data-i18n="nav-services">Что я создаю</a></li>
+          <li><a href="#cases" class="nav-link" data-i18n="nav-cases">Кейсы</a></li>
+          <li><a href="#process" class="nav-link" data-i18n="nav-process">Процесс работы</a></li>
+          <li><a href="#contact" class="nav-link" data-i18n="nav-contact">Контакты</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-right">
+        <div class="lang-switcher lang-switcher--top">
+          <button class="lang-btn active" data-lang="ru">RU</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+
+        <button
+          id="menu-toggle"
+          class="menu-btn"
+          type="button"
+          aria-label="Открыть меню"
+          aria-controls="header-nav-panel"
+          aria-expanded="false"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="header-nav-panel" id="header-nav-panel" aria-label="Мобильная навигация" aria-hidden="true">
+      <div class="container header-nav-panel-inner">
+        <nav class="header-nav-panel-links">
+          <a href="#about" class="nav-link" data-i18n="nav-about">Обо мне</a>
+          <a href="#services" class="nav-link" data-i18n="nav-services">Что я создаю</a>
+          <a href="#cases" class="nav-link" data-i18n="nav-cases">Кейсы</a>
+          <a href="#process" class="nav-link" data-i18n="nav-process">Процесс работы</a>
+          <a href="#contact" class="nav-link" data-i18n="nav-contact">Контакты</a>
+        </nav>
+        <div class="lang-switcher lang-switcher--panel">
+          <button class="lang-btn active" data-lang="ru">RU</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero section-dark" aria-labelledby="hero-title">
+      <div class="hero-spline-shell" data-spline-shell aria-hidden="true">
+        <div class="hero-spline-fallback">
+          <div class="hero-fallback-cube-wall" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <span class="hero-fallback-orbit hero-fallback-orbit--one"></span>
+          <span class="hero-fallback-orbit hero-fallback-orbit--two"></span>
+          <span class="hero-fallback-glow"></span>
+        </div>
+      </div>
+      <div class="hero-scene-overlay" aria-hidden="true"></div>
+
+      <div class="container hero-content-container">
+        <div class="hero-content-left">
+          <p class="hero-eyebrow" data-reveal data-i18n="hero-eyebrow">Влад · инженер под ключ</p>
+          <h1 id="hero-title" class="hero-display-headline" data-hero-title data-i18n="hero-title">
+            Сайты, боты и AI-связки — от идеи до рабочего запуска
+          </h1>
+          <p class="hero-desc-para" data-reveal data-reveal-delay="0.12" data-i18n="hero-subtitle">
+            Разбираю задачу, проектирую систему, пишу код и лично отвечаю за запуск.
+          </p>
+
+          <div class="hero-action-buttons" data-reveal data-reveal-delay="0.2">
+            <a href="https://t.me/ThorBakiN" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-large">
+              <span data-i18n="hero-cta-discuss">Обсудить задачу</span>
+              <svg class="btn-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </a>
+            <a href="#cases" class="btn btn-secondary btn-large">
+              <span data-i18n="hero-cta-cases">Смотреть работы</span>
+              <svg class="btn-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+            </a>
+          </div>
+
+          <div class="hero-directions" aria-label="Направления работы" data-reveal data-reveal-delay="0.28">
+            <span>Web</span><span>Telegram</span><span>Automation</span><span>AI / API</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Обо мне (Introduction and Approach) -->
+    <section id="about" class="section about" aria-labelledby="about-title-lbl">
+      <div class="container">
+        <div class="section-intro centered" data-reveal>
+          <h2 id="about-title-lbl" class="section-title" data-i18n="about-title-main">Беру ответственность за путь от идеи до запуска</h2>
+        </div>
+
+        <div class="about-grid-layout">
+          <!-- Left Column: Portrait Card -->
+          <div class="about-identity-left" data-reveal data-reveal-delay="0.1">
+            <div class="about-portrait-card" data-tilt>
+              <div class="about-portrait-glow"></div>
+              <div class="about-portrait-frame">
+                <img
+                  src="vlad_portrait.webp"
+                  alt="Vlad Korkishko Portrait"
+                  class="about-portrait-img"
+                  loading="lazy"
+                  decoding="async"
+                  width="640"
+                  height="800"
+                />
+              </div>
+              <div class="about-status-pill">
+                <span class="status-indicator-dot animate-pulse-green"></span>
+                <span class="status-text" data-i18n="about-status-ready">🟢 Доступен для новых проектов</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Experience proof -->
+          <div class="about-identity-right" data-reveal data-reveal-delay="0.2">
+            <div class="about-editorial" data-about-proof>
+              <div class="about-editorial-lines" aria-hidden="true"><i></i><i></i><i></i></div>
+              <div class="about-editorial-copy">
+                <p data-i18n="about-editorial-p1">Я не передаю проект по цепочке исполнителей. Сам разбираю задачу, проектирую связки, пишу код и довожу решение до запуска.</p>
+                <p data-i18n="about-editorial-p2">Работаю на стыке сайтов, Telegram, автоматизации и AI/API — так, чтобы части системы усиливали друг друга.</p>
+              </div>
+              <div class="about-stats-rail" aria-label="Опыт в цифрах">
+                <div class="about-stat">
+                  <strong data-proof-count="7">7</strong>
+                  <span data-i18n="about-proof-years">лет в разработке</span>
+                </div>
+                <div class="about-stat">
+                  <strong><span data-proof-count="15">15</span><sup>+</sup></strong>
+                  <span data-i18n="about-proof-projects">коммерческих проектов</span>
+                </div>
+                <div class="about-stat about-stat--rating">
+                  <strong><span data-proof-count="5">5</span><sup>★</sup></strong>
+                  <span data-i18n="about-proof-rating">звёзд на фриланс-биржах</span>
+                </div>
+              </div>
+              <a href="https://t.me/ThorBakiN" target="_blank" rel="noopener noreferrer" class="about-editorial-cta">
+                <span data-i18n="hero-cta-discuss">Обсудить задачу</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="section services" aria-labelledby="services-title-lbl">
+      <div class="container">
+        
+        <div class="services-headline-row" data-reveal>
+          <div class="section-intro">
+            <h2 id="services-title-lbl" class="section-title" data-i18n="services-title-main">Что я разрабатываю</h2>
+            <p class="section-description" data-i18n="services-subtitle">
+              Сайты, Telegram-боты, AI-инструменты, дашборды и автоматизация ручных процессов.
+            </p>
+          </div>
+        </div>
+
+        <div class="services-bento-grid">
+          <!-- Left side: Vertical Tabs Grid (2x4) -->
+          <div class="services-nav-tabs" role="tablist" aria-label="Направления разработки" data-reveal>
+            <button class="service-tab-btn active" role="tab" aria-selected="true" aria-controls="service-showcase-panel" data-tab-index="0">
+              <span class="tab-btn-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </span>
+              <div class="tab-btn-text-group">
+                <span class="tab-btn-title" data-i18n="tab-web">Маркетплейс-аналитика</span>
+                <span class="tab-btn-sub" data-i18n="tab-web-sub">Аналитика маркетплейсов</span>
+              </div>
+              <span class="tab-btn-badge">12+</span>
+              <span class="tab-btn-arrow">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </span>
+            </button>
+            <button class="service-tab-btn" role="tab" aria-selected="false" aria-controls="service-showcase-panel" data-tab-index="1">
+              <span class="tab-btn-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+              </span>
+              <div class="tab-btn-text-group">
+                <span class="tab-btn-title" data-i18n="tab-webapps">Web App / SaaS</span>
+                <span class="tab-btn-sub" data-i18n="tab-webapps-sub">Калькуляторы и кабинеты</span>
+              </div>
+              <span class="tab-btn-badge">8+</span>
+              <span class="tab-btn-arrow">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </span>
+            </button>
+            <button class="service-tab-btn" role="tab" aria-selected="false" aria-controls="service-showcase-panel" data-tab-index="2">
+              <span class="tab-btn-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+              </span>
+              <div class="tab-btn-text-group">
+                <span class="tab-btn-title" data-i18n="tab-saas">Бэкап и DevOps</span>
+                <span class="tab-btn-sub" data-i18n="tab-saas-sub">Резервные процессы</span>
+              </div>
+              <span class="tab-btn-badge">5+</span>
+              <span class="tab-btn-arrow">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </span>
+            </button>
+            <button class="service-tab-btn" role="tab" aria-selected="false" aria-controls="service-showcase-panel" data-tab-index="3">
+              <span class="tab-btn-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c0 5.523 4.477 10 10 10-5.523 0-10 4.477-10 10 0-5.523-4.477-10-10-10 5.523 0 10-4.477 10-10z"/></svg>
+              </span>
+              <div class="tab-btn-text-group">
+                <span class="tab-btn-title" data-i18n="tab-ai">Парсинг и API</span>
+                <span class="tab-btn-sub" data-i18n="tab-ai-sub">Сбор и нормализация данных</span>
+              </div>
+              <span class="tab-btn-badge">10+</span>
+              <span class="tab-btn-arrow">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </span>
+            </button>
+            <button class="service-tab-btn" role="tab" aria-selected="false" aria-controls="service-showcase-panel" data-tab-index="4">
+              <span class="tab-btn-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+              </span>
+              <div class="tab-btn-text-group">
+                <span class="tab-btn-title" data-i18n="tab-dash">Дашборды</span>
+                <span class="tab-btn-sub" data-i18n="tab-dash-sub">Аналитика и визуализация данных</span>
+              </div>
+              <span class="tab-btn-badge">7+</span>
+              <span class="tab-btn-arrow">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </span>
+            </button>
+            <button class="service-tab-btn" role="tab" aria-selected="false" aria-controls="service-showcase-panel" data-tab-index="5">
+              <span class="tab-btn-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+              </span>
+              <div class="tab-btn-text-group">
+                <span class="tab-btn-title" data-i18n="tab-scripts">Автоматизации</span>
+                <span class="tab-btn-sub" data-i18n="tab-scripts-sub">Ускорение бизнес-процессов</span>
+              </div>
+              <span class="tab-btn-badge">14+</span>
+              <span class="tab-btn-arrow">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </span>
+            </button>
+            <button class="service-tab-btn" role="tab" aria-selected="false" aria-controls="service-showcase-panel" data-tab-index="6">
+              <span class="tab-btn-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+              </span>
+              <div class="tab-btn-text-group">
+                <span class="tab-btn-title" data-i18n="tab-bots">Telegram-боты</span>
+                <span class="tab-btn-sub" data-i18n="tab-bots-sub">Интерактивные чат-интерфейсы</span>
+              </div>
+              <span class="tab-btn-badge">16+</span>
+              <span class="tab-btn-arrow">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </span>
+            </button>
+            <button class="service-tab-btn" role="tab" aria-selected="false" aria-controls="service-showcase-panel" data-tab-index="7">
+              <span class="tab-btn-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+              </span>
+              <div class="tab-btn-text-group">
+                <span class="tab-btn-title" data-i18n="tab-api">Интеграции API</span>
+                <span class="tab-btn-sub" data-i18n="tab-api-sub">Синхронизация сторонних сервисов</span>
+              </div>
+              <span class="tab-btn-badge">20+</span>
+              <span class="tab-btn-arrow">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </span>
+            </button>
+            <button class="service-tab-btn" role="tab" aria-selected="false" aria-controls="service-showcase-panel" data-tab-index="8">
+              <span class="tab-btn-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M7 8h5"/><path d="M7 12h10"/><path d="M7 16h7"/><path d="M16 21l2-3 2 3"/></svg>
+              </span>
+              <div class="tab-btn-text-group">
+                <span class="tab-btn-title" data-i18n="tab-landings">Лендинги и сайты</span>
+                <span class="tab-btn-sub" data-i18n="tab-landings-sub">Live-примеры на Vercel</span>
+              </div>
+              <span class="tab-btn-badge">Live</span>
+              <span class="tab-btn-arrow">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </span>
+            </button>
+          </div>
+
+          <!-- Right side: Huge Detailed Showcase Panel -->
+          <div class="glass-card service-showcase-panel" id="service-showcase-panel" role="tabpanel" data-reveal data-reveal-delay="0.08">
+            <!-- Left part of panel: Text description -->
+            <div class="showcase-content-zone">
+              <div class="showcase-category-pill">
+                <span class="showcase-cat-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="width: 12px; height: 12px; display: inline-block; vertical-align: middle;"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                </span>
+                <span class="showcase-cat-title" id="showcase-meta-pill" data-i18n="tab-web">WB/Ozon Dashboard</span>
+              </div>
+              
+              <h3 class="showcase-title-main" id="showcase-title" data-i18n="showcase-web-title">WB/Ozon Dashboard: продажи, остатки и финансы</h3>
+              <p class="showcase-landing-meta" id="showcase-landing-meta" hidden>
+                <span data-landing-name>Сайт психолога</span>
+                <span class="landing-gallery-counter" data-landing-counter aria-live="polite">01 / 04</span>
+              </p>
+              
+              <!-- Problem ➔ Solution ➔ Result Flow -->
+              <div class="showcase-steps-flow">
+                <div class="showcase-step-item">
+                  <span class="step-lbl" data-i18n="showcase-lbl-use">ПРИМЕНЕНИЕ:</span>
+                  <p class="step-txt" id="showcase-problem" data-i18n="showcase-web-prob">Продажи, остатки и финансы WB/Ozon сложно сводить вручную</p>
+                </div>
+                <div class="showcase-step-arrow">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </div>
+                <div class="showcase-step-item">
+                  <span class="step-lbl" data-i18n="showcase-lbl-strength">СИЛЬНАЯ СТОРОНА:</span>
+                  <p class="step-txt" id="showcase-solution" data-i18n="showcase-web-sol">Внутренний кабинет с графиками, товарами и операционными срезами</p>
+                </div>
+                <div class="showcase-step-arrow">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </div>
+                <div class="showcase-step-item">
+                  <span class="step-lbl" data-i18n="showcase-lbl-where">ГДЕ ИСПОЛЬЗОВАТЬ:</span>
+                  <p class="step-txt" id="showcase-result" data-i18n="showcase-web-res">Единая картина по маркетплейсам без ручного сведения таблиц</p>
+                </div>
+              </div>
+              
+              <div class="showcase-feature-tags" id="showcase-features">
+                <span class="feature-bullet">SEO Оптимизация</span>
+                <span class="feature-bullet">Адаптивный дизайн</span>
+                <span class="feature-bullet">Высокая скорость</span>
+              </div>
+
+              <button class="btn btn-secondary btn-examples-scroll" id="showcase-scroll-btn" onclick="document.querySelector('#cases').scrollIntoView({behavior: 'smooth'})" style="align-self: flex-start; border-radius: var(--radius-sm); font-size: 11.5px; padding: 10px 16px;">
+                <span data-i18n="widget-btn-examples">Примеры работ</span>
+                <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 6px; width: 12px; height: 12px;"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </button>
+            </div>
+            
+            <div class="showcase-visual-zone">
+              
+              <!-- MOCKUP CONTAINER 1: WB/OZON DASHBOARD -->
+              <div class="visual-mockup active" id="mockup-0">
+                <div class="editorial-preview-card editorial-preview-card--wide" data-tilt>
+                  <img src="case_wb_ozon.webp" alt="WB and Ozon analytics dashboard" class="screenshot-img" loading="lazy" decoding="async">
+                </div>
+              </div>
+
+              <!-- MOCKUP CONTAINER 2: REPAIRCALC -->
+              <div class="visual-mockup" id="mockup-1">
+                <div class="editorial-preview-card editorial-preview-card--wide editorial-preview-card--tall-ui" data-tilt>
+                  <img src="case_repair_calc.webp" alt="RepairCalc estimate dashboard" class="screenshot-img" loading="lazy" decoding="async">
+                </div>
+              </div>
+
+              <!-- MOCKUP CONTAINER 3: AGENTBACKUP -->
+              <div class="visual-mockup" id="mockup-2">
+                <div class="editorial-preview-card editorial-preview-card--wide" data-tilt>
+                  <img src="case_backup_scheduler_premium.webp" alt="AgentBackup scheduler interface" class="screenshot-img" loading="lazy" decoding="async">
+                </div>
+              </div>
+
+              <!-- MOCKUP CONTAINER 4: PARSER WORKFLOW -->
+              <div class="visual-mockup" id="mockup-3">
+                <div class="editorial-preview-card editorial-preview-card--wide" data-tilt>
+                  <img src="case_parser.webp" alt="Parser Rosaccreditation workflow interface" class="screenshot-img" loading="lazy" decoding="async">
+                </div>
+              </div>
+
+              <!-- MOCKUP CONTAINER 5: DASHBOARDS -->
+              <div class="visual-mockup" id="mockup-4">
+                <div class="editorial-preview-card editorial-preview-card--wide" data-tilt>
+                  <img src="case_wb_ozon.webp" alt="Marketplace analytics dashboard" class="screenshot-img" loading="lazy" decoding="async">
+                </div>
+              </div>
+
+              <!-- MOCKUP CONTAINER 6: AUTOMATION -->
+              <div class="visual-mockup" id="mockup-5">
+                <div class="editorial-preview-card editorial-preview-card--wide" data-tilt>
+                  <img src="case_autoposting_ai.webp" alt="AI-assisted Telegram autoposting workflow" class="screenshot-img" loading="lazy" decoding="async">
+                </div>
+              </div>
+
+              <!-- MOCKUP CONTAINER 7: TELEGRAM-BOTS -->
+              <div class="visual-mockup" id="mockup-6">
+                <div class="editorial-preview-card editorial-preview-card--photo" data-tilt>
+                  <img src="case_manicure_bot_premium.webp" alt="Telegram manicure booking bot interface" class="screenshot-img" loading="lazy" decoding="async">
+                </div>
+              </div>
+
+              <!-- MOCKUP CONTAINER 8: INTEGRATIONS API -->
+              <div class="visual-mockup" id="mockup-7">
+                <div class="editorial-preview-card editorial-preview-card--wide" data-tilt>
+                  <img src="case_api_integration_premium.webp" alt="API integration workflow interface" class="screenshot-img" loading="lazy" decoding="async">
+                </div>
+              </div>
+
+              <!-- MOCKUP CONTAINER 9: LANDINGS & LIVE SITES -->
+              <div class="visual-mockup" id="mockup-8">
+                <div class="editorial-preview-card editorial-preview-card--wide editorial-preview-card--landing" data-tilt>
+                  <img src="case_premium_visit_card.webp" alt="Сайт психолога" class="screenshot-img landing-gallery-image" data-landing-image loading="lazy" decoding="async">
+                </div>
+                <div class="landing-gallery-nav" data-landing-gallery aria-label="Галерея лендингов" tabindex="0">
+                  <button type="button" class="landing-gallery-arrow landing-gallery-arrow--prev" data-landing-prev aria-label="Предыдущий лендинг"><span aria-hidden="true">←</span></button>
+                  <button type="button" class="landing-gallery-arrow landing-gallery-arrow--next" data-landing-next aria-label="Следующий лендинг"><span aria-hidden="true">→</span></button>
+                </div>
+              </div>
+
+              <!-- Apple Vision Pro / Figma navigation style thumbnails strip -->
+              <div class="showcase-thumbnails-strip" role="group" aria-label="Быстрый выбор проекта">
+                <button class="thumb-btn active" data-thumb-index="0" aria-label="Web">
+                  <img src="case_wb_ozon.webp" alt="WB and Ozon analytics dashboard" loading="lazy" decoding="async">
+                </button>
+                <button class="thumb-btn" data-thumb-index="1" aria-label="Web Apps">
+                  <img src="case_repair_calc.webp" alt="RepairCalc estimate dashboard" loading="lazy" decoding="async">
+                </button>
+                <button class="thumb-btn" data-thumb-index="2" aria-label="SaaS">
+                  <img src="case_backup_scheduler_premium.webp" alt="AgentBackup scheduler interface" loading="lazy" decoding="async">
+                </button>
+                <button class="thumb-btn" data-thumb-index="3" aria-label="AI Tools">
+                  <img src="case_parser.webp" alt="Parser workflow" loading="lazy" decoding="async">
+                </button>
+                <button class="thumb-btn" data-thumb-index="4" aria-label="Dashboards">
+                  <img src="case_wb_ozon.webp" alt="Wildberries & Ozon Dashboard" loading="lazy" decoding="async">
+                </button>
+                <button class="thumb-btn" data-thumb-index="5" aria-label="Automation">
+                  <img src="case_autoposting_ai.webp" alt="AI-assisted Telegram autoposting workflow" loading="lazy" decoding="async">
+                </button>
+                <button class="thumb-btn" data-thumb-index="6" aria-label="Telegram Bots">
+                  <img src="case_manicure_bot_premium.webp" alt="Manicure Booking Bot" loading="lazy" decoding="async">
+                </button>
+                <button class="thumb-btn" data-thumb-index="7" aria-label="API Integrations">
+                  <img src="case_api_integration_premium.webp" alt="API Integration workflow" loading="lazy" decoding="async">
+                </button>
+                <button class="thumb-btn" data-thumb-index="8" aria-label="Landing pages and live sites">
+                  <img src="case_premium_visit_card.webp" alt="Premium hosted landing page" loading="lazy" decoding="async">
+                </button>
+              </div>
+
+            </div>
+          </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Мои кейсы (Bento Grid with Screenshot Hover-Scrolling) -->
+    <section id="cases" class="section cases" aria-labelledby="cases-title">
+      <div class="container">
+        
+        <div class="cases-header-split" data-reveal style="display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:clamp(32px, 4vw, 56px);">
+          <div class="section-intro">
+            <h2 id="cases-title" class="section-title" data-i18n="cases-title-main">Мои кейсы</h2>
+            <p class="section-description" data-i18n="cases-subtitle">
+              Опубликованные демо и рабочие продукты: можно открыть, проверить интерфейс и посмотреть код.
+            </p>
+          </div>
+          <a href="https://github.com/vladkorkishkooff-tech?tab=repositories" target="_blank" rel="noopener noreferrer" class="btn btn-secondary" style="height:fit-content; border-radius:var(--radius-sm);">
+            <svg class="icon-sm" viewBox="0 0 24 24" fill="currentColor" style="margin-right:6px;"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            <span data-i18n="nav-github-btn">Больше проектов на GitHub</span>
+          </a>
+        </div>
+
+        <div class="cases-bento-grid">
+          
+          <!-- Case 1: Premium Hosted Visit Card -->
+          <article class="glass-card case-grid-unit case-grid-unit--live" data-reveal>
+            <div class="case-card-visual-holder">
+              <img src="case_premium_visit_card.webp" alt="Desktop-превью сайта психолога" class="screenshot-img" loading="lazy" decoding="async">
+            </div>
+            <div class="case-card-text-zone">
+              <div class="case-card-top" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                <span class="case-kicker">Live demo / Landing</span>
+                <a href="https://premium-visit-card.vercel.app/" target="_blank" rel="noopener noreferrer" class="case-card-link-badge" style="margin-left:auto;">
+                  <span>Live demo</span>
+                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 8px; height: 8px; margin-left: 3px;"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                </a>
+              </div>
+              <h3 data-i18n="c6-title">Сайт психолога</h3>
+              <p data-i18n="c6-desc">Спокойный лендинг экспертной услуги с ясной структурой, адаптивом и прямым сценарием записи.</p>
+              <div class="case-card-stack-row">
+                <span class="card-tech-badge">Next.js</span>
+                <span class="card-tech-badge">Vercel</span>
+                <span class="card-tech-badge">Responsive</span>
+              </div>
+              <details>
+                <summary class="details-summary" data-i18n="case-btn-details">Подробнее</summary>
+                <div class="case-detail-grid">
+                  <div>
+                    <span data-i18n="lbl-role" style="font-family:var(--font-mono); font-size:9px; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Роль</span>
+                    <p data-i18n="c6-role-desc" style="font-size:12px; color:var(--text-soft); margin-top:4px;">Верстка, анимации, развертывание на Vercel, интеграция формы заказа.</p>
+                  </div>
+                  <div>
+                    <span data-i18n="lbl-stack" style="font-family:var(--font-mono); font-size:9px; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Стек</span>
+                    <p style="font-size:12px; color:var(--text-soft); margin-top:4px;">Next.js, Vanilla CSS, Vercel API, Git.</p>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </article>
+
+          <!-- Live demo: Fitness -->
+          <article class="glass-card case-grid-unit case-grid-unit--live" data-reveal>
+            <div class="case-card-visual-holder">
+              <img src="case_landing_fitness.webp" alt="Desktop-превью фитнес-лендинга" class="screenshot-img" loading="lazy" decoding="async">
+            </div>
+            <div class="case-card-text-zone">
+              <div class="case-card-top">
+                <span class="case-kicker">Live demo / Landing</span>
+                <a href="https://01-fitness-coach.vercel.app" target="_blank" rel="noopener noreferrer" class="case-card-link-badge"><span>Live demo</span><svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+              </div>
+              <h3 data-i18n="fitness-title">Fitness — лендинг тренера</h3>
+              <p data-i18n="fitness-desc">Энергичная промо-страница с программами, подходом тренера и быстрым переходом к записи.</p>
+              <div class="case-card-stack-row"><span class="card-tech-badge">React</span><span class="card-tech-badge">Vite</span><span class="card-tech-badge">Responsive</span></div>
+              <details>
+                <summary class="details-summary" data-i18n="case-btn-details">Подробнее</summary>
+                <div class="case-detail-grid">
+                  <div><span data-i18n="lbl-task">Задача</span><p data-i18n="fitness-task">Показать персональный тренинг как собранную систему, а не набор разрозненных услуг.</p></div>
+                  <div><span data-i18n="lbl-solution">Решение</span><p data-i18n="fitness-solution">Построить контрастный лендинг с последовательной подачей программ и подхода.</p></div>
+                  <div><span data-i18n="lbl-interface">Интерфейс</span><p data-i18n="fitness-interface">Крупная типографика, спортивный ритм, контрастные CTA и адаптивная навигация.</p></div>
+                </div>
+              </details>
+            </div>
+          </article>
+
+          <!-- Live demo: Massage -->
+          <article class="glass-card case-grid-unit case-grid-unit--live" data-reveal>
+            <div class="case-card-visual-holder">
+              <img src="case_landing_massage.webp" alt="Desktop-превью лендинга массажного терапевта" class="screenshot-img" loading="lazy" decoding="async">
+            </div>
+            <div class="case-card-text-zone">
+              <div class="case-card-top">
+                <span class="case-kicker">Live demo / Landing</span>
+                <a href="https://02-massage-therapist.vercel.app" target="_blank" rel="noopener noreferrer" class="case-card-link-badge"><span>Live demo</span><svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+              </div>
+              <h3 data-i18n="massage-title">Massage — лендинг практики</h3>
+              <p data-i18n="massage-desc">Тёплая посадочная страница для массажной практики: услуги, формат работы и понятный путь к записи.</p>
+              <div class="case-card-stack-row"><span class="card-tech-badge">React</span><span class="card-tech-badge">Vite</span><span class="card-tech-badge">Responsive</span></div>
+              <details>
+                <summary class="details-summary" data-i18n="case-btn-details">Подробнее</summary>
+                <div class="case-detail-grid">
+                  <div><span data-i18n="lbl-task">Задача</span><p data-i18n="massage-task">Передать ощущение спокойствия и доверия без медицинских обещаний.</p></div>
+                  <div><span data-i18n="lbl-solution">Решение</span><p data-i18n="massage-solution">Сделать визуально тихую страницу с понятной иерархией услуг и записи.</p></div>
+                  <div><span data-i18n="lbl-interface">Интерфейс</span><p data-i18n="massage-interface">Полноэкранная фотография, редакционная типографика и мягкие акцентные состояния.</p></div>
+                </div>
+              </details>
+            </div>
+          </article>
+
+          <!-- Live demo: English tutor -->
+          <article class="glass-card case-grid-unit case-grid-unit--live" data-reveal>
+            <div class="case-card-visual-holder">
+              <img src="case_landing_english_tutor.webp" alt="Desktop-превью лендинга преподавателя английского" class="screenshot-img" loading="lazy" decoding="async">
+            </div>
+            <div class="case-card-text-zone">
+              <div class="case-card-top">
+                <span class="case-kicker">Live demo / Landing</span>
+                <a href="https://03-english-tutor.vercel.app" target="_blank" rel="noopener noreferrer" class="case-card-link-badge"><span>Live demo</span><svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg></a>
+              </div>
+              <h3 data-i18n="tutor-title">English tutor — лендинг преподавателя</h3>
+              <p data-i18n="tutor-desc">Структурная страница с форматами занятий, быстрым тестом уровня и прямым CTA на пробный урок.</p>
+              <div class="case-card-stack-row"><span class="card-tech-badge">React</span><span class="card-tech-badge">Vite</span><span class="card-tech-badge">Interactive UI</span></div>
+              <details>
+                <summary class="details-summary" data-i18n="case-btn-details">Подробнее</summary>
+                <div class="case-detail-grid">
+                  <div><span data-i18n="lbl-task">Задача</span><p data-i18n="tutor-task">Объяснить формат обучения и снять неопределённость перед первым уроком.</p></div>
+                  <div><span data-i18n="lbl-solution">Решение</span><p data-i18n="tutor-solution">Соединить презентацию преподавателя с интерактивным входным тестом.</p></div>
+                  <div><span data-i18n="lbl-interface">Интерфейс</span><p data-i18n="tutor-interface">Контрастная split-композиция, пошаговый тест и адаптивные состояния результата.</p></div>
+                </div>
+              </details>
+            </div>
+          </article>
+
+          <!-- Case 2: RepairCalc -->
+          <article class="glass-card case-grid-unit" data-reveal>
+            <div class="case-card-visual-holder">
+              <img src="case_repair_calc.webp" alt="SaaS Construction Estimator" class="screenshot-img">
+            </div>
+            <div class="case-card-text-zone">
+              <div class="case-card-top" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                <span class="case-kicker" style="font-family:var(--font-mono); font-size:9px; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.05em;">SaaS / Расчет</span>
+                <a href="https://github.com/vladkorkishkooff-tech/RepairCalc" target="_blank" rel="noopener noreferrer" class="case-card-link-badge" style="margin-left:auto;">
+                  <span>GitHub</span>
+                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 8px; height: 8px; margin-left: 3px;"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                </a>
+              </div>
+              <h3 data-i18n="c2-title">SaaS Калькулятор Ремонта (RepairCalc)</h3>
+              <p data-i18n="c2-desc">Интерактивная панель для расчета строительных смет: выбор пакетов, работ, материалов и коэффициентов.</p>
+              <div class="case-card-stack-row">
+                <span class="card-tech-badge">TypeScript</span>
+                <span class="card-tech-badge">SaaS</span>
+                <span class="card-tech-badge">PDF Export</span>
+              </div>
+              <details>
+                <summary class="details-summary" data-i18n="case-btn-details">Подробнее</summary>
+                <div class="case-detail-grid">
+                  <div>
+                    <span data-i18n="lbl-role" style="font-family:var(--font-mono); font-size:9px; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Роль</span>
+                    <p data-i18n="c2-role-desc" style="font-size:12px; color:var(--text-soft); margin-top:4px;">Проектирование алгоритма расчетов, архитектура состояний UI, экспорт смет в PDF.</p>
+                  </div>
+                  <div>
+                    <span data-i18n="lbl-stack" style="font-family:var(--font-mono); font-size:9px; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Стек</span>
+                    <p style="font-size:12px; color:var(--text-soft); margin-top:4px;">TypeScript, HTML5, Vanilla CSS, JS PDF Library.</p>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </article>
+
+          <!-- Case 3: WB-Ozon-Dashboard -->
+          <article class="glass-card case-grid-unit" data-reveal>
+            <div class="case-card-visual-holder">
+              <img src="case_wb_ozon.webp" alt="Wildberries & Ozon Dashboard" class="screenshot-img">
+            </div>
+            <div class="case-card-text-zone">
+              <div class="case-card-top" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                <span class="case-kicker" style="font-family:var(--font-mono); font-size:9px; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.05em;">Аналитика / API</span>
+                <a href="https://github.com/vladkorkishkooff-tech/WB-Ozon-Dashboard" target="_blank" rel="noopener noreferrer" class="case-card-link-badge" style="margin-left:auto;">
+                  <span>GitHub</span>
+                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 8px; height: 8px; margin-left: 3px;"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                </a>
+              </div>
+              <h3 data-i18n="c1-title">Wildberries & Ozon Аналитика (WB-Ozon-Dashboard)</h3>
+              <p data-i18n="c1-desc">Внутренний личный кабинет для отслеживания продаж, остатков, финансов и операций на маркетплейсах в едином окне.</p>
+              <div class="case-card-stack-row">
+                <span class="card-tech-badge">React</span>
+                <span class="card-tech-badge">Chart.js</span>
+                <span class="card-tech-badge">API Integration</span>
+              </div>
+              <details>
+                <summary class="details-summary" data-i18n="case-btn-details">Подробнее</summary>
+                <div class="case-detail-grid">
+                  <div>
+                    <span data-i18n="lbl-role" style="font-family:var(--font-mono); font-size:9px; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Роль</span>
+                    <p data-i18n="c1-role-desc" style="font-size:12px; color:var(--text-soft); margin-top:4px;">Интеграция с API маркетплейсов, построение графиков Chart.js, фильтры данных и товарные срезы.</p>
+                  </div>
+                  <div>
+                    <span data-i18n="lbl-stack" style="font-family:var(--font-mono); font-size:9px; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Стек</span>
+                    <p style="font-size:12px; color:var(--text-soft); margin-top:4px;">TypeScript, React, Chart.js, REST API.</p>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </article>
+
+          <!-- Case: AutoPostingTG -->
+          <article class="glass-card case-grid-unit case-grid-unit--autopost" data-reveal>
+            <div class="case-card-visual-holder">
+              <img src="case_autoposting_ai.webp" alt="AutoPostingTG: AI preview and Telegram channel publishing workflow" class="screenshot-img" loading="lazy" decoding="async">
+            </div>
+            <div class="case-card-text-zone">
+              <div class="case-card-top">
+                <span class="case-kicker">Telegram / AI</span>
+                <a href="https://github.com/vladkorkishkooff-tech/AutoPostingTG" target="_blank" rel="noopener noreferrer" class="case-card-link-badge">
+                  <span>GitHub</span>
+                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"/></svg>
+                </a>
+              </div>
+              <h3 data-i18n="autopost-title">AutoPostingTG — AI-автопостинг</h3>
+              <p data-i18n="autopost-desc">Telegram-бот готовит посты для канала: генерирует текст, подбирает изображение, показывает превью и публикует по команде или расписанию.</p>
+              <div class="case-card-stack-row">
+                <span class="card-tech-badge">Python</span>
+                <span class="card-tech-badge">Telegram</span>
+                <span class="card-tech-badge">AI / API</span>
+              </div>
+              <details>
+                <summary class="details-summary" data-i18n="case-btn-details">Подробнее</summary>
+                <div class="case-detail-grid">
+                  <div>
+                    <span data-i18n="lbl-task">Задача</span>
+                    <p data-i18n="autopost-task">Снять ручную подготовку регулярных публикаций, сохранив контроль перед отправкой в канал.</p>
+                  </div>
+                  <div>
+                    <span data-i18n="lbl-solution">Решение</span>
+                    <p data-i18n="autopost-solution">Сценарий preview → проверка → post, режимы подачи, защита от повторов и обучение стилю на эталонных постах.</p>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </article>
+
+          <!-- Case: ManicureBot -->
+          <article class="glass-card case-grid-unit" data-reveal>
+            <div class="case-card-visual-holder">
+              <img src="case_manicure_bot_premium.webp" alt="Telegram Manicure Bot" class="screenshot-img">
+            </div>
+            <div class="case-card-text-zone">
+              <div class="case-card-top" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                <span class="case-kicker" style="font-family:var(--font-mono); font-size:9px; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.05em;">Telegram / CRM</span>
+                <a href="https://github.com/vladkorkishkooff-tech/ManicureBot" target="_blank" rel="noopener noreferrer" class="case-card-link-badge" style="margin-left:auto;">
+                  <span>GitHub</span>
+                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 8px; height: 8px; margin-left: 3px;"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                </a>
+              </div>
+              <h3 data-i18n="c5-title">Маникюр-Бот & CRM (ManicureBot)</h3>
+              <p data-i18n="c5-desc">Автономный Telegram-бот для автоматической записи клиентов на услуги салона красоты с выбором мастера и времени.</p>
+              <div class="case-card-stack-row">
+                <span class="card-tech-badge">aiogram</span>
+                <span class="card-tech-badge">Booking</span>
+                <span class="card-tech-badge">SQLite</span>
+              </div>
+              <details>
+                <summary class="details-summary" data-i18n="case-btn-details">Подробнее</summary>
+                <div class="case-detail-grid">
+                  <div>
+                    <span data-i18n="lbl-role" style="font-family:var(--font-mono); font-size:9px; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Роль</span>
+                    <p data-i18n="c5-role-desc" style="font-size:12px; color:var(--text-soft); margin-top:4px;">Разработка сценария диалога (FSM), логика бронирования времени, автоматические напоминания.</p>
+                  </div>
+                  <div>
+                    <span data-i18n="lbl-stack" style="font-family:var(--font-mono); font-size:9px; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Стек</span>
+                    <p style="font-size:12px; color:var(--text-soft); margin-top:4px;">Python, aiogram v3, SQLite, Telegram API.</p>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="cases-more-actions">
+          <button class="btn btn-secondary cases-more-toggle" type="button" aria-expanded="false" aria-controls="more-projects" data-cases-toggle>
+            <span data-i18n="cases-show-more">Показать больше</span>
+            <svg class="cases-more-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+        </div>
+
+        <div id="more-projects" class="cases-more" hidden>
+          <div class="cases-more-inner">
+          <!-- Case 5: amoCRM + Stripe + Google Sheets Sync -->
+          <article class="glass-card case-grid-unit" data-reveal>
+            <div class="case-card-visual-holder">
+              <img src="case_api_integration_premium.webp" alt="amoCRM Stripe Sync" class="screenshot-img">
+            </div>
+            <div class="case-card-text-zone">
+              <div class="case-card-top" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                <span class="case-kicker" style="font-family:var(--font-mono); font-size:9px; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.05em;">API / Автоматизация</span>
+              </div>
+              <h3 data-i18n="c7-title">Связка amoCRM + Stripe + Google Таблицы</h3>
+              <p data-i18n="c7-desc">Отказоустойчивый связующий мост для синхронизации оплат, статусов сделок в CRM и ведения учета в таблицах.</p>
+              <div class="case-card-stack-row">
+                <span class="card-tech-badge">Node.js</span>
+                <span class="card-tech-badge">Webhooks</span>
+                <span class="card-tech-badge">amoCRM API</span>
+              </div>
+              <details>
+                <summary class="details-summary" data-i18n="case-btn-details">Подробнее</summary>
+                <div class="case-detail-grid">
+                  <div>
+                    <span data-i18n="lbl-role" style="font-family:var(--font-mono); font-size:9px; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Роль</span>
+                    <p data-i18n="c7-role-desc" style="font-size:12px; color:var(--text-soft); margin-top:4px;">Разработка API-коннектора, обработка вебхуков Stripe, автоматическое обновление таблиц.</p>
+                  </div>
+                  <div>
+                    <span data-i18n="lbl-stack" style="font-family:var(--font-mono); font-size:9px; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Стек</span>
+                    <p style="font-size:12px; color:var(--text-soft); margin-top:4px;">Node.js, Express, Stripe API, amoCRM SDK, Google API.</p>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </article>
+
+          <!-- Case 6: AgentBackup -->
+          <article class="glass-card case-grid-unit" data-reveal>
+            <div class="case-card-visual-holder">
+              <img src="case_backup_scheduler_premium.webp" alt="Cloud Backup Scheduler" class="screenshot-img">
+            </div>
+            <div class="case-card-text-zone">
+              <div class="case-card-top" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                <span class="case-kicker" style="font-family:var(--font-mono); font-size:9px; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.05em;">DevOps / Безопасность</span>
+                <a href="https://github.com/vladkorkishkooff-tech/AgentBackup" target="_blank" rel="noopener noreferrer" class="case-card-link-badge" style="margin-left:auto;">
+                  <span>GitHub</span>
+                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 8px; height: 8px; margin-left: 3px;"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                </a>
+              </div>
+              <h3 data-i18n="c3-title">Облачный бэкап-планировщик (AgentBackup)</h3>
+              <p data-i18n="c3-desc">Автономная утилита для автоматического резервного копирования баз данных в облачные S3 хранилища по расписанию.</p>
+              <div class="case-card-stack-row">
+                <span class="card-tech-badge">Python</span>
+                <span class="card-tech-badge">S3 Cloud</span>
+                <span class="card-tech-badge">Cron Jobs</span>
+              </div>
+              <details>
+                <summary class="details-summary" data-i18n="case-btn-details">Подробнее</summary>
+                <div class="case-detail-grid">
+                  <div>
+                    <span data-i18n="lbl-role" style="font-family:var(--font-mono); font-size:9px; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Роль</span>
+                    <p data-i18n="c3-role-desc" style="font-size:12px; color:var(--text-soft); margin-top:4px;">Написание скрипта резервирования, архивация, загрузка в S3, отправка Telegram-отчетов.</p>
+                  </div>
+                  <div>
+                    <span data-i18n="lbl-stack" style="font-family:var(--font-mono); font-size:9px; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Стек</span>
+                    <p style="font-size:12px; color:var(--text-soft); margin-top:4px;">Python, PostgreSQL CLI, boto3 (S3 API), Cron.</p>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </article>
+
+          <!-- Case 7: Parser-Rosaccreditation -->
+          <article class="glass-card case-grid-unit" data-reveal>
+            <div class="case-card-visual-holder">
+              <img src="case_parser.webp" alt="Rosaccreditation Registry Parser" class="screenshot-img">
+            </div>
+            <div class="case-card-text-zone">
+              <div class="case-card-top" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                <span class="case-kicker" style="font-family:var(--font-mono); font-size:9px; color:var(--text-muted); text-transform:uppercase; letter-spacing:0.05em;">Парсинг / API</span>
+                <a href="https://github.com/vladkorkishkooff-tech/Parser-Rosaccreditation" target="_blank" rel="noopener noreferrer" class="case-card-link-badge" style="margin-left:auto;">
+                  <span>GitHub</span>
+                  <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 8px; height: 8px; margin-left: 3px;"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                </a>
+              </div>
+              <h3 data-i18n="c4-title">Парсер Росаккредитации (Parser-Rosaccreditation)</h3>
+              <p data-i18n="c4-desc">Отказоустойчивый сбор данных из реестров ФСА через REST API с экспортом результата в отчеты.</p>
+              <div class="case-card-stack-row">
+                <span class="card-tech-badge">Python</span>
+                <span class="card-tech-badge">REST API</span>
+                <span class="card-tech-badge">Excel</span>
+              </div>
+              <details>
+                <summary class="details-summary" data-i18n="case-btn-details">Подробнее</summary>
+                <div class="case-detail-grid">
+                  <div>
+                    <span data-i18n="lbl-role" style="font-family:var(--font-mono); font-size:9px; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Роль</span>
+                    <p data-i18n="c4-role-desc" style="font-size:12px; color:var(--text-soft); margin-top:4px;">Настройка HTTP-запросов, обход лимитов, парсинг JSON-ответов, экспорт в Excel/CSV.</p>
+                  </div>
+                  <div>
+                    <span data-i18n="lbl-stack" style="font-family:var(--font-mono); font-size:9px; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Стек</span>
+                    <p style="font-size:12px; color:var(--text-soft); margin-top:4px;">Python, requests, pandas, OpenPyXL, logging.</p>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </article>
+
+          </div>
+        </div>
+
+        <!-- Horizontal GitHub CTA Banner -->
+        <div class="glass-card cases-github-wide-card" data-reveal style="margin-top: 40px;">
+          <div class="git-banner-icon-bg">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          </div>
+          <div class="git-banner-text-group">
+            <h3 data-i18n="github-banner-title">Больше проектов, экспериментов и технических решений — на GitHub</h3>
+            <p data-i18n="github-banner-desc">Открытые репозитории, пет-проекты и полезные библиотеки в одном месте.</p>
+          </div>
+          <a href="https://github.com/vladkorkishkooff-tech?tab=repositories" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            <span data-i18n="github-banner-btn">Перейти на GitHub</span> <span class="btn-arrow">↗</span>
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Section 5: Как проходит работа (Interactive Console Stage decks) -->
+    <section id="process" class="section process" aria-labelledby="process-title-lbl">
+      <div class="container">
+        
+        <div class="section-intro centered" data-reveal style="margin-bottom: clamp(32px, 4vw, 56px);">
+          <h2 id="process-title-lbl" class="section-title" data-i18n="process-title-main">Как я довожу проект до запуска</h2>
+        </div>
+
+        <div class="process-3cards-deck">
+          
+          <!-- Card 1: Diagnostic chat -->
+          <div class="glass-card process-stage-unit" data-reveal>
+            <div class="stage-unit-header">
+              <span class="stage-unit-num">1</span>
+              <div class="stage-unit-info">
+                <h3 data-i18n="step1-title">Диагностика</h3>
+                <p data-i18n="step1-sub">Разбираем задачу и формируем понимание проекта.</p>
+              </div>
+            </div>
+            
+            <div class="stage-unit-visual-container">
+              <!-- Chat Tabs toggler -->
+              <div class="chat-toggle-header">
+                <button class="chat-btn active" id="chat-toggle-yes" data-i18n="chat-yes-btn">Есть ТЗ</button>
+                <button class="chat-btn" id="chat-toggle-no" data-i18n="chat-no-btn">Нет ТЗ</button>
+              </div>
+              
+              <!-- Chat Scroller -->
+              <div class="chat-mockup-body" id="chat-body-scroller">
+                <!-- Dialogue will load in JS dynamically -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Code Editor & Terminal run -->
+          <div class="glass-card process-stage-unit" data-reveal data-reveal-delay="0.08">
+            <div class="stage-unit-header">
+              <span class="stage-unit-num">2</span>
+              <div class="stage-unit-info">
+                <h3 data-i18n="step2-title">Реализация + тестирование</h3>
+                <p data-i18n="step2-sub">Разрабатываем проект итерациями и тщательно тестируем.</p>
+              </div>
+            </div>
+            
+            <div class="stage-unit-visual-container editor-layout">
+              <!-- Code window -->
+              <div class="code-editor-header-bar">
+                <div class="editor-dots-controls"><span></span><span></span><span></span></div>
+                <span class="editor-filename">dashboard.tsx</span>
+                <!-- Diagnostic tests button -->
+                <button class="btn btn-secondary btn-run-tests" id="trigger-autotests">
+                  <span class="btn-tests-icon">▶</span>
+                  <span data-i18n="term-run-btn">Run Auto-Tests</span>
+                </button>
+              </div>
+              <div class="editor-body-group">
+                <!-- Directory listing left -->
+                <div class="editor-directory-tree">
+                  <span class="folder active">app</span>
+                  <span class="folder active">components</span>
+                  <span class="folder active">ui</span>
+                  <span class="file active">dashboard.tsx</span>
+                  <span class="file">layout.tsx</span>
+                  <span class="file">page.tsx</span>
+                </div>
+                <!-- Code text window right -->
+                <div class="editor-code-lines" id="editor-code-area">
+                  <pre><code><span class="line-n">1</span><span class="token-kw">export default function</span> <span class="token-fn">Dashboard</span>() {</code>
+<code><span class="line-n">2</span>  <span class="token-kw">const</span> data = <span class="token-fn">useData</span>();</code>
+<code><span class="line-n">3</span></code>
+<code><span class="line-n">4</span>  <span class="token-kw">return</span> (</code>
+<code><span class="line-n">5</span>    <span class="token-tag">&lt;div</span> <span class="token-attr">className</span>=<span class="token-str">"grid grid-cols-4 gap-4"</span><span class="token-tag">&gt;</span></code>
+<code><span class="line-n">6</span>      {data.<span class="token-fn">map</span>(item => (</code>
+<code><span class="line-n">7</span>        <span class="token-tag">&lt;Card</span> <span class="token-attr">key</span>={item.id} <span class="token-attr">title</span>={item.title} <span class="token-attr">value</span>={item.value} <span class="token-tag">/&gt;</span></code>
+<code><span class="line-n">8</span>      ))}</code>
+<code><span class="line-n">9</span>    <span class="token-tag">&lt;/div&gt;</span></code>
+<code><span class="line-n">10</span>  );</code>
+<code><span class="line-n">11</span>}</code></pre>
+                </div>
+              </div>
+              
+              <!-- Symmetrical Checklist and Performance Meter Row -->
+              <div class="process-checklist-and-gauge">
+                <!-- Check list tags -->
+                <div class="process-checklist-wrap">
+                  <div class="checklist-badge-unit active">
+                    <span class="check-icon">✓</span>
+                    <span data-i18n="check-ad">Адаптивность</span>
+                  </div>
+                  <div class="checklist-badge-unit active">
+                    <span class="check-icon">✓</span>
+                    <span data-i18n="check-perf">Скорость загрузки</span>
+                  </div>
+                  <div class="checklist-badge-unit active">
+                    <span class="check-icon">✓</span>
+                    <span data-i18n="check-forms">Формы и интеграции</span>
+                  </div>
+                  <div class="checklist-badge-unit active">
+                    <span class="check-icon">✓</span>
+                    <span data-i18n="check-ui">UI-состояния</span>
+                  </div>
+                  <div class="checklist-badge-unit active">
+                    <span class="check-icon">✓</span>
+                    <span data-i18n="check-seo">SEO-структура</span>
+                  </div>
+                  <div class="checklist-badge-unit active">
+                    <span class="check-icon">✓</span>
+                    <span data-i18n="check-edge">Ошибки и edge cases</span>
+                  </div>
+                </div>
+
+                <!-- Floating performance speed index ring -->
+                <div class="circular-performance-gauge">
+                  <svg viewBox="0 0 36 36" class="circular-chart">
+                    <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"></path>
+                    <path class="circle-fill" stroke-dasharray="98, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"></path>
+                  </svg>
+                  <div class="percentage-value-wrap">
+                    <strong id="perf-number-counter">98</strong>
+                    <span data-i18n="gauge-perf">Performance</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Launch panel stability -->
+          <div class="glass-card process-stage-unit" data-reveal data-reveal-delay="0.16">
+            <div class="stage-unit-header">
+              <span class="stage-unit-num">3</span>
+              <div class="stage-unit-info">
+                <h3 data-i18n="step3-title">Запуск и поддержка</h3>
+                <p data-i18n="step3-sub">Запускаю проект и обеспечиваю стабильную работу.</p>
+              </div>
+            </div>
+            
+            <div class="stage-unit-visual-container launch-layout">
+              <div class="dashboard-mockup">
+                <div class="status-success-banner">
+                  <span class="green-indicator-dot pulse"></span>
+                  <div class="success-banner-txt">
+                    <strong data-i18n="launch-ok-title">Запуск проекта - Успешно</strong>
+                    <span data-i18n="launch-ok-desc">Проект запущен и доступен онлайн</span>
+                  </div>
+                </div>
+                
+                <div class="launch-stability-list">
+                  <div class="stability-row">
+                    <div class="stability-left"><span class="check">✓</span><span data-i18n="lbl-dom">Домен подключен</span></div>
+                    <span class="stability-val font-mono">premium-visit-card.vercel.app</span>
+                  </div>
+                  <div class="stability-row">
+                    <div class="stability-left"><span class="check">✓</span><span data-i18n="lbl-ssl">SSL сертификат</span></div>
+                    <span class="stability-val highlight font-mono" data-i18n="lbl-active">Активен</span>
+                  </div>
+                  <div class="stability-row">
+                    <div class="stability-left"><span class="check">✓</span><span data-i18n="lbl-responsive-ui">Адаптивный интерфейс</span></div>
+                    <span class="stability-val font-mono" data-i18n="lbl-ready">Готов</span>
+                  </div>
+                  <div class="stability-row">
+                    <div class="stability-left"><span class="check">✓</span><span data-i18n="lbl-forms">Формы и заявки</span></div>
+                    <span class="stability-val highlight font-mono" data-i18n="lbl-work">Работают</span>
+                  </div>
+                  <div class="stability-row">
+                    <div class="stability-left"><span class="check">✓</span><span data-i18n="lbl-telegram-contact">Telegram-контакт</span></div>
+                    <span class="stability-val highlight font-mono" data-i18n="lbl-linked">Подключён</span>
+                  </div>
+                  <div class="stability-row">
+                    <div class="stability-left"><span class="check">✓</span><span data-i18n="lbl-legal-pages">Политика и согласие</span></div>
+                    <span class="stability-val font-mono" data-i18n="lbl-available">Доступны</span>
+                  </div>
+                </div>
+                
+                <a href="https://premium-visit-card.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-wide-link">
+                  <span data-i18n="btn-go-site">Перейти на сайт</span> <span class="btn-arrow">↗</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+    </section>
+
+    <!-- Section 5.5: Отзывы (Liquid Glassmorphism Horizontal Carousel) -->
+    <section id="reviews" class="section reviews" aria-labelledby="reviews-title-lbl">
+      <div class="liquid-blob-reviews"></div>
+      
+      <div class="container" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
+        
+        <div class="section-intro" data-reveal style="margin-bottom: clamp(16px, 2vw, 32px);">
+          <h2 id="reviews-title-lbl" class="section-title" data-i18n="reviews-title-main">Отзывы клиентов</h2>
+          <p class="section-description" data-i18n="reviews-subtitle">
+            Клиенты чаще всего отмечают ответственность, сроки, понятные объяснения и спокойный запуск.
+          </p>
+          
+          <div class="reviews-badge-trust">
+            <span class="profi-text">PROFI.RU</span>
+            <span class="score">5.0</span>
+            <span class="stars">★★★★★</span>
+            <span class="profi-verify" data-i18n="reviews-verified">ПРОВЕРЕНО</span>
+          </div>
+        </div>
+
+        <div class="reviews-carousel-container" style="text-align: left; width: 100%;" tabindex="0" aria-roledescription="carousel" aria-label="Отзывы клиентов">
+          <div class="reviews-horizontal-feed">
+            <div class="reviews-track" aria-live="polite">
+              
+              <!-- GROUP 1: Cards 1-5 -->
+              
+              <!-- Card 1: Dmitry -->
+              <div class="glass-card review-item-card">
+                <div class="liquid-blob-card"></div>
+                <div class="review-card-header">
+                  <div class="reviewer-avatar">Д</div>
+                  <div class="reviewer-meta">
+                    <h4>Дмитрий</h4>
+                    <span class="review-date">17 мая 2026</span>
+                  </div>
+                  <div class="review-stars">★★★★★</div>
+                </div>
+                <div class="review-category-tag">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="category-icon" style="width:12px;height:12px;color:var(--text-soft);"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                  <span data-i18n="rev-cat-1">Разработка на Python</span>
+                </div>
+                <p class="review-text" data-i18n="rev-text-1">
+                  Специалист полностью выполнил задачи и учел все правки
+                </p>
+              </div>
+
+              <!-- Card 2: Elizaveta -->
+              <div class="glass-card review-item-card">
+                <div class="liquid-blob-card"></div>
+                <div class="review-card-header">
+                  <div class="reviewer-avatar">Е</div>
+                  <div class="reviewer-meta">
+                    <h4>Елизавета</h4>
+                    <span class="review-date">7 мая 2026</span>
+                  </div>
+                  <div class="review-stars">★★★★★</div>
+                </div>
+                <div class="review-category-tag">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="category-icon" style="width:12px;height:12px;color:var(--text-soft);"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                  <span data-i18n="rev-cat-2">Landing page • Создание сайта на Tilda</span>
+                </div>
+                <p class="review-text" data-i18n="rev-text-2">
+                  Влад помог настроить интерактивную карту с кликабельными зонами на Тильде. Вместо использования стандартных инструментов конструктора - написал код и к нему ещё небольшой инструмент, упрощающий использование + подробные комментарии + созвон с пояснениями. Идеально.
+                </p>
+              </div>
+
+              <!-- Card 3: Vladimir -->
+              <div class="glass-card review-item-card">
+                <div class="liquid-blob-card"></div>
+                <div class="review-card-header">
+                  <div class="reviewer-avatar">В</div>
+                  <div class="reviewer-meta">
+                    <h4>Владимир</h4>
+                    <span class="review-date">3 мая 2026</span>
+                  </div>
+                  <div class="review-stars">★★★★★</div>
+                </div>
+                <div class="review-category-tag">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="category-icon" style="width:12px;height:12px;color:var(--text-soft);"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                  <span data-i18n="rev-cat-3">Создание форумов</span>
+                </div>
+                <p class="review-text" data-i18n="rev-text-3">
+                  Молодой, но знающий специалист. Соблюдает сроки, договоренности по цене. Приятно удивлен.
+                </p>
+              </div>
+
+              <!-- Card 4: Mikhail -->
+              <div class="glass-card review-item-card">
+                <div class="liquid-blob-card"></div>
+                <div class="review-card-header">
+                  <div class="reviewer-avatar">М</div>
+                  <div class="reviewer-meta">
+                    <h4>Михаил</h4>
+                    <span class="review-date">12 апреля 2026</span>
+                  </div>
+                  <div class="review-stars">★★★★★</div>
+                </div>
+                <div class="review-category-tag">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="category-icon" style="width:12px;height:12px;color:var(--text-soft);"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                  <span data-i18n="rev-cat-4">Интеграция API • Дашборды</span>
+                </div>
+                <p class="review-text" data-i18n="rev-text-4">
+                  Разработал отличный аналитический дашборд. Графики строятся мгновенно, данные по API маркетплейсов выгружаются без сбоев. Профессионал.
+                </p>
+              </div>
+
+              <!-- Card 5: Anna -->
+              <div class="glass-card review-item-card">
+                <div class="liquid-blob-card"></div>
+                <div class="review-card-header">
+                  <div class="reviewer-avatar">А</div>
+                  <div class="reviewer-meta">
+                    <h4>Анна</h4>
+                    <span class="review-date">25 марта 2026</span>
+                  </div>
+                  <div class="review-stars">★★★★★</div>
+                </div>
+                <div class="review-category-tag">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="category-icon" style="width:12px;height:12px;color:var(--text-soft);"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                  <span data-i18n="rev-cat-5">Автоматизация • Облачные бэкапы</span>
+                </div>
+                <p class="review-text" data-i18n="rev-text-5">
+                  Отличный скрипт автоматизации бэкапов. Настроил резервное копирование в S3 по расписанию, подключил логирование в Telegram. Всё работает идеально.
+                </p>
+              </div>
+
+              <!-- Card 6: Igor -->
+              <div class="glass-card review-item-card">
+                <div class="liquid-blob-card"></div>
+                <div class="review-card-header">
+                  <div class="reviewer-avatar">И</div>
+                  <div class="reviewer-meta">
+                    <h4>Игорь</h4>
+                    <span class="review-date">18 марта 2026</span>
+                  </div>
+                  <div class="review-stars">★★★★★</div>
+                </div>
+                <div class="review-category-tag">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="category-icon" style="width:12px;height:12px;color:var(--text-soft);"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="7.5 4.21 12 6.81 16.5 4.21"/><polyline points="7.5 19.79 7.5 14.6 3 12"/><polyline points="21 12 16.5 14.6 16.5 19.79"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/></svg>
+                  <span data-i18n="rev-cat-6">SaaS-интерфейс</span>
+                </div>
+                <p class="review-text" data-i18n="rev-text-6">
+                  Быстро понял задачу и собрал интерфейс без лишних обсуждений. Видно, что человек думает о продукте, а не только о верстке.
+                </p>
+              </div>
+
+              <!-- Card 7: Sergey -->
+              <div class="glass-card review-item-card">
+                <div class="liquid-blob-card"></div>
+                <div class="review-card-header">
+                  <div class="reviewer-avatar">С</div>
+                  <div class="reviewer-meta">
+                    <h4>Сергей</h4>
+                    <span class="review-date">9 марта 2026</span>
+                  </div>
+                  <div class="review-stars">★★★★★</div>
+                </div>
+                <div class="review-category-tag">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="category-icon" style="width:12px;height:12px;color:var(--text-soft);"><path d="M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                  <span data-i18n="rev-cat-7">Telegram-бот</span>
+                </div>
+                <p class="review-text" data-i18n="rev-text-7">
+                  Бот запустили спокойно: сценарии понятные, сообщения аккуратные, после запуска Влад помог поправить мелочи.
+                </p>
+              </div>
+
+              <!-- Card 8: Natalia -->
+              <div class="glass-card review-item-card">
+                <div class="liquid-blob-card"></div>
+                <div class="review-card-header">
+                  <div class="reviewer-avatar">Н</div>
+                  <div class="reviewer-meta">
+                    <h4>Наталья</h4>
+                    <span class="review-date">22 февраля 2026</span>
+                  </div>
+                  <div class="review-stars">★★★★★</div>
+                </div>
+                <div class="review-category-tag">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="category-icon" style="width:12px;height:12px;color:var(--text-soft);"><path d="M4 4h16v16H4z"/><path d="M8 8h8"/><path d="M8 12h8"/><path d="M8 16h5"/></svg>
+                  <span data-i18n="rev-cat-8">Сайт на хостинге</span>
+                </div>
+                <p class="review-text" data-i18n="rev-text-8">
+                  Получился не шаблон, а аккуратный сайт под мой стиль. Отдельно понравилось, что все объяснил простым языком.
+                </p>
+              </div>
+
+              <!-- Card 9: Alexey -->
+              <div class="glass-card review-item-card">
+                <div class="liquid-blob-card"></div>
+                <div class="review-card-header">
+                  <div class="reviewer-avatar">А</div>
+                  <div class="reviewer-meta">
+                    <h4>Алексей</h4>
+                    <span class="review-date">12 марта 2026</span>
+                  </div>
+                  <div class="review-stars">★★★★★</div>
+                </div>
+                <div class="review-category-tag">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="category-icon" style="width:12px;height:12px;color:var(--text-soft);"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+                  <span data-i18n="rev-cat-9">Интеграция API • CRM</span>
+                </div>
+                <p class="review-text" data-i18n="rev-text-9">
+                  Интеграция CRM и телефонии. Влад связал все по API, настроил вебхуки. Все работает стабильно, без задержек. Отличная работа.
+                </p>
+              </div>
+
+              <!-- Card 10: Maria -->
+              <div class="glass-card review-item-card">
+                <div class="liquid-blob-card"></div>
+                <div class="review-card-header">
+                  <div class="reviewer-avatar">М</div>
+                  <div class="reviewer-meta">
+                    <h4>Мария</h4>
+                    <span class="review-date">5 марта 2026</span>
+                  </div>
+                  <div class="review-stars">★★★★★</div>
+                </div>
+                <div class="review-category-tag">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" class="category-icon" style="width:12px;height:12px;color:var(--text-soft);"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                  <span data-i18n="rev-cat-10">Landing page</span>
+                </div>
+                <p class="review-text" data-i18n="rev-text-10">
+                  Разработка Landing Page. Очень довольна результатом. Дизайн современный, все элементы анимированы аккуратно, формы отправляют заявки без сбоев.
+                </p>
+              </div>
+
+          </div>
+        </div>
+
+        <div class="reviews-carousel-controls" aria-label="Управление отзывами">
+          <button type="button" class="reviews-nav-btn" data-reviews-prev aria-label="Предыдущие отзывы">
+            <span aria-hidden="true">←</span>
+          </button>
+          <div class="reviews-carousel-status">
+            <span data-reviews-status aria-live="polite">01 / 10</span>
+            <div class="reviews-dots" data-reviews-dots aria-label="Позиция в карусели"></div>
+          </div>
+          <button type="button" class="reviews-nav-btn" data-reviews-next aria-label="Следующие отзывы">
+            <span aria-hidden="true">→</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: Контакты (Premium Glass Block) -->
+    <section id="contact" class="section contact" aria-labelledby="contact-title-lbl">
+      <div class="container">
+        <div class="contact-premium-block" data-reveal>
+          <!-- Decorative glowing elements -->
+          <div class="contact-glow-sphere"></div>
+          <div class="contact-glow-sphere-2"></div>
+          <div class="contact-noise-overlay"></div>
+          
+          <div class="contact-premium-content">
+            <h2 id="contact-title-lbl" class="contact-title-mega" data-i18n="contact-title-main">Готовы обсудить проект?</h2>
+            <p class="contact-desc-mega" data-i18n="contact-subtitle">
+              Опишите задачу. Я предложу понятный вариант запуска: что делать, сроки и первый шаг.
+            </p>
+            
+            <div class="contact-channel-grid" aria-label="Способы связи">
+              <a href="https://t.me/ThorBakiN" target="_blank" rel="noopener noreferrer" class="contact-channel contact-channel--primary" aria-label="Написать Владу в Telegram">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 0 0-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .24z"/></svg>
+                <span><strong>Telegram</strong><small data-i18n="contact-write">Написать</small></span>
+                <span class="contact-channel-arrow" aria-hidden="true">↗</span>
+              </a>
+              <a href="mailto:vlad.korkishko.84@bk.ru" class="contact-channel" aria-label="Написать Владу по Email">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>
+                <span><strong>Email</strong><small data-i18n="contact-email">Отправить письмо</small></span>
+                <span class="contact-channel-arrow" aria-hidden="true">↗</span>
+              </a>
+              <a href="https://wa.me/79521049810" target="_blank" rel="noopener noreferrer" class="contact-channel" aria-label="Написать Владу в WhatsApp">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2A9.84 9.84 0 0 0 3.6 16.9L2 22l5.23-1.54A9.96 9.96 0 1 0 12.04 2Zm0 17.98a8 8 0 0 1-4.08-1.12l-.3-.18-3.1.91.94-3.02-.2-.31a7.92 7.92 0 1 1 6.74 3.72Zm4.4-5.94c-.24-.12-1.43-.7-1.65-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-1.4-.7-2.32-1.25-3.25-2.84-.25-.43.25-.4.7-1.34.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.47-.4-.4-.54-.41h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.69 2.58 4.1 3.62.57.25 1.02.39 1.37.5.58.18 1.1.16 1.51.1.46-.07 1.43-.59 1.63-1.15.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28Z"/></svg>
+                <span><strong>WhatsApp</strong><small data-i18n="contact-whatsapp">Открыть чат</small></span>
+                <span class="contact-channel-arrow" aria-hidden="true">↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid-layout">
+      <div class="footer-left-zone">
+        <a href="#" class="footer-logo"><span class="logo-icon">T</span><span data-i18n="logo-name">THOR BAKIN</span></a>
+        <p class="footer-copy-text">© <span class="current-year-placeholder">2026</span> Thor BakiN. <span data-i18n="footer-copy">Все права защищены.</span></p>
+      </div>
+      
+      <div class="footer-right-zone">
+        <!-- Social connection badges -->
+        <a href="https://github.com/vladkorkishkooff-tech?tab=repositories" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        </a>
+        <a href="https://t.me/ThorBakiN" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Telegram">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 0 0-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .24z"/></svg>
+        </a>
+        <a href="mailto:vlad.korkishko.84@bk.ru" class="social-icon-btn" aria-label="Email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.bundle.js?v=v32-20260627"></script>
+</body>
+</html>

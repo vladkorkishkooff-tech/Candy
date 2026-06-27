@@ -1,0 +1,131 @@
+/* ==========================================================================
+   MARQUEE — Infinite scrolling text ticker
+   Decorative divider between hero and bento.
+   One row with alternating solid and amber outlined items.
+   ========================================================================== */
+
+.marquee {
+  position: relative;
+  padding: clamp(24px, 3.5vw, 42px) 0;
+  overflow: hidden;
+  user-select: none;
+  pointer-events: none;
+  /* Premium horizontal gradient fading */
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 15%, #000 85%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 15%, #000 85%, transparent);
+}
+
+/* Elegant amber-tinted separators */
+.marquee::before,
+.marquee::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, oklch(75% 0.16 65 / 0.18), transparent);
+}
+
+.marquee::before {
+  top: 0;
+}
+
+.marquee::after {
+  bottom: 0;
+}
+
+.marquee-row {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.marquee-track {
+  display: flex;
+  align-items: center;
+  gap: clamp(32px, 5vw, 76px);
+  flex-shrink: 0;
+  will-change: transform;
+  animation: marquee-scroll-left 25s linear infinite;
+}
+
+.marquee-track span {
+  display: inline-block;
+  flex-shrink: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.5vw, 3.4rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--text);
+  opacity: 0.15;
+}
+
+/* Outlined alternating phrase */
+.marquee-track span.marquee-outline {
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1.5px var(--accent);
+  color: transparent;
+  opacity: 0.42;
+}
+
+/* Accent bullet dot */
+.marquee-track .marquee-dot {
+  display: inline-block;
+  flex-shrink: 0;
+  width: clamp(6px, 0.4vw, 8px);
+  height: clamp(6px, 0.4vw, 8px);
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.32;
+  box-shadow: 0 0 10px var(--accent-glow);
+}
+
+@keyframes marquee-scroll-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation-play-state: paused;
+  }
+}
+
+@media (max-width: 860px) {
+  .marquee {
+    padding: clamp(16px, 2.5vw, 28px) 0;
+  }
+
+  .marquee-track span {
+    font-size: clamp(1.4rem, 4.5vw, 2.2rem);
+  }
+
+  .marquee-track span.marquee-outline {
+    -webkit-text-stroke-width: 1px;
+  }
+}
+
+@media (max-width: 480px) {
+  .marquee-track {
+    gap: clamp(20px, 4vw, 36px);
+  }
+
+  .marquee-track span {
+    font-size: clamp(1.2rem, 5vw, 1.6rem);
+  }
+
+  .marquee-track span.marquee-outline {
+    -webkit-text-stroke-width: 0.8px;
+  }
+}
