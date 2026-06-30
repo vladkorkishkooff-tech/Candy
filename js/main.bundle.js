@@ -62,7 +62,7 @@
     "about-proof-rating": { ru: "звёзд на фриланс-биржах", en: "stars on freelance platforms" },
     
     // About Section
-    "about-title-main": { ru: "Беру ответственность за путь от идеи до запуска", en: "I take responsibility from idea to launch" },
+    "about-title-main": { ru: "Инженер, который сам ведёт проект", en: "An engineer who personally leads the project" },
     "about-p1": { 
       ru: "Я разбираю задачу, проектирую связку, пишу код и довожу проект до рабочего состояния.", 
       en: "I clarify the task, design the system, write the code and bring the project to a working state." 
@@ -207,12 +207,30 @@
       en: "Published demos and working products: open the interface, test it and inspect the code."
     },
     "about-editorial-p1": {
-      ru: "Я не передаю проект по цепочке исполнителей. Сам разбираю задачу, проектирую связки, пишу код и довожу решение до запуска.",
-      en: "I do not pass a project down a chain of contractors. I clarify the task, design the connections, write the code and bring the solution to launch."
+      ru: "Работаю как один ответственный инженер: разбираю задачу, проектирую связку, пишу код и довожу решение до запуска.",
+      en: "I work as one accountable engineer: clarify the task, design the system, write the code and bring the solution to launch."
     },
     "about-editorial-p2": {
-      ru: "Работаю на стыке сайтов, Telegram, автоматизации и AI/API — так, чтобы части системы усиливали друг друга.",
-      en: "I work across websites, Telegram, automation and AI/API so every part of the system reinforces the others."
+      ru: "Без передачи между исполнителями и лишнего менеджмента. Сайт, Telegram, AI/API и автоматизация собираются в одну понятную рабочую систему.",
+      en: "No handoff chain and no extra management layer. Website, Telegram, AI/API and automation become one clear working system."
+    },
+    "about-proof-experience-label": { ru: "Опыт", en: "Experience" },
+    "about-proof-experience-title": { ru: "лет в разработке", en: "years in development" },
+    "about-proof-experience-desc": {
+      ru: "Сайты, боты, интеграции, автоматизация и внутренние инструменты.",
+      en: "Websites, bots, integrations, automation and internal tools."
+    },
+    "about-proof-projects-label": { ru: "Практика", en: "Practice" },
+    "about-proof-projects-title": { ru: "коммерческих проектов", en: "commercial projects" },
+    "about-proof-projects-desc": {
+      ru: "От лендингов и дашбордов до Telegram-ботов и API-связок.",
+      en: "From landing pages and dashboards to Telegram bots and API connections."
+    },
+    "about-proof-rating-label": { ru: "Репутация", en: "Reputation" },
+    "about-proof-rating-title": { ru: "на фриланс-площадках", en: "on freelance platforms" },
+    "about-proof-rating-desc": {
+      ru: "За сроки, коммуникацию, аккуратную реализацию и поддержку после запуска.",
+      en: "For timing, communication, careful implementation and post-launch support."
     },
     "cases-show-more": { ru: "Показать больше", en: "Show more" },
     "cases-show-less": { ru: "Скрыть проекты", en: "Hide projects" },
@@ -445,75 +463,6 @@
     };
   };
 
-
-
-  const initTextSplit = () => {
-    const title = document.querySelector("[data-hero-title]");
-    if (!title) return;
-
-    // Fetch translated raw html string to parse text node vs spans correctly
-    const textHtml = translations["hero-title"][currentLang];
-    
-    // Set textHtml temporaly to parse
-    const tempDiv = document.createElement("div");
-    tempDiv.innerHTML = textHtml;
-
-    const childNodes = Array.from(tempDiv.childNodes);
-    title.innerHTML = "";
-
-    let wordIndex = 0;
-
-    childNodes.forEach((node) => {
-      if (node.nodeType === Node.TEXT_NODE) {
-        const words = node.textContent.trim().split(/\s+/);
-        words.forEach((word) => {
-          if (!word) return;
-          const wrap = document.createElement("span");
-          wrap.className = "word-wrap";
-          const span = document.createElement("span");
-          span.className = "word";
-          span.textContent = word;
-          wrap.appendChild(span);
-          title.appendChild(wrap);
-          title.appendChild(document.createTextNode(" "));
-          wordIndex++;
-        });
-      } else if (node.nodeType === Node.ELEMENT_NODE) {
-        const isOutline = node.classList.contains("hero-outline-word");
-        const text = node.textContent.trim();
-        const words = text.split(/\s+/);
-        words.forEach((word) => {
-          if (!word) return;
-          const wrap = document.createElement("span");
-          wrap.className = "word-wrap";
-          const span = document.createElement("span");
-          span.className = "word" + (isOutline ? " word--outline" : "");
-          span.textContent = word;
-          wrap.appendChild(span);
-          title.appendChild(wrap);
-          title.appendChild(document.createTextNode(" "));
-          wordIndex++;
-        });
-      }
-    });
-  };
-
-  const animateHero = () => {
-    if (prefersReducedMotion.matches) {
-      document.querySelectorAll(".hero-title .word").forEach((w) => w.classList.add("is-visible"));
-      return;
-    }
-
-    // Trigger title words animation
-    const words = document.querySelectorAll(".hero-title .word");
-    words.forEach((word, index) => {
-      word.style.transitionDelay = `${index * 0.06}s`;
-      requestAnimationFrame(() => {
-        word.classList.add("is-visible");
-      });
-    });
-  };
-
   const setRevealDelays = () => {
     document.querySelectorAll("[data-reveal]").forEach((element) => {
       const delay = Number(element.dataset.revealDelay || 0);
@@ -708,20 +657,98 @@
   const initTilt = () => {
     if (!canHover.matches || prefersReducedMotion.matches || window.innerWidth < 900) return;
 
-    document.querySelectorAll("[data-tilt]").forEach((element) => {
-      element.addEventListener("pointermove", (event) => {
-        const rect = element.getBoundingClientRect();
-        const px = (event.clientX - rect.left) / rect.width - 0.5;
-        const py = (event.clientY - rect.top) / rect.height - 0.5;
+    const tiltItems = Array.from(document.querySelectorAll("[data-tilt]")).map((element) => {
+      let rect = null;
+      let frame = 0;
+      let pointerX = 0;
+      let pointerY = 0;
+
+      const measure = () => {
+        rect = element.getBoundingClientRect();
+      };
+
+      const apply = () => {
+        if (!rect) measure();
+        if (!rect || rect.width === 0 || rect.height === 0) {
+          frame = 0;
+          return;
+        }
+
+        const px = (pointerX - rect.left) / rect.width - 0.5;
+        const py = (pointerY - rect.top) / rect.height - 0.5;
         element.style.setProperty("--ry", `${px * 8}deg`);
         element.style.setProperty("--rx", `${py * -8}deg`);
-      });
+        frame = 0;
+      };
 
-      element.addEventListener("pointerleave", () => {
+      const onMove = (event) => {
+        pointerX = event.clientX;
+        pointerY = event.clientY;
+        if (!frame) frame = requestAnimationFrame(apply);
+      };
+
+      const reset = () => {
+        if (frame) {
+          cancelAnimationFrame(frame);
+          frame = 0;
+        }
         element.style.setProperty("--ry", "0deg");
         element.style.setProperty("--rx", "0deg");
-      });
+      };
+
+      element.addEventListener("pointerenter", measure, { passive: true });
+      element.addEventListener("pointermove", onMove, { passive: true });
+      element.addEventListener("pointerleave", reset, { passive: true });
+
+      return {
+        invalidate() {
+          rect = null;
+        },
+      };
     });
+
+    if (!tiltItems.length) return;
+
+    const invalidateRects = () => {
+      tiltItems.forEach((item) => item.invalidate());
+    };
+
+    window.addEventListener("resize", invalidateRects, { passive: true });
+    window.addEventListener("scroll", invalidateRects, { passive: true });
+    prefersReducedMotion.addEventListener("change", invalidateRects);
+    canHover.addEventListener("change", invalidateRects);
+  };
+
+  let showcaseRefs = null;
+  const getShowcaseRefs = () => {
+    if (showcaseRefs) return showcaseRefs;
+
+    showcaseRefs = {
+      visualZone: document.querySelector(".showcase-visual-zone"),
+      landingImage: document.querySelector("[data-landing-image]"),
+      landingName: document.querySelector("[data-landing-name]"),
+      landingCounter: document.querySelector("[data-landing-counter]"),
+      landingMeta: document.querySelector("#showcase-landing-meta"),
+      scrollBtn: document.querySelector("#showcase-scroll-btn"),
+      pillIcon: document.querySelector(".showcase-cat-icon"),
+      pillTitle: document.querySelector("#showcase-meta-pill"),
+      mainTitle: document.querySelector("#showcase-title"),
+      problem: document.querySelector("#showcase-problem"),
+      solution: document.querySelector("#showcase-solution"),
+      result: document.querySelector("#showcase-result"),
+      featuresWrap: document.querySelector("#showcase-features"),
+      mockups: Array.from(document.querySelectorAll(".visual-mockup")),
+      buttons: Array.from(document.querySelectorAll(".service-tab-btn")),
+      thumbButtons: Array.from(document.querySelectorAll(".thumb-btn")),
+      nav: document.querySelector(".services-nav-tabs"),
+      thumbnails: document.querySelector(".showcase-thumbnails-strip"),
+    };
+
+    return showcaseRefs;
+  };
+
+  const resetShowcaseRefs = () => {
+    showcaseRefs = null;
   };
 
   const initDetails = () => {
@@ -759,17 +786,13 @@
           const key = el.dataset.i18n;
           if (!translations[key]) return;
 
-          if (key === "hero-title") {
-            el.innerHTML = translations[key][lang];
-          } else if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
+          if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
             el.placeholder = translations[key][lang];
           } else {
             el.textContent = translations[key][lang];
           }
         });
 
-        initTextSplit();
-        animateHero();
         syncBentoShowcase();
         syncLandingGallery();
         updateChatContent();
@@ -905,13 +928,12 @@
   let activeLandingIndex = 0;
 
   const setShowcaseRatio = (ratio = "16 / 10") => {
-    const visualZone = document.querySelector(".showcase-visual-zone");
-    if (!visualZone) return;
-    visualZone.style.setProperty("--showcase-ratio", ratio);
+    const { visualZone } = getShowcaseRefs();
+    visualZone?.style.setProperty("--showcase-ratio", ratio);
   };
 
   const updateShowcaseScrollBtn = (data) => {
-    const scrollBtn = document.querySelector("#showcase-scroll-btn");
+    const { scrollBtn } = getShowcaseRefs();
     if (!scrollBtn) return;
 
     if (data.url) {
@@ -936,10 +958,7 @@
   };
 
   const syncLandingGallery = (animate = false) => {
-    const image = document.querySelector("[data-landing-image]");
-    const name = document.querySelector("[data-landing-name]");
-    const counter = document.querySelector("[data-landing-counter]");
-    const meta = document.querySelector("#showcase-landing-meta");
+    const { landingImage: image, landingName: name, landingCounter: counter, landingMeta: meta } = getShowcaseRefs();
     if (!image || !name || !counter) return;
 
     const slide = landingSlides[activeLandingIndex];
@@ -984,66 +1003,62 @@
 
   const syncBentoShowcase = () => {
     const data = bentoMockupData[activeBentoIndex];
+    const refs = getShowcaseRefs();
     setShowcaseRatio(data.ratio || "16 / 10");
     
     // Set showcase pill icon & title
-    const pillIcon = document.querySelector(".showcase-cat-icon");
-    const pillTitle = document.querySelector("#showcase-meta-pill");
-    if (pillIcon) pillIcon.innerHTML = data.icon;
-    if (pillTitle) pillTitle.textContent = translations[data.langKey][currentLang];
+    if (refs.pillIcon) refs.pillIcon.innerHTML = data.icon;
+    if (refs.pillTitle) refs.pillTitle.textContent = translations[data.langKey][currentLang];
 
     // Set title
-    const mainTitle = document.querySelector("#showcase-title");
-    if (mainTitle) mainTitle.textContent = translations[data.titleKey][currentLang];
+    if (refs.mainTitle) refs.mainTitle.textContent = translations[data.titleKey][currentLang];
 
     // Set Problem-Solution-Result flow
-    const probEl = document.querySelector("#showcase-problem");
-    const solEl = document.querySelector("#showcase-solution");
-    const resEl = document.querySelector("#showcase-result");
-    if (probEl) probEl.textContent = translations[data.probKey][currentLang];
-    if (solEl) solEl.textContent = translations[data.solKey][currentLang];
-    if (resEl) resEl.textContent = translations[data.resKey][currentLang];
+    if (refs.problem) refs.problem.textContent = translations[data.probKey][currentLang];
+    if (refs.solution) refs.solution.textContent = translations[data.solKey][currentLang];
+    if (refs.result) refs.result.textContent = translations[data.resKey][currentLang];
 
     // Set features
-    const featuresWrap = document.querySelector("#showcase-features");
-    if (featuresWrap) {
-      featuresWrap.innerHTML = "";
+    if (refs.featuresWrap) {
+      const fragment = document.createDocumentFragment();
       data.features.forEach((featKey) => {
         const span = document.createElement("span");
         span.className = "feature-bullet";
         span.textContent = translations[featKey][currentLang];
-        featuresWrap.appendChild(span);
+        fragment.appendChild(span);
       });
+      refs.featuresWrap.replaceChildren(fragment);
     }
 
     // Toggle active visual mockup
       // Toggle active visual mockup
-  document.querySelectorAll(".visual-mockup").forEach((mock, index) => {
+  refs.mockups.forEach((mock, index) => {
     mock.classList.toggle("active", index === activeBentoIndex);
   });
 
   // Dynamic Scroll Button live URL bindings
   updateShowcaseScrollBtn(data);
 
-  const meta = document.querySelector("#showcase-landing-meta");
-  if (meta) meta.hidden = activeBentoIndex !== 8;
+  if (refs.landingMeta) refs.landingMeta.hidden = activeBentoIndex !== 8;
   if (activeBentoIndex === 8) syncLandingGallery();
 };
 
   const initBentoShowcase = () => {
-    const buttons = document.querySelectorAll(".service-tab-btn");
-    const thumbBtns = document.querySelectorAll(".thumb-btn");
+    resetShowcaseRefs();
+    const refs = getShowcaseRefs();
+    const buttons = refs.buttons;
+    const thumbBtns = refs.thumbButtons;
 
-    const nav = document.querySelector(".services-nav-tabs");
-    const thumbnails = document.querySelector(".showcase-thumbnails-strip");
-    const landingButton = document.querySelector('.service-tab-btn[data-tab-index="8"]');
-    const landingThumb = document.querySelector('.thumb-btn[data-thumb-index="8"]');
-    if (nav && landingButton) nav.prepend(landingButton);
-    if (thumbnails && landingThumb) thumbnails.prepend(landingThumb);
+    const landingButton = buttons.find((button) => button.dataset.tabIndex === "8");
+    const landingThumb = thumbBtns.find((button) => button.dataset.thumbIndex === "8");
+    if (refs.nav && landingButton) refs.nav.prepend(landingButton);
+    if (refs.thumbnails && landingThumb) refs.thumbnails.prepend(landingThumb);
+    resetShowcaseRefs();
+    const orderedRefs = getShowcaseRefs();
 
     const keepActiveServiceTabVisible = (smooth = false) => {
-      if (!nav || window.innerWidth > 620) return;
-      const activeButton = nav.querySelector(".service-tab-btn.active");
+      if (!orderedRefs.nav || window.innerWidth > 620) return;
+      const activeButton = orderedRefs.nav.querySelector(".service-tab-btn.active");
       if (!activeButton) return;
 
       const behavior = smooth && !prefersReducedMotion.matches ? "smooth" : "auto";
@@ -1057,14 +1072,14 @@
       activeBentoIndex = index;
 
       // Update sidebar tab active classes
-      buttons.forEach((b) => {
+      orderedRefs.buttons.forEach((b) => {
         const isActive = Number(b.dataset.tabIndex) === index;
         b.classList.toggle("active", isActive);
         b.setAttribute("aria-selected", String(isActive));
       });
 
       // Update thumbnails active classes
-      thumbBtns.forEach((tb) => tb.classList.toggle("active", Number(tb.dataset.thumbIndex) === index));
+      orderedRefs.thumbButtons.forEach((tb) => tb.classList.toggle("active", Number(tb.dataset.thumbIndex) === index));
       keepActiveServiceTabVisible(true);
 
       // Apply showcase panel micro transitions
@@ -1078,22 +1093,21 @@
       }
     };
 
-    buttons.forEach((btn) => {
+    orderedRefs.buttons.forEach((btn) => {
       btn.addEventListener("click", () => switchTab(Number(btn.dataset.tabIndex)));
     });
 
-    thumbBtns.forEach((tb) => {
+    orderedRefs.thumbButtons.forEach((tb) => {
       tb.addEventListener("click", () => switchTab(Number(tb.dataset.thumbIndex)));
     });
 
-    buttons.forEach((button) => {
+    orderedRefs.buttons.forEach((button) => {
       const active = Number(button.dataset.tabIndex) === activeBentoIndex;
       button.classList.toggle("active", active);
       button.setAttribute("aria-selected", String(active));
     });
-    thumbBtns.forEach((thumb) => thumb.classList.toggle("active", Number(thumb.dataset.thumbIndex) === activeBentoIndex));
+    orderedRefs.thumbButtons.forEach((thumb) => thumb.classList.toggle("active", Number(thumb.dataset.thumbIndex) === activeBentoIndex));
     syncBentoShowcase();
-    keepActiveServiceTabVisible(false);
   };
 
   // Stage 1 Dialogue Content Updater
@@ -1413,23 +1427,19 @@
   };
 
   const init = () => {
-    initTextSplit();
     setRevealDelays();
     initReveal();
     initHeader();
     initSmoothAnchors();
     initMobileMenu();
     initCounters();
-    initSplineBackground();
     initCasesToggle();
-    initAboutProof();
     initDetails();
     initLanguageSwitcher();
     initBentoShowcase();
     initLandingGallery();
     initReviewsCarousel();
     initChatToggler();
-    animateHero();
     document.body.classList.add("loaded");
 
     const runDeferred = () => {
@@ -1448,134 +1458,6 @@
 // -------------------------------------------------------------
 // Interactive Dual-Device Duet Screenshot Hover-Scrolling System
 // -------------------------------------------------------------
-
-  // -------------------------------------------------------------
-  // Lazy desktop Spline background with static fallbacks
-  // -------------------------------------------------------------
-  const initSplineBackground = () => {
-    const shell = document.querySelector("[data-spline-shell]");
-    if (!shell) return;
-
-    const splineForcedOff = new URLSearchParams(window.location.search).get("spline") === "0";
-    if (splineForcedOff || prefersReducedMotion.matches || navigator.connection?.saveData) {
-      shell.classList.add("is-fallback-only");
-      return;
-    }
-
-    const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-    const canRunSpline = canHover && window.innerWidth > 900;
-
-    if (!canRunSpline) {
-      shell.classList.add("is-fallback-only");
-      return;
-    }
-
-    const mountViewer = () => {
-      if (shell.querySelector("spline-viewer")) return;
-
-      const viewer = document.createElement("spline-viewer");
-      viewer.setAttribute("url", "https://prod.spline.design/Slk6b8kz3LRlKiyk/scene.splinecode");
-      viewer.setAttribute("unloadable", "");
-      viewer.setAttribute("events-target", "global");
-      viewer.setAttribute("loading-anim-type", "spinner-small-dark");
-
-      const revealScene = () => {
-        shell.classList.add("is-loaded");
-        shell.classList.remove("is-loading-spline", "is-fallback-only", "has-spline-error");
-      };
-      const markError = () => {
-        shell.classList.add("has-spline-error");
-        shell.classList.remove("is-loading-spline");
-      };
-      viewer.addEventListener("load-complete", revealScene);
-      viewer.addEventListener("error", markError);
-      viewer.addEventListener("unload", () => shell.classList.remove("is-loaded"));
-      shell.appendChild(viewer);
-
-      window.setTimeout(() => {
-        if (viewer.shadowRoot?.querySelector("canvas")) revealScene();
-      }, 4500);
-    };
-
-    const loadViewerModule = () => {
-      if (customElements.get("spline-viewer")) {
-        mountViewer();
-        return;
-      }
-
-      if (!document.querySelector('link[href="https://prod.spline.design"]')) {
-        const splinePreconnect = document.createElement("link");
-        splinePreconnect.rel = "preconnect";
-        splinePreconnect.href = "https://prod.spline.design";
-        splinePreconnect.crossOrigin = "";
-        document.head.appendChild(splinePreconnect);
-      }
-
-      if (!document.querySelector('link[href="https://unpkg.com"]')) {
-        const preconnect = document.createElement("link");
-        preconnect.rel = "preconnect";
-        preconnect.href = "https://unpkg.com";
-        preconnect.crossOrigin = "";
-        document.head.appendChild(preconnect);
-      }
-
-      const existingScript = document.querySelector('script[data-spline-viewer="true"]');
-      if (existingScript) {
-        existingScript.addEventListener("load", mountViewer, { once: true });
-        return;
-      }
-
-      const script = document.createElement("script");
-      script.type = "module";
-      script.src = "https://unpkg.com/@splinetool/viewer@1.12.97/build/spline-viewer.js";
-      script.dataset.splineViewer = "true";
-      script.addEventListener("load", mountViewer, { once: true });
-      script.addEventListener("error", () => {
-        shell.classList.add("has-spline-error");
-        shell.classList.remove("is-loading-spline");
-      }, { once: true });
-      document.head.appendChild(script);
-    };
-
-    const scheduleLoad = () => {
-      shell.classList.add("is-loading-spline");
-      const loadAfterFirstPaint = () => {
-        if ("requestIdleCallback" in window) {
-          window.requestIdleCallback(loadViewerModule, { timeout: 650 });
-        } else {
-          window.setTimeout(loadViewerModule, 250);
-        }
-      };
-
-      window.requestAnimationFrame(() => {
-        window.requestAnimationFrame(loadAfterFirstPaint);
-      });
-
-      window.setTimeout(() => {
-        if (!shell.classList.contains("is-loaded")) {
-          shell.classList.add("is-fallback-only");
-        }
-      }, 5200);
-    };
-
-    const shellRect = shell.getBoundingClientRect();
-    if (shellRect.top < window.innerHeight && shellRect.bottom > 0) {
-      scheduleLoad();
-      return;
-    }
-
-    if ("IntersectionObserver" in window) {
-      const observer = new IntersectionObserver((entries) => {
-        if (!entries.some((entry) => entry.isIntersecting)) return;
-        observer.disconnect();
-        scheduleLoad();
-      }, { rootMargin: "120px" });
-      observer.observe(shell);
-      return;
-    }
-
-    scheduleLoad();
-  };
 
   const initCasesToggle = () => {
     const button = document.querySelector("[data-cases-toggle]");
@@ -1625,31 +1507,6 @@
         if (!region.classList.contains("is-open")) finishCollapse();
       }, 700);
     });
-  };
-
-  // -------------------------------------------------------------
-  const initAboutProof = () => {
-    const panel = document.querySelector("[data-about-proof]");
-    if (!panel || prefersReducedMotion.matches || !("IntersectionObserver" in window)) return;
-
-    const counters = panel.querySelectorAll("[data-proof-count]");
-    const observer = new IntersectionObserver((entries) => {
-      if (!entries.some((entry) => entry.isIntersecting)) return;
-      panel.classList.add("is-visible");
-      counters.forEach((counter) => {
-        const target = Number(counter.dataset.proofCount);
-        const startedAt = performance.now();
-        const tick = (now) => {
-          const progress = Math.min((now - startedAt) / 900, 1);
-          counter.textContent = String(Math.round(target * (1 - Math.pow(1 - progress, 3))));
-          if (progress < 1) requestAnimationFrame(tick);
-        };
-        requestAnimationFrame(tick);
-      });
-      observer.disconnect();
-    }, { threshold: 0.35 });
-
-    observer.observe(panel);
   };
 
 const initHoverScrollMockups = () => {

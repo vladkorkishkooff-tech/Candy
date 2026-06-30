@@ -1008,3 +1008,40 @@
 .service-showcase-panel .showcase-visual-zone .editorial-preview-card {
   transform: none !important;
 }
+
+/* Targeted polish: RepairCalc source is close to portrait, while the case
+   preview frame is wide. Fill this one preview frame like the other cases. */
+#cases .case-grid-unit--repair .case-card-visual-holder .screenshot-img {
+  object-fit: cover !important;
+  object-position: center top !important;
+}
+
+/* Services zoom-out guard. Prevent the showcase from stretching into a giant
+   glass slab when browser zoom increases the CSS viewport width. */
+.services::before {
+  display: none !important;
+}
+
+.services .container,
+.services-headline-row,
+.services-bento-grid {
+  max-width: none !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.services .container {
+  width: min(calc(100% - 48px), 1500px) !important;
+}
+
+@media (min-width: 981px) {
+  .service-showcase-panel .showcase-visual-zone {
+    max-width: min(100%, 980px) !important;
+  }
+}
+
+@media (max-width: 620px) {
+  .services .container {
+    width: calc(100% - 24px) !important;
+  }
+}

@@ -20,13 +20,13 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://unpkg.com" crossorigin>
-  <link rel="preconnect" href="https://prod.spline.design" crossorigin>
+  <link rel="preload" href="hero-system-scene-desktop.webp" as="image" type="image/webp" media="(min-width: 561px)" fetchpriority="high">
+  <link rel="preload" href="hero-system-scene-mobile.webp" as="image" type="image/webp" media="(max-width: 560px)" fetchpriority="high">
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Inter:wght@400;500;600;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/02-reset.css?v=v9-20260624">
   <link rel="stylesheet" href="css/04-components/header.css?v=v8-20260622">
-  <link rel="stylesheet" href="css/04-components/hero.css?v=v17-20260627">
+  <link rel="stylesheet" href="css/04-components/hero.css?v=v18-20260630">
   <link rel="stylesheet" href="css/04-components/about.css?v=v18-20260625">
   <link rel="stylesheet" href="css/04-components/decks.css?v=v7-20260621">
   <link rel="stylesheet" href="css/04-components/cases.css?v=v9-20260622">
@@ -35,7 +35,7 @@
   <link rel="stylesheet" href="css/04-components/contact.css?v=v8-20260622">
   <link rel="stylesheet" href="css/04-components/footer.css?v=v7-20260621">
   <link rel="stylesheet" href="css/05-animations.css?v=v7-20260621">
-  <link rel="stylesheet" href="css/06-utilities.css?v=v19-20260627">
+  <link rel="stylesheet" href="css/06-utilities.css?v=v20-20260630">
 
 </head>
 <body>
@@ -106,20 +106,19 @@
 
   <main>
     <section class="hero section-dark" aria-labelledby="hero-title">
-      <div class="hero-spline-shell" data-spline-shell aria-hidden="true">
-        <div class="hero-spline-fallback">
-          <div class="hero-fallback-cube-wall" aria-hidden="true">
-            <span></span><span></span><span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span><span></span><span></span>
-            <span></span><span></span><span></span><span></span><span></span><span></span>
-          </div>
-          <span class="hero-fallback-orbit hero-fallback-orbit--one"></span>
-          <span class="hero-fallback-orbit hero-fallback-orbit--two"></span>
-          <span class="hero-fallback-glow"></span>
-        </div>
+      <div class="hero-media" aria-hidden="true">
+        <picture class="hero-media-picture">
+          <source srcset="hero-system-scene-mobile.webp" media="(max-width: 560px)" type="image/webp">
+          <img
+            src="hero-system-scene-desktop.webp"
+            alt=""
+            class="hero-media-img"
+            width="3840"
+            height="2160"
+            fetchpriority="high"
+            decoding="async"
+          >
+        </picture>
       </div>
       <div class="hero-scene-overlay" aria-hidden="true"></div>
 
@@ -155,27 +154,27 @@
     <section id="about" class="section about" aria-labelledby="about-title-lbl">
       <div class="container">
         <div class="section-intro centered" data-reveal>
-          <h2 id="about-title-lbl" class="section-title" data-i18n="about-title-main">Беру ответственность за путь от идеи до запуска</h2>
+          <h2 id="about-title-lbl" class="section-title" data-i18n="about-title-main">Инженер, который сам ведёт проект</h2>
         </div>
 
         <div class="about-grid-layout">
           <!-- Left Column: Portrait Card -->
           <div class="about-identity-left" data-reveal data-reveal-delay="0.1">
-            <div class="about-portrait-card" data-tilt>
+            <div class="about-portrait-card">
               <div class="about-portrait-glow"></div>
               <div class="about-portrait-frame">
                 <img
-                  src="vlad_portrait.webp"
+                  src="vlad_portrait_about.webp"
                   alt="Vlad Korkishko Portrait"
                   class="about-portrait-img"
                   loading="lazy"
                   decoding="async"
-                  width="640"
-                  height="800"
+                  width="960"
+                  height="1200"
                 />
               </div>
               <div class="about-status-pill">
-                <span class="status-indicator-dot animate-pulse-green"></span>
+                <span class="status-indicator-dot"></span>
                 <span class="status-text" data-i18n="about-status-ready">🟢 Доступен для новых проектов</span>
               </div>
             </div>
@@ -183,25 +182,31 @@
 
           <!-- Right Column: Experience proof -->
           <div class="about-identity-right" data-reveal data-reveal-delay="0.2">
-            <div class="about-editorial" data-about-proof>
+            <div class="about-editorial">
               <div class="about-editorial-lines" aria-hidden="true"><i></i><i></i><i></i></div>
               <div class="about-editorial-copy">
-                <p data-i18n="about-editorial-p1">Я не передаю проект по цепочке исполнителей. Сам разбираю задачу, проектирую связки, пишу код и довожу решение до запуска.</p>
-                <p data-i18n="about-editorial-p2">Работаю на стыке сайтов, Telegram, автоматизации и AI/API — так, чтобы части системы усиливали друг друга.</p>
+                <p data-i18n="about-editorial-p1">Работаю как один ответственный инженер: разбираю задачу, проектирую связку, пишу код и довожу решение до запуска.</p>
+                <p data-i18n="about-editorial-p2">Без передачи между исполнителями и лишнего менеджмента. Сайт, Telegram, AI/API и автоматизация собираются в одну понятную рабочую систему.</p>
               </div>
-              <div class="about-stats-rail" aria-label="Опыт в цифрах">
-                <div class="about-stat">
-                  <strong data-proof-count="7">7</strong>
-                  <span data-i18n="about-proof-years">лет в разработке</span>
-                </div>
-                <div class="about-stat">
-                  <strong><span data-proof-count="15">15</span><sup>+</sup></strong>
-                  <span data-i18n="about-proof-projects">коммерческих проектов</span>
-                </div>
-                <div class="about-stat about-stat--rating">
-                  <strong><span data-proof-count="5">5</span><sup>★</sup></strong>
-                  <span data-i18n="about-proof-rating">звёзд на фриланс-биржах</span>
-                </div>
+              <div class="about-proof-cards" aria-label="Подтверждение опыта">
+                <article class="about-proof-card">
+                  <span class="about-proof-kicker" data-i18n="about-proof-experience-label">Опыт</span>
+                  <strong>7</strong>
+                  <h3 data-i18n="about-proof-experience-title">лет в разработке</h3>
+                  <p data-i18n="about-proof-experience-desc">Сайты, боты, интеграции, автоматизация и внутренние инструменты.</p>
+                </article>
+                <article class="about-proof-card">
+                  <span class="about-proof-kicker" data-i18n="about-proof-projects-label">Практика</span>
+                  <strong>15<sup>+</sup></strong>
+                  <h3 data-i18n="about-proof-projects-title">коммерческих проектов</h3>
+                  <p data-i18n="about-proof-projects-desc">От лендингов и дашбордов до Telegram-ботов и API-связок.</p>
+                </article>
+                <article class="about-proof-card">
+                  <span class="about-proof-kicker" data-i18n="about-proof-rating-label">Репутация</span>
+                  <strong>5<sup>★</sup></strong>
+                  <h3 data-i18n="about-proof-rating-title">на фриланс-площадках</h3>
+                  <p data-i18n="about-proof-rating-desc">За сроки, коммуникацию, аккуратную реализацию и поддержку после запуска.</p>
+                </article>
               </div>
               <a href="https://t.me/ThorBakiN" target="_blank" rel="noopener noreferrer" class="about-editorial-cta">
                 <span data-i18n="hero-cta-discuss">Обсудить задачу</span>
@@ -470,31 +475,31 @@
               <!-- Apple Vision Pro / Figma navigation style thumbnails strip -->
               <div class="showcase-thumbnails-strip" role="group" aria-label="Быстрый выбор проекта">
                 <button class="thumb-btn active" data-thumb-index="0" aria-label="Web">
-                  <img src="case_wb_ozon.webp" alt="WB and Ozon analytics dashboard" loading="lazy" decoding="async">
+                  <img src="case_thumb_wb_ozon.webp" alt="WB and Ozon analytics dashboard" loading="lazy" decoding="async" width="420" height="286">
                 </button>
                 <button class="thumb-btn" data-thumb-index="1" aria-label="Web Apps">
-                  <img src="case_repair_calc.webp" alt="RepairCalc estimate dashboard" loading="lazy" decoding="async">
+                  <img src="case_thumb_repair_calc.webp" alt="RepairCalc estimate dashboard" loading="lazy" decoding="async" width="288" height="300">
                 </button>
                 <button class="thumb-btn" data-thumb-index="2" aria-label="SaaS">
-                  <img src="case_backup_scheduler_premium.webp" alt="AgentBackup scheduler interface" loading="lazy" decoding="async">
+                  <img src="case_thumb_backup_scheduler_premium.webp" alt="AgentBackup scheduler interface" loading="lazy" decoding="async" width="420" height="263">
                 </button>
                 <button class="thumb-btn" data-thumb-index="3" aria-label="AI Tools">
-                  <img src="case_parser.webp" alt="Parser workflow" loading="lazy" decoding="async">
+                  <img src="case_thumb_parser.webp" alt="Parser workflow" loading="lazy" decoding="async" width="420" height="263">
                 </button>
                 <button class="thumb-btn" data-thumb-index="4" aria-label="Dashboards">
-                  <img src="case_wb_ozon.webp" alt="Wildberries & Ozon Dashboard" loading="lazy" decoding="async">
+                  <img src="case_thumb_wb_ozon.webp" alt="Wildberries & Ozon Dashboard" loading="lazy" decoding="async" width="420" height="286">
                 </button>
                 <button class="thumb-btn" data-thumb-index="5" aria-label="Automation">
-                  <img src="case_autoposting_ai.webp" alt="AI-assisted Telegram autoposting workflow" loading="lazy" decoding="async">
+                  <img src="case_thumb_autoposting_ai.webp" alt="AI-assisted Telegram autoposting workflow" loading="lazy" decoding="async" width="420" height="263">
                 </button>
                 <button class="thumb-btn" data-thumb-index="6" aria-label="Telegram Bots">
-                  <img src="case_manicure_bot_premium.webp" alt="Manicure Booking Bot" loading="lazy" decoding="async">
+                  <img src="case_thumb_manicure_bot_premium.webp" alt="Manicure Booking Bot" loading="lazy" decoding="async" width="420" height="263">
                 </button>
                 <button class="thumb-btn" data-thumb-index="7" aria-label="API Integrations">
-                  <img src="case_api_integration_premium.webp" alt="API Integration workflow" loading="lazy" decoding="async">
+                  <img src="case_thumb_api_integration_premium.webp" alt="API Integration workflow" loading="lazy" decoding="async" width="420" height="263">
                 </button>
                 <button class="thumb-btn" data-thumb-index="8" aria-label="Landing pages and live sites">
-                  <img src="case_premium_visit_card.webp" alt="Premium hosted landing page" loading="lazy" decoding="async">
+                  <img src="case_thumb_premium_visit_card.webp" alt="Premium hosted landing page" loading="lazy" decoding="async" width="420" height="263">
                 </button>
               </div>
 
@@ -634,9 +639,9 @@
           </article>
 
           <!-- Case 2: RepairCalc -->
-          <article class="glass-card case-grid-unit" data-reveal>
+          <article class="glass-card case-grid-unit case-grid-unit--repair" data-reveal>
             <div class="case-card-visual-holder">
-              <img src="case_repair_calc.webp" alt="SaaS Construction Estimator" class="screenshot-img">
+              <img src="case_repair_calc.webp" alt="SaaS Construction Estimator" class="screenshot-img" loading="lazy" decoding="async">
             </div>
             <div class="case-card-text-zone">
               <div class="case-card-top" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
@@ -672,7 +677,7 @@
           <!-- Case 3: WB-Ozon-Dashboard -->
           <article class="glass-card case-grid-unit" data-reveal>
             <div class="case-card-visual-holder">
-              <img src="case_wb_ozon.webp" alt="Wildberries & Ozon Dashboard" class="screenshot-img">
+              <img src="case_wb_ozon.webp" alt="Wildberries & Ozon Dashboard" class="screenshot-img" loading="lazy" decoding="async">
             </div>
             <div class="case-card-text-zone">
               <div class="case-card-top" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
@@ -744,7 +749,7 @@
           <!-- Case: ManicureBot -->
           <article class="glass-card case-grid-unit" data-reveal>
             <div class="case-card-visual-holder">
-              <img src="case_manicure_bot_premium.webp" alt="Telegram Manicure Bot" class="screenshot-img">
+              <img src="case_manicure_bot_premium.webp" alt="Telegram Manicure Bot" class="screenshot-img" loading="lazy" decoding="async">
             </div>
             <div class="case-card-text-zone">
               <div class="case-card-top" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
@@ -791,7 +796,7 @@
           <!-- Case 5: amoCRM + Stripe + Google Sheets Sync -->
           <article class="glass-card case-grid-unit" data-reveal>
             <div class="case-card-visual-holder">
-              <img src="case_api_integration_premium.webp" alt="amoCRM Stripe Sync" class="screenshot-img">
+              <img src="case_api_integration_premium.webp" alt="amoCRM Stripe Sync" class="screenshot-img" loading="lazy" decoding="async">
             </div>
             <div class="case-card-text-zone">
               <div class="case-card-top" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
@@ -823,7 +828,7 @@
           <!-- Case 6: AgentBackup -->
           <article class="glass-card case-grid-unit" data-reveal>
             <div class="case-card-visual-holder">
-              <img src="case_backup_scheduler_premium.webp" alt="Cloud Backup Scheduler" class="screenshot-img">
+              <img src="case_backup_scheduler_premium.webp" alt="Cloud Backup Scheduler" class="screenshot-img" loading="lazy" decoding="async">
             </div>
             <div class="case-card-text-zone">
               <div class="case-card-top" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
@@ -859,7 +864,7 @@
           <!-- Case 7: Parser-Rosaccreditation -->
           <article class="glass-card case-grid-unit" data-reveal>
             <div class="case-card-visual-holder">
-              <img src="case_parser.webp" alt="Rosaccreditation Registry Parser" class="screenshot-img">
+              <img src="case_parser.webp" alt="Rosaccreditation Registry Parser" class="screenshot-img" loading="lazy" decoding="async">
             </div>
             <div class="case-card-text-zone">
               <div class="case-card-top" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
@@ -1400,6 +1405,6 @@
     </div>
   </footer>
 
-  <script src="js/main.bundle.js?v=v32-20260627"></script>
+  <script src="js/main.bundle.js?v=v33-20260630"></script>
 </body>
 </html>
