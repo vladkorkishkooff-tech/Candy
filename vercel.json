@@ -1,5 +1,4 @@
 {
-  "name": "vlad-korkishko-engineer",
   "headers": [
     {
       "source": "/(.*)\\.(css|js|webp|jpg|jpeg|png|svg|ico|webmanifest)",
