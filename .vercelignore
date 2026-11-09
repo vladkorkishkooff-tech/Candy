@@ -4,6 +4,8 @@
 node_modules/
 open-design/
 output/
+outputs/
+.playwright-cli/
 Reference/
 scratch/
 __pycache__/
@@ -16,3 +18,11 @@ fix_index.py
 optimize_skill.py
 server.py
 skill.md
+
+# Source/back-up rasters are kept locally but are not referenced by the
+# production static page. Production hero/cases use optimized .webp assets.
+*.png
+hero_*.webp
+hero-system-scene-master-8k.webp
+vlad_portrait.webp
+vlad_portrait_clean.webp

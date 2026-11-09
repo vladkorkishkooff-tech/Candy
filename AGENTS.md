@@ -33,7 +33,7 @@ Then test `http://127.0.0.1:8000/`.
 
 - Keep the first viewport premium, calm, and useful; avoid turning it into a demo of effects.
 - Hero must communicate "Vlad builds connected systems", not a generic SEO/product template.
-- Use Syne for display headings and Inter for body/UI text.
+- Use Manrope for display/body/UI text and IBM Plex Mono for technical labels.
 - Use dark base, white contrast CTA, grid/noise texture, large arcs, restrained sparkle decor, and glass surfaces.
 - Cards may use 2.5D tilt and depth, but text must remain readable.
 - No horizontal overflow at `390px` or `1440px`.

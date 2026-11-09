@@ -1,7 +1,7 @@
 [data-reveal] {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.75s var(--ease), transform 0.75s var(--ease);
+  transform: translateY(20px);
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
   transition-delay: var(--reveal-delay, 0ms);
   will-change: opacity, transform;
 }
@@ -9,6 +9,14 @@
 [data-reveal].is-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+.case-grid-unit[data-reveal].is-visible {
+  transition:
+    border-color 0.25s var(--ease),
+    background-color 0.25s var(--ease),
+    transform 0.25s var(--ease),
+    box-shadow 0.25s var(--ease);
 }
 
 

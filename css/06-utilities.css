@@ -829,7 +829,7 @@
     justify-self: center !important;
     align-self: center !important;
     aspect-ratio: 16 / 10 !important;
-    margin: 0 0 42px !important;
+    margin: 0 0 78px !important;
   }
 
   .service-showcase-panel .showcase-visual-zone:has(#mockup-1.active) {
@@ -839,7 +839,7 @@
   }
 
   .service-showcase-panel .showcase-thumbnails-strip {
-    bottom: -38px !important;
+    bottom: -70px !important;
     max-width: min(92%, 560px) !important;
   }
 }
@@ -1007,4 +1007,72 @@
 
 .service-showcase-panel .showcase-visual-zone .editorial-preview-card {
   transform: none !important;
+}
+
+/* Case previews use their native proportions. This removes the large dark
+   letterbox frames while keeping every interface fully visible. */
+#cases .case-card-visual-holder {
+  height: auto !important;
+  aspect-ratio: auto !important;
+  display: block !important;
+  background: transparent !important;
+}
+
+#cases .case-card-visual-holder .screenshot-img {
+  position: relative !important;
+  inset: auto !important;
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  object-fit: initial !important;
+  object-position: initial !important;
+}
+
+/* Services zoom-out guard. Prevent the showcase from stretching into a giant
+   glass slab when browser zoom increases the CSS viewport width. */
+.services::before {
+  display: none !important;
+}
+
+.services .container,
+.services-headline-row,
+.services-bento-grid {
+  max-width: none !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.services .container {
+  width: min(calc(100% - 48px), 1500px) !important;
+}
+
+@media (min-width: 981px) {
+  .service-showcase-panel .showcase-visual-zone {
+    max-width: min(100%, 980px) !important;
+  }
+}
+
+@media (max-width: 620px) {
+  .services .container {
+    width: calc(100% - 24px) !important;
+  }
+}
+
+/* Keep the showcase thumbnail dock below the preview instead of crossing it. */
+.service-showcase-panel .showcase-visual-zone {
+  margin-bottom: clamp(72px, 5vw, 86px) !important;
+}
+
+.service-showcase-panel .showcase-thumbnails-strip {
+  bottom: clamp(-76px, -4.6vw, -62px) !important;
+}
+
+@media (max-width: 620px) {
+  .service-showcase-panel .showcase-visual-zone {
+    margin-bottom: 66px !important;
+  }
+
+  .service-showcase-panel .showcase-thumbnails-strip {
+    bottom: -58px !important;
+  }
 }

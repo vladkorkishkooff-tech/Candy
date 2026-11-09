@@ -5,8 +5,8 @@
 }
 
 :root {
-  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-display: "Syne", "Arial Black", sans-serif;
+  --font-body: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
   --accent: #ffffff; /* pure premium white */
   --accent-dim: rgba(255, 255, 255, 0.65);
@@ -17,8 +17,8 @@
   --surface: rgba(255, 255, 255, 0.01);
   --surface-strong: rgba(255, 255, 255, 0.026);
   --text: #f7f7f5;
-  --text-soft: rgba(247, 247, 245, 0.74);
-  --text-muted: rgba(247, 247, 245, 0.44);
+  --text-soft: #d4d4d8;
+  --text-muted: #a1a1aa;
   --line: rgba(255, 255, 255, 0.038);
   --line-strong: rgba(255, 255, 255, 0.074);
   --shadow: 0 24px 80px rgba(0, 0, 0, 0.68);
@@ -281,6 +281,13 @@ svg {
   height: 16px;
 }
 
+/* Shared CTA icons must never fall back to the browser's 300×150 SVG box. */
+.btn-svg {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+}
+
 .site-bg {
   position: fixed;
   inset: 0;
@@ -415,6 +422,9 @@ svg {
 }
 
 .lang-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 6px 12px;
   font-family: var(--font-mono);
   font-size: 10px;
@@ -424,6 +434,7 @@ svg {
   border: 0;
   border-radius: 999px;
   cursor: pointer;
+  text-decoration: none;
   transition: all 0.3s var(--ease);
 }
 
