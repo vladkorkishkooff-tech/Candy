@@ -1,34 +1,44 @@
 (function () {
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const canHover = window.matchMedia("(hover: hover) and (pointer: fine)");
+  const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  const isConstrainedDevice = Boolean(
+    connection?.saveData ||
+    (navigator.deviceMemory && navigator.deviceMemory <= 4) ||
+    (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4)
+  );
 
-  let currentLang = "ru";
+  // Locale is defined by the document URL, not by replacing visible copy after
+  // paint. This keeps the first render stable on both / and /en/.
+  const currentLang = document.documentElement.lang === "en" ? "en" : "ru";
+  const assetUrl = (relativePath) => currentLang === "en" ? `../${relativePath}` : relativePath;
 
   // Unified translation dictionary matching data-i18n attributes
   const translations = {
     "nav-about": { ru: "Обо мне", en: "About me" },
     "link-website": { ru: "Сайт", en: "Live Site" },
     "nav-services": { ru: "Что я создаю", en: "What I Create" },
-    "nav-cases": { ru: "Кейсы", en: "Cases" },
+    "nav-work-pricing": { ru: "Работы и цены", en: "Work & pricing" },
+    "nav-quiz": { ru: "Квиз", en: "Quiz" },
     "nav-process": { ru: "Процесс работы", en: "Work Process" },
     "nav-contact": { ru: "Контакты", en: "Contacts" },
-    "nav-github-btn": { ru: "GitHub-архив", en: "GitHub archive" },
-    "logo-name": { ru: "THOR BAKIN", en: "THOR BAKIN" },
-    "logo-sub": { ru: "Разработка • AI • Бизнес", en: "Developer • AI • Business" },
-    "hero-status": { ru: "Программист • ИИ-инженер • Предприниматель", en: "Developer • AI Engineer • Entrepreneur" },
-    "hero-eyebrow": { ru: "Влад · инженер под ключ", en: "Vlad · end-to-end engineer" },
+    "nav-faq": { ru: "FAQ", en: "FAQ" },
+    "nav-github-btn": { ru: "Больше рабочих примеров", en: "More working examples" },
+    "logo-name": { ru: "VLAD", en: "VLAD" },
+    "hero-status": { ru: "Автоматизация продаж и рутины", en: "Sales and workflow automation" },
+    "hero-eyebrow": { ru: "Влад · веб-инженер", en: "Vlad · web engineer" },
     "hero-title": {
-      ru: "Сайты, боты и AI-связки — от идеи до рабочего запуска",
-      en: "Websites, bots and AI systems — from idea to working launch"
+      ru: "Сайты, боты и AI — от идеи до запуска",
+      en: "Websites, bots and AI — from idea to launch"
     },
     "hero-subtitle": {
-      ru: "Разбираю задачу, проектирую систему, пишу код и лично отвечаю за запуск.",
-      en: "I clarify the task, design the system, write the code and personally own the launch."
+      ru: "Я создаю сайты, Telegram-ботов и AI-интеграции, которые берут на себя рутину и помогают бизнесу быстрее работать с клиентами.",
+      en: "I build websites, Telegram bots and AI integrations that take over routine work and help businesses respond to customers faster."
     },
-    "hero-cta-cases": { ru: "Смотреть работы", en: "View Work" },
-    "hero-cta-discuss": { ru: "Обсудить задачу", en: "Discuss a project" },
+    "hero-cta-cases": { ru: "Получить оценку стоимости", en: "Get a budget estimate" },
+    "hero-cta-discuss": { ru: "Обсудить проект", en: "Discuss a project" },
     "hero-step-brief": { ru: "Задача", en: "Brief" },
-    "hero-step-architecture": { ru: "Архитектура", en: "Architecture" },
+    "hero-step-architecture": { ru: "Сценарий", en: "Flow" },
     "hero-step-build": { ru: "Сборка", en: "Build" },
     "hero-step-launch": { ru: "Запуск", en: "Launch" },
     "hero-process-note": { ru: "Один инженер. Единая ответственность.", en: "One engineer. Clear ownership." },
@@ -54,56 +64,156 @@
     "stat-focus-lbl": { ru: "Фокус на результате", en: "Focus on Results" },
     "hero-widget-title": { ru: "Системный конвейер связок", en: "Turnkey Connection Pipeline" },
     "widget-console-logs": { ru: "system.log", en: "system.log" },
-    "about-status-ready": { ru: "🟢 Доступен для новых проектов", en: "🟢 Available for new projects" },
+    "about-status-ready": { ru: "Доступен для новых проектов", en: "Available for new projects" },
     "about-proof-title": { ru: "Подтверждённый опыт", en: "Proven experience" },
     "about-proof-heading": { ru: "Обо мне", en: "About me" },
     "about-proof-years": { ru: "лет в разработке", en: "years in development" },
     "about-proof-projects": { ru: "коммерческих проектов", en: "commercial projects" },
     "about-proof-rating": { ru: "звёзд на фриланс-биржах", en: "stars on freelance platforms" },
-    
+
     // About Section
-    "about-title-main": { ru: "Инженер, который сам ведёт проект", en: "An engineer who personally leads the project" },
-    "about-p1": { 
-      ru: "Я разбираю задачу, проектирую связку, пишу код и довожу проект до рабочего состояния.", 
-      en: "I clarify the task, design the system, write the code and bring the project to a working state." 
+    "about-proof-eyebrow": { ru: "Как я работаю", en: "How I work" },
+    "about-title-main": { ru: "Один ответственный за результат, а не набор разрозненных подрядчиков", en: "One person accountable for the result — not a chain of disconnected contractors" },
+    "about-p1": {
+      ru: "Я разбираю бизнес-задачу, собираю рабочий сценарий и довожу проект до запуска.",
+      en: "I clarify the business task, assemble the working flow and bring the project to launch."
     },
-    "about-p2": { 
-      ru: "Помогаю не только сделать сайт, бота или AI-инструмент, но и понять, как это будет приводить заявки, экономить время и двигать проект дальше.", 
-      en: "I do not just build a website, bot or AI tool. I help shape how it will bring leads, save time and move the project forward." 
+    "about-p2": {
+      ru: "Помогаю не только сделать сайт, бота или AI-инструмент, но и понять, как это будет приводить заявки, экономить время и двигать проект дальше.",
+      en: "I do not just build a website, bot or AI tool. I help shape how it will bring leads, save time and move the project forward."
     },
-    
+
     // Category Tabs & Showcases
-    "services-title-main": { ru: "Что я разрабатываю", en: "What I Develop" },
-    "services-subtitle": { ru: "Сайты, Telegram-боты, AI-инструменты, дашборды и автоматизация ручных процессов.", en: "Websites, Telegram bots, AI tools, dashboards and automation for manual workflows." },
+    "services-title-main": { ru: "Что я создаю", en: "What I create" },
+    "services-subtitle": { ru: "Сайты, Telegram-боты, калькуляторы, AI и автоматизация для заявок, продаж и сокращения ручной работы.", en: "Websites, Telegram bots, calculators, AI and automation for leads, sales and less manual work." },
+    "price-from": { ru: "от", en: "from" },
+    "quiz-disclosure-title": { ru: "Нужна точная оценка?", en: "Need a precise estimate?" },
+    "quiz-disclosure-subtitle": { ru: "Соберите мини-ТЗ за 2 минуты", en: "Build a mini brief in 2 minutes" },
+    "quiz-title": { ru: "Соберите мини-ТЗ за 2 минуты", en: "Build a mini brief in 2 minutes" },
+    "quiz-subtitle": { ru: "Ответьте на несколько вопросов карточками. В конце получится понятная сводка проекта для оценки сроков и бюджета.", en: "Answer a few card-based questions. At the end you get a clear project summary for estimating timeline and budget." },
+    "quiz-step-1": { ru: "Что нужно?", en: "What do you need?" },
+    "quiz-step-2": { ru: "Какие функции нужны?", en: "What features are needed?" },
+    "quiz-step-3": { ru: "Есть ли материалы?", en: "Do you have materials?" },
+    "quiz-step-4": { ru: "Сроки", en: "Timeline" },
+    "quiz-step-5": { ru: "Бюджет", en: "Budget" },
+    "quiz-step-6": { ru: "Контакт и сводка", en: "Contact and summary" },
+    "quiz-need-site": { ru: "Сайт-визитка", en: "Small website" },
+    "quiz-need-landing": { ru: "Лендинг", en: "Landing page" },
+    "quiz-need-bot": { ru: "Telegram-бот", en: "Telegram bot" },
+    "quiz-need-ai": { ru: "AI-консультант", en: "AI consultant" },
+    "quiz-need-calc": { ru: "Квиз-калькулятор", en: "Quiz calculator" },
+    "quiz-need-other": { ru: "Другое", en: "Other" },
+    "quiz-custom-project-label": { ru: "Свой вариант", en: "Custom option" },
+    "quiz-custom-project-placeholder": {
+      ru: "Например: личный кабинет, внутренняя CRM, сервис для клиентов",
+      en: "For example: client account, internal CRM, client portal"
+    },
+    "quiz-feature-leads": { ru: "Приём заявок", en: "Lead capture" },
+    "quiz-feature-pay": { ru: "Оплата", en: "Payments" },
+    "quiz-feature-calendar": { ru: "Календарь записи", en: "Booking calendar" },
+    "quiz-feature-crm": { ru: "Интеграция с CRM", en: "CRM connection" },
+    "quiz-feature-ai": { ru: "AI-ответы", en: "AI replies" },
+    "quiz-feature-admin": { ru: "Админ-панель", en: "Admin panel" },
+    "quiz-custom-features-label": { ru: "Другие функции или сервисы", en: "Other features or services" },
+    "quiz-custom-features-placeholder": {
+      ru: "Например: WhatsApp, таблицы, рассылки, личный кабинет, уведомления менеджеру",
+      en: "For example: WhatsApp, sheets, broadcasts, client account, manager notifications"
+    },
+    "quiz-materials-ready": { ru: "Есть тексты и фото", en: "Texts and photos ready" },
+    "quiz-materials-part": { ru: "Есть частично", en: "Partly ready" },
+    "quiz-materials-turnkey": { ru: "Ничего нет, нужно под ключ", en: "Nothing ready, turnkey needed" },
+    "quiz-custom-materials-label": { ru: "Что уже есть или чего не хватает", en: "What already exists or is missing" },
+    "quiz-custom-materials-placeholder": {
+      ru: "Например: есть логотип и фото, но нет текста и структуры",
+      en: "For example: logo and photos are ready, but copy and structure are missing"
+    },
+    "quiz-time-fast": { ru: "Срочно, до недели", en: "Urgent, under a week" },
+    "quiz-time-normal": { ru: "2–3 недели", en: "2–3 weeks" },
+    "quiz-time-month": { ru: "Месяц+", en: "A month+" },
+    "quiz-time-calm": { ru: "Не горит", en: "No rush" },
+    "quiz-budget-1": { ru: "до 15 000 ₽", en: "up to 15,000 ₽" },
+    "quiz-budget-2": { ru: "15–40 000 ₽", en: "15–40,000 ₽" },
+    "quiz-budget-3": { ru: "40–80 000 ₽", en: "40–80,000 ₽" },
+    "quiz-budget-talk": { ru: "Обсудим", en: "Let's discuss" },
+    "quiz-summary-title": { ru: "Вот что мы собрали", en: "Here is the brief" },
+    "quiz-name-label": { ru: "Имя", en: "Name" },
+    "quiz-name-placeholder": { ru: "Как к вам обращаться", en: "How should I address you" },
+    "quiz-contact-label": { ru: "Telegram или телефон", en: "Telegram or phone" },
+    "quiz-contact-placeholder": { ru: "@username или номер", en: "@username or phone number" },
+    "quiz-custom-notes-label": { ru: "Что важно учесть", en: "What should be considered" },
+    "quiz-custom-notes-placeholder": {
+      ru: "Ниша, ссылка на текущий сайт/канал, пожелания, что сейчас мешает продажам",
+      en: "Niche, current website/channel link, preferences, what blocks sales now"
+    },
+    "quiz-back": { ru: "Назад", en: "Back" },
+    "quiz-next": { ru: "Дальше", en: "Next" },
+    "quiz-submit": { ru: "Получить ТЗ и оценку", en: "Get brief and estimate" },
+    "quiz-copy": { ru: "Скопировать ТЗ", en: "Copy brief" },
+    "quiz-copy-open": { ru: "Скопировать и открыть Telegram", en: "Copy and open Telegram" },
+    "quiz-copy-done": { ru: "ТЗ скопировано. Вставьте его в сообщение Telegram.", en: "Brief copied. Paste it into your Telegram message." },
+    "quiz-copy-error": { ru: "Не удалось скопировать автоматически. Выделите текст выше и скопируйте вручную.", en: "Automatic copy failed. Select the text above and copy it manually." },
+    "quiz-open-telegram": { ru: "Открыть Telegram без копирования", en: "Open Telegram without copying" },
+    "quiz-success-title": { ru: "Мини-ТЗ готово", en: "Your mini brief is ready" },
+    "quiz-success-desc": { ru: "Скопируйте сводку и откройте Telegram. Сообщение отправится только после того, как вы вставите его в чат.", en: "Copy the summary and open Telegram. The message is sent only after you paste it into the chat." },
+    "quiz-error-choice": { ru: "Выберите вариант, чтобы продолжить.", en: "Choose an option to continue." },
+    "quiz-error-contact": { ru: "Укажите имя и Telegram или телефон.", en: "Enter your name and Telegram or phone." },
+    "quiz-summary-project": { ru: "Формат", en: "Format" },
+    "quiz-summary-features": { ru: "Функции", en: "Features" },
+    "quiz-summary-materials": { ru: "Материалы", en: "Materials" },
+    "quiz-summary-timeline": { ru: "Сроки", en: "Timeline" },
+    "quiz-summary-budget": { ru: "Бюджет", en: "Budget" },
+    "quiz-summary-context": { ru: "Уточнения", en: "Notes" },
+    "faq-title": { ru: "Частые вопросы", en: "FAQ" },
+    "faq-page-kicker": { ru: "Сроки · оплата · поддержка", en: "Timing · payment · support" },
+    "faq-back-home": { ru: "На главную", en: "Back home" },
+    "faq-cta-title": { ru: "Не нашли ответ?", en: "Still have a question?" },
+    "faq-cta-subtitle": { ru: "Обсудим задачу в Telegram.", en: "Let us discuss it on Telegram." },
+    "faq-subtitle": { ru: "Коротко о сроках, оплате, старте и поддержке после запуска.", en: "Short answers about timing, payment, start and post-launch support." },
+    "faq-q1": { ru: "Сколько времени занимает проект?", en: "How long does a project take?" },
+    "faq-a1": { ru: "Telegram-бот обычно занимает 3–10 дней. Небольшой сайт чаще укладывается в 5–10 рабочих дней. Запуск под ключ занимает 1–4 недели.", en: "A Telegram bot usually takes 3–10 days. A small website often takes 5–10 working days. A turnkey launch takes 1–4 weeks." },
+    "faq-q2": { ru: "Что если у меня нет ТЗ?", en: "What if I do not have a brief?" },
+    "faq-a2": { ru: "Составим вместе. Квиз на главной помогает быстро собрать задачу, функции, сроки, материалы и бюджет.", en: "We will assemble it together. The quiz on the main page helps collect the task, features, timeline, materials and budget." },
+    "faq-q3": { ru: "Как происходит оплата?", en: "How does payment work?" },
+    "faq-a3": { ru: "Обычно проект делится на этапы: стартовая предоплата, согласование ключевого результата и финальная оплата перед запуском.", en: "Usually the project is split into stages: initial prepayment, approval of the key result, and final payment before launch." },
+    "faq-q4": { ru: "Вносите ли правки после сдачи?", en: "Do you make revisions after delivery?" },
+    "faq-a4": { ru: "Да. После запуска есть период поддержки, чтобы поправить мелочи и убедиться, что сценарии работают стабильно.", en: "Yes. After launch there is a support period to adjust details and make sure the flows work reliably." },
+    "faq-q5": { ru: "Что нужно от меня для старта?", en: "What do you need from me to start?" },
+    "faq-a5": { ru: "Описание услуги, контакты, материалы по бренду, примеры, доступы к нужным сервисам и понимание желаемого результата.", en: "Service description, contacts, brand materials, examples, access to needed services and the desired result." },
+    "faq-q6": { ru: "Работаете ли с существующим сайтом или ботом?", en: "Can you work with an existing website or bot?" },
+    "faq-a6": { ru: "Да, можно доработать текущий сайт, Telegram-бот, квиз или автоматизацию, если есть доступы и понятна задача.", en: "Yes, an existing website, Telegram bot, quiz or automation can be improved if access and the task are clear." },
+    "faq-q7": { ru: "Что входит в поддержку после запуска?", en: "What does post-launch support include?" },
+    "faq-a7": { ru: "Разбор критичных сбоев, консультации по работе сценариев и мелкие корректировки в рамках договорённости.", en: "Critical issue review, consultations on flows and small adjustments within the agreement." },
+    "faq-q8": { ru: "Даёте ли гарантию на работу?", en: "Do you provide a guarantee?" },
+    "faq-a8": { ru: "Да, гарантия распространяется на исправление ошибок в реализованной логике после запуска, если сценарий используется в согласованном виде.", en: "Yes, the guarantee covers fixing errors in the implemented logic after launch if the flow is used as agreed." },
     "services-kpi-directions": { ru: "Направлений", en: "Directions" },
     "services-kpi-system": { ru: "Система под ключ", en: "Turnkey System" },
-    "tab-web": { ru: "Маркетплейс-аналитика", en: "Marketplace analytics" },
-    "tab-web-sub": { ru: "Аналитика маркетплейсов", en: "Marketplace analytics" },
-    "tab-webapps": { ru: "Web App / SaaS", en: "Web App / SaaS" },
-    "tab-webapps-sub": { ru: "Калькуляторы и кабинеты", en: "Calculators and dashboards" },
-    "tab-saas": { ru: "Бэкап и DevOps", en: "Backup & DevOps" },
-    "tab-saas-sub": { ru: "Резервные процессы", en: "Resilient operations" },
-    "tab-ai": { ru: "Парсинг и API", en: "Parsing & API" },
-    "tab-ai-sub": { ru: "Сбор и нормализация данных", en: "Data collection and cleanup" },
-    "tab-dash": { ru: "Дашборды", en: "Dashboards" },
-    "tab-dash-sub": { ru: "Аналитика и визуализация данных", en: "Analytics & data visualization" },
-    "tab-scripts": { ru: "Автоматизации", en: "Automations" },
-    "tab-scripts-sub": { ru: "Ускорение бизнес-процессов", en: "Business workflow acceleration" },
+    "tab-web": { ru: "Аналитика продаж", en: "Sales analytics" },
+    "tab-web-sub": { ru: "Контроль выручки и остатков", en: "Revenue and stock control" },
+    "tab-webapps": { ru: "Калькуляторы", en: "Cost calculators" },
+    "tab-webapps-sub": { ru: "Оценка стоимости до заявки", en: "Budget estimate before a lead" },
+    "tab-saas": { ru: "Регламентные задачи", en: "Scheduled tasks" },
+    "tab-saas-sub": { ru: "Работа по расписанию", en: "Work by schedule" },
+    "tab-ai": { ru: "Сбор данных", en: "Data collection" },
+    "tab-ai-sub": { ru: "Готовые отчёты вместо ручного поиска", en: "Ready reports instead of manual search" },
+    "tab-dash": { ru: "Отчёты", en: "Reports" },
+    "tab-dash-sub": { ru: "Цифры для решений", en: "Numbers for decisions" },
+    "tab-scripts": { ru: "Рутина", en: "Routine work" },
+    "tab-scripts-sub": { ru: "Меньше ручной работы", en: "Less manual work" },
     "tab-bots": { ru: "Telegram-боты", en: "Telegram Bots" },
-    "tab-bots-sub": { ru: "Интерактивные чат-интерфейсы", en: "Interactive chat interfaces" },
-    "tab-api": { ru: "Интеграции API", en: "API Integrations" },
-    "tab-api-sub": { ru: "Синхронизация сторонних сервисов", en: "Third-party service sync" },
+    "tab-bots-sub": { ru: "Заявки, запись и ответы", en: "Leads, booking and answers" },
+    "tab-api": { ru: "Связка сервисов", en: "Service sync" },
+    "tab-api-sub": { ru: "CRM, оплаты, таблицы", en: "CRM, payments, sheets" },
     "tab-landings": { ru: "Лендинги и сайты", en: "Landings & websites" },
-    "tab-landings-sub": { ru: "Live-примеры на Vercel", en: "Live examples on Vercel" },
-    
-    "showcase-web-title": { ru: "WB/Ozon Dashboard: продажи, остатки и финансы", en: "WB/Ozon Dashboard: sales, stock and finance" },
-    "showcase-webapps-title": { ru: "RepairCalc: быстрый расчет сметы ремонта", en: "RepairCalc: fast renovation estimate flow" },
-    "showcase-saas-title": { ru: "AgentBackup: резервные копии по расписанию", en: "AgentBackup: scheduled cloud backups" },
-    "showcase-ai-title": { ru: "Parser: сбор данных из реестров и API", en: "Parser: registry and API data collection" },
-    "showcase-dash-title": { ru: "Дашборды и аналитика", en: "Dashboards & Analytics" },
-    "showcase-scripts-title": { ru: "AutoPostingTG: AI-автопостинг в Telegram", en: "AutoPostingTG: AI-assisted Telegram autoposting" },
+    "tab-landings-sub": { ru: "Путь клиента к заявке", en: "Customer path to a lead" },
+
+    "showcase-web-title": { ru: "Контроль продаж, остатков и финансов в одном окне", en: "Sales, stock and finance control in one screen" },
+    "showcase-webapps-title": { ru: "Калькулятор стоимости до заявки", en: "Cost estimate before the lead" },
+    "showcase-saas-title": { ru: "Регулярные задачи без ручного контроля", en: "Scheduled tasks without manual control" },
+    "showcase-ai-title": { ru: "Сбор данных для отчётов и решений", en: "Data collection for reports and decisions" },
+    "showcase-dash-title": { ru: "Отчёты для управления продажами", en: "Reports for managing sales" },
+    "showcase-scripts-title": { ru: "AI помогает готовить контент для Telegram", en: "AI helps prepare Telegram content" },
     "showcase-bots-title": { ru: "Telegram-боты для записи и оплат", en: "Telegram bots for booking and payments" },
-    "showcase-api-title": { ru: "Интеграции внешних сервисов API", en: "External API Integrations" },
+    "showcase-api-title": { ru: "CRM, оплаты и таблицы работают вместе", en: "CRM, payments and sheets work together" },
     "showcase-landings-title": { ru: "Лендинги и сайты: премиальная подача услуги", en: "Landings & websites: premium service presentation" },
 
     // Showcase value/application details
@@ -114,66 +224,66 @@
     "lbl-solution": { ru: "РЕШЕНИЕ:", en: "SOLUTION:" },
     "lbl-result": { ru: "РЕЗУЛЬТАТ:", en: "RESULT:" },
 
-    "showcase-web-prob": { ru: "Контроль продаж, остатков и финансов WB/Ozon без ручной сводки.", en: "WB/Ozon sales, stock and finance without manual reports." },
-    "showcase-web-sol": { ru: "Товары, динамика, фильтры и финансы собраны в один кабинет.", en: "Products, trends, filters and finance in one dashboard." },
-    "showcase-web-res": { ru: "Ежедневный контроль магазина и решений по закупкам.", en: "Daily store control and purchasing decisions." },
+    "showcase-web-prob": { ru: "Продажи, остатки и финансы сложно сводить вручную.", en: "Sales, stock and finance are hard to combine manually." },
+    "showcase-web-sol": { ru: "Понятный экран с динамикой, товарами и операционными срезами.", en: "A clear screen with trends, products and operational slices." },
+    "showcase-web-res": { ru: "Ежедневные решения по закупкам и продажам без ручной сводки.", en: "Daily purchasing and sales decisions without manual consolidation." },
 
-    "showcase-webapps-prob": { ru: "Быстрый ориентир по бюджету ремонта до детальной сметы.", en: "A quick renovation budget estimate before a detailed quote." },
-    "showcase-webapps-sol": { ru: "Параметры, пакеты, опции и итог в одном пошаговом сценарии.", en: "Parameters, packages, options and total in one flow." },
-    "showcase-webapps-res": { ru: "Пресейл, лид-магнит или инструмент менеджера.", en: "Presales, lead magnet or manager tool." },
+    "showcase-webapps-prob": { ru: "Клиент хочет понять бюджет до разговора с менеджером.", en: "A customer wants to understand the budget before talking to a manager." },
+    "showcase-webapps-sol": { ru: "Параметры, пакеты, опции и итог собраны в пошаговый сценарий.", en: "Parameters, packages, options and total are combined into a step-by-step flow." },
+    "showcase-webapps-res": { ru: "Более тёплая заявка и меньше времени на первичный расчёт.", en: "Warmer leads and less time spent on initial estimates." },
 
-    "showcase-saas-prob": { ru: "Регулярные бэкапы без зависимости от памяти человека.", en: "Regular backups without relying on memory." },
-    "showcase-saas-sol": { ru: "Расписание, логи и отправка копий в облако.", en: "Schedule, logs and cloud backup delivery." },
-    "showcase-saas-res": { ru: "Внутренние базы и небольшие SaaS без DevOps-команды.", en: "Internal databases and small SaaS without a DevOps team." },
+    "showcase-saas-prob": { ru: "Регулярные действия часто держатся на памяти сотрудника.", en: "Recurring actions often depend on an employee remembering them." },
+    "showcase-saas-sol": { ru: "Расписание, уведомления и контроль статуса работают автоматически.", en: "Schedule, notifications and status control run automatically." },
+    "showcase-saas-res": { ru: "Меньше ручного контроля и ниже риск пропустить важное действие.", en: "Less manual control and lower risk of missing an important task." },
 
-    "showcase-ai-prob": { ru: "Данные из реестров, сайтов и API нужно привести к работе.", en: "Registry, website and API data needs cleanup." },
-    "showcase-ai-sol": { ru: "Сбор, нормализация и проверки в едином пайплайне.", en: "Collection, normalization and checks in one pipeline." },
-    "showcase-ai-res": { ru: "Выгрузки, внутренние базы и обновление справочников.", en: "Exports, internal databases and directory updates." },
+    "showcase-ai-prob": { ru: "Нужные данные приходится искать, копировать и чистить вручную.", en: "Useful data has to be searched, copied and cleaned manually." },
+    "showcase-ai-sol": { ru: "Сбор, проверка и подготовка отчёта проходят по одному сценарию.", en: "Collection, checks and report preparation follow one flow." },
+    "showcase-ai-res": { ru: "Готовые выгрузки для отчётов, продаж и внутренних справочников.", en: "Ready exports for reports, sales and internal directories." },
 
     "showcase-dash-prob": { ru: "Цифры есть, но решения тормозят разрозненные отчёты.", en: "Data exists, but fragmented reports slow decisions." },
-    "showcase-dash-sol": { ru: "Метрики, фильтры и срезы собраны в быстрый интерфейс.", en: "Metrics, filters and slices in a fast interface." },
+    "showcase-dash-sol": { ru: "Метрики, фильтры и срезы собраны в быстрый рабочий экран.", en: "Metrics, filters and slices are collected in a fast work screen." },
     "showcase-dash-res": { ru: "Продажи, склад, финансы, заявки или контент-план.", en: "Sales, stock, finance, leads or content planning." },
 
     "showcase-scripts-prob": { ru: "Регулярные посты в Telegram без ручной подготовки с нуля.", en: "Regular Telegram posts without manual work from scratch." },
-    "showcase-scripts-sol": { ru: "AI собирает текст, изображение, превью и публикацию.", en: "AI prepares text, image, preview and publishing." },
+    "showcase-scripts-sol": { ru: "AI готовит текст, изображение, превью и публикацию.", en: "AI prepares copy, image, preview and publishing." },
     "showcase-scripts-res": { ru: "Контент-каналы, рубрики, подборки и обучение.", en: "Content channels, columns, digests and education." },
 
     "showcase-bots-prob": { ru: "Запись прямо в Telegram без звонков и ожидания ответа.", en: "Booking in Telegram without calls or waiting." },
     "showcase-bots-sol": { ru: "Услуга, время, подтверждение и заявка в одном сценарии.", en: "Service, time, confirmation and request in one flow." },
     "showcase-bots-res": { ru: "Запись, консультации, мини-CRM и уведомления.", en: "Booking, consultations, mini-CRM and notifications." },
 
-    "showcase-api-prob": { ru: "CRM, платежи и таблицы должны обмениваться данными.", en: "CRM, payments and sheets need data exchange." },
-    "showcase-api-sol": { ru: "Webhook-слой нормализует данные и синхронизирует сервисы.", en: "A webhook layer normalizes data and syncs services." },
+    "showcase-api-prob": { ru: "CRM, оплаты и таблицы часто живут отдельно друг от друга.", en: "CRM, payments and sheets often live separately." },
+    "showcase-api-sol": { ru: "Заявки, оплаты и статусы автоматически расходятся по нужным сервисам.", en: "Leads, payments and statuses automatically move to the right services." },
     "showcase-api-res": { ru: "Заявки, оплаты, отчёты, Sheets и уведомления.", en: "Leads, payments, reports, Sheets and notifications." },
 
     "showcase-landings-prob": { ru: "Услуге нужен сайт с понятной подачей и быстрым путём к заявке.", en: "A service needs a clear site and a direct lead path." },
     "showcase-landings-sol": { ru: "Визуальная система, адаптив и понятный путь к заявке.", en: "Visual system, responsive layout and a clear lead path." },
     "showcase-landings-res": { ru: "Услуги, консультации, обучение и промо-страницы.", en: "Services, consultations, education and promo pages." },
-    
+
     "feat-design": { ru: "Адаптивный дизайн", en: "Responsive Design" },
     "feat-speed": { ru: "Высокая скорость", en: "Ultimate Speed" },
-    "feat-seo": { ru: "SEO-оптимизация", en: "SEO Optimization" },
+    "feat-seo": { ru: "Поиск клиентов", en: "Customer search" },
     "feat-security": { ru: "Безопасность", en: "High Security" },
-    "feat-scale": { ru: "Масштабируемость", en: "Scalability" },
+    "feat-scale": { ru: "Запас для роста", en: "Room to grow" },
     "feat-rbac": { ru: "Ролевой доступ", en: "RBAC Control" },
-    "feat-llm": { ru: "GPT-4o / Claude", en: "GPT-4o / Claude" },
-    "feat-vector": { ru: "Vector Databases", en: "Vector DBs" },
+    "feat-llm": { ru: "AI-помощник", en: "AI assistant" },
+    "feat-vector": { ru: "База знаний", en: "Knowledge base" },
     "feat-247": { ru: "Авто-ответы 24/7", en: "24/7 Auto-replies" },
-    "feat-d3": { ru: "Chart.js / D3", en: "Chart.js / D3" },
+    "feat-d3": { ru: "Наглядные графики", en: "Clear charts" },
     "feat-realtime": { ru: "Реальное время", en: "Real-time updates" },
     "feat-filter": { ru: "Фильтрация данных", en: "Data Filtering" },
-    "feat-cron": { ru: "Cron-задачи", en: "Cron Jobs" },
-    "feat-parsing": { ru: "Парсинг данных", en: "Data Scraping" },
+    "feat-cron": { ru: "Работа по расписанию", en: "Scheduled work" },
+    "feat-parsing": { ru: "Сбор данных", en: "Data collection" },
     "feat-fault": { ru: "Отказоустойчивость", en: "Fault Tolerance" },
-    "feat-python": { ru: "aiogram / Node.js", en: "aiogram / Node.js" },
+    "feat-python": { ru: "Диалог в Telegram", en: "Telegram dialogue" },
     "feat-payments": { ru: "Прием оплат", en: "Payment Gateways" },
-    "feat-webapps": { ru: "Web App интерфейсы", en: "Web App Interfaces" },
-    "feat-crm": { ru: "amoCRM & Stripe", en: "amoCRM & Stripe" },
-    "feat-webhooks": { ru: "Webhooks", en: "Webhooks" },
+    "feat-webapps": { ru: "Кабинеты и формы", en: "Work screens and forms" },
+    "feat-crm": { ru: "CRM и оплаты", en: "CRM and payments" },
+    "feat-auto-updates": { ru: "Автообновления", en: "Auto updates" },
     "feat-sync": { ru: "Синхронизация данных", en: "Data Synchronization" },
     "feat-ui": { ru: "UI-состояния", en: "Responsive UI States" },
     "feat-live": { ru: "Live-сайт", en: "Live site" },
-    "feat-vercel": { ru: "Vercel deploy", en: "Vercel deploy" },
+    "feat-vercel": { ru: "Публикация сайта", en: "Website launch" },
     "feat-ops": { ru: "Операционный контроль", en: "Operational control" },
     "feat-presale": { ru: "Пресейл-инструмент", en: "Presales tool" },
     "feat-client-flow": { ru: "Клиентский сценарий", en: "Client flow" },
@@ -183,9 +293,9 @@
     "feat-content": { ru: "Регулярный контент", en: "Recurring content" },
     "feat-booking": { ru: "Запись без менеджера", en: "Manager-free booking" },
     "feat-leads": { ru: "Путь к заявке", en: "Lead path" },
- 
+
     "widget-btn-examples": { ru: "Примеры проектов", en: "Project Examples" },
-    "showcase-open-repo": { ru: "Открыть репозиторий", en: "Open Repository" },
+    "showcase-open-repo": { ru: "Посмотреть пример", en: "View example" },
     "showcase-open-site": { ru: "Открыть сайт", en: "Open Site" },
     "mock-web-hero-title": { ru: "Терапия, в которой можно выдохнуть", en: "Therapy where you can breathe out" },
     "mock-web-hero-sub": { ru: "Спокойная посадочная страница для психолога с записью на консультацию.", en: "Calm psychologist landing page with direct consultation booking." },
@@ -199,32 +309,36 @@
     "mock-dash-t": { ru: "Аналитика продаж", en: "Sales Analytics" },
     "mock-tg-msg1": { ru: "Привет! Какая стоимость сборки интеграции amoCRM?", en: "Hi! What's the budget for amoCRM database synchronization?" },
     "mock-tg-msg2": { ru: "Привет! От 15 000 руб, срок 2 дня. Какой у вас триггер?", en: "Hello! From 15,000 RUB, takes 2 days. What trigger event do you have?" },
-    
+
     // Cases Section
-    "cases-title-main": { ru: "Мои кейсы", en: "My Cases" },
+    "cases-title-main": { ru: "Работы и цены", en: "Work & pricing" },
+    "case-kind-demo": { ru: "Демо-концепт", en: "Demo concept" },
+    "case-kind-working": { ru: "Рабочий пример", en: "Working example" },
+    "case-similar-launch": { ru: "Подобный запуск", en: "Similar launch" },
+    "cases-turnkey-label": { ru: "Комплексный запуск: сайт + Telegram + AI + аналитика", en: "Turnkey launch: website + Telegram + AI + analytics" },
     "cases-subtitle": {
-      ru: "Опубликованные демо и рабочие продукты: можно открыть, проверить интерфейс и посмотреть код.",
-      en: "Published demos and working products: open the interface, test it and inspect the code."
+      ru: "Рабочие примеры сайтов, ботов и автоматизаций: фокус на заявках, продажах и сокращении ручной работы.",
+      en: "Working examples of websites, bots and automations focused on leads, sales and reducing manual work."
     },
     "about-editorial-p1": {
-      ru: "Работаю как один ответственный инженер: разбираю задачу, проектирую связку, пишу код и довожу решение до запуска.",
-      en: "I work as one accountable engineer: clarify the task, design the system, write the code and bring the solution to launch."
+      ru: "Разбираю задачу, собираю рабочий сценарий и довожу его до запуска — без передачи ответственности между разными исполнителями.",
+      en: "I clarify the task, assemble a working flow and take it to launch — without passing responsibility between separate contractors."
     },
     "about-editorial-p2": {
-      ru: "Без передачи между исполнителями и лишнего менеджмента. Сайт, Telegram, AI/API и автоматизация собираются в одну понятную рабочую систему.",
-      en: "No handoff chain and no extra management layer. Website, Telegram, AI/API and automation become one clear working system."
+      ru: "Сайт, Telegram, AI, уведомления и отчётность работают как одна система, а не как набор несвязанных инструментов.",
+      en: "Website, Telegram, AI, notifications and reporting work as one system instead of disconnected tools."
     },
     "about-proof-experience-label": { ru: "Опыт", en: "Experience" },
     "about-proof-experience-title": { ru: "лет в разработке", en: "years in development" },
     "about-proof-experience-desc": {
-      ru: "Сайты, боты, интеграции, автоматизация и внутренние инструменты.",
-      en: "Websites, bots, integrations, automation and internal tools."
+      ru: "Продажи, заявки, запись клиентов, отчётность и сокращение ручной работы.",
+      en: "Sales, leads, client booking, reporting and reducing manual work."
     },
     "about-proof-projects-label": { ru: "Практика", en: "Practice" },
     "about-proof-projects-title": { ru: "коммерческих проектов", en: "commercial projects" },
     "about-proof-projects-desc": {
-      ru: "От лендингов и дашбордов до Telegram-ботов и API-связок.",
-      en: "From landing pages and dashboards to Telegram bots and API connections."
+      ru: "От сайтов для заявок до Telegram-ботов, AI-консультантов и автоматизации процессов.",
+      en: "From lead-focused websites to Telegram bots, AI consultants and workflow automation."
     },
     "about-proof-rating-label": { ru: "Репутация", en: "Reputation" },
     "about-proof-rating-title": { ru: "на фриланс-площадках", en: "on freelance platforms" },
@@ -234,9 +348,39 @@
     },
     "cases-show-more": { ru: "Показать больше", en: "Show more" },
     "cases-show-less": { ru: "Скрыть проекты", en: "Hide projects" },
+    "case-open": { ru: "Открыть", en: "Open" },
+    "case-open-details": { ru: "Подробнее", en: "View details" },
     "lbl-task": { ru: "Задача", en: "Task" },
     "lbl-solution": { ru: "Решение", en: "Solution" },
     "lbl-interface": { ru: "Интерфейс", en: "Interface" },
+    "lbl-role": { ru: "Задача", en: "Task" },
+    "lbl-stack": { ru: "Результат", en: "Outcome" },
+    "c1-role-desc": { ru: "Убрать ручное сведение таблиц и дать владельцу понятную картину по магазину.", en: "Remove manual spreadsheet consolidation and give the owner a clear store overview." },
+    "c2-role-desc": { ru: "Сократить время первичного расчёта и дать менеджеру понятный инструмент для консультации.", en: "Reduce the time needed for an initial estimate and give the manager a clear consultation tool." },
+    "c3-role-desc": { ru: "Снять с команды регулярную ручную проверку и снизить риск потери данных.", en: "Remove recurring manual checks from the team and reduce the risk of data loss." },
+    "c4-role-desc": { ru: "Заменить ручной поиск и перенос данных регулярной автоматической выгрузкой.", en: "Replace manual searching and data transfer with a scheduled automated export." },
+    "c5-role-desc": { ru: "Снизить нагрузку на администратора и ускорить запись клиентов в свободные окна.", en: "Reduce the administrator's workload and speed up booking into available slots." },
+    "c6-role-desc": { ru: "Показать экспертность, снять тревогу перед обращением и привести человека к записи.", en: "Show expertise, reduce anxiety before reaching out and guide the visitor to booking." },
+    "c1-outcome": { ru: "Продажи, товары и финансы собраны в одном месте для ежедневных решений.", en: "Sales, products and finance are gathered in one place for daily decisions." },
+    "c2-outcome": { ru: "Клиент видит стоимость по выбранным услугам, а бизнес получает более подготовленную заявку.", en: "The customer sees a cost estimate for selected services, while the business receives a better prepared lead." },
+    "c3-outcome": { ru: "Процесс идёт по расписанию, а владелец получает понятные уведомления о состоянии.", en: "The process runs on schedule, and the owner receives clear status notifications." },
+    "c4-outcome": { ru: "Команда получает подготовленные данные быстрее и тратит меньше времени на однотипные операции.", en: "The team receives prepared data faster and spends less time on repetitive operations." },
+    "c5-outcome": { ru: "Больше заявок проходят по понятному сценарию, а администратор получает готовую информацию.", en: "More leads follow a clear flow, and the administrator receives ready information." },
+    "c6-outcome": { ru: "Понятная страница услуги, быстрый путь к контакту и аккуратная подача с высоким уровнем доверия.", en: "A clear service page, a fast route to contact and a careful, trust-building presentation." },
+    "c7-outcome": { ru: "Заявки, оплаты и отчёты обновляются без лишних действий со стороны команды.", en: "Leads, payments and reports update without extra manual steps from the team." },
+    "gauge-title": { ru: "Проверка завершена", en: "Verification complete" },
+    "cases-turnkey-badge": { ru: "Оптимальный формат", en: "Recommended format" },
+    "cases-turnkey-title": { ru: "Профессиональный запуск", en: "Professional launch" },
+    "cases-turnkey-subtitle": { ru: "Готовая система для приёма заявок и быстрого ответа клиентам.", en: "A ready system for receiving leads and responding to customers faster." },
+    "cases-turnkey-site": { ru: "Сайт для заявок", en: "Lead-focused website" },
+    "cases-turnkey-bot": { ru: "Telegram-бот", en: "Telegram bot" },
+    "cases-turnkey-support": { ru: "14 дней поддержки", en: "14 days of support" },
+    "cases-turnkey-fixed": { ru: "Стоимость запуска", en: "Launch cost" },
+    "olivia-title": { ru: "Olivia Coach — фитнес и нутрициология", en: "Olivia Coach — fitness and nutrition" },
+    "olivia-desc": { ru: "Премиальный лендинг женского фитнес-коуча: личная история, программы, отзывы, FAQ и прямой путь к записи.", en: "A premium landing page for a women's fitness coach: personal story, programs, reviews, FAQ and a direct booking path." },
+    "olivia-task": { ru: "Показать личный подход тренера, раскрыть программы и привести посетителя к записи без агрессивной подачи.", en: "Show the coach's personal approach, explain the programs and guide visitors to booking without an aggressive sales tone." },
+    "olivia-solution": { ru: "Собрать длинный editorial-лендинг: знакомство, метод, программы, отзывы, FAQ и финальный CTA.", en: "Build a long-form editorial landing page: introduction, method, programs, reviews, FAQ and a final CTA." },
+    "olivia-interface": { ru: "Тёмная фотоподача, крупная типографика, модульная сетка и адаптивные состояния.", en: "Dark photographic art direction, large typography, a modular grid and responsive states." },
     "fitness-title": { ru: "Fitness — лендинг тренера", en: "Fitness — coach landing page" },
     "fitness-desc": { ru: "Энергичная промо-страница с программами, подходом тренера и быстрым переходом к записи.", en: "An energetic promo page with programs, coaching approach and a direct booking path." },
     "fitness-task": { ru: "Показать персональный тренинг как собранную систему, а не набор разрозненных услуг.", en: "Present personal coaching as a coherent system rather than disconnected services." },
@@ -253,53 +397,53 @@
     "tutor-solution": { ru: "Соединить презентацию преподавателя с интерактивным входным тестом.", en: "Combine the teacher presentation with an interactive entry test." },
     "tutor-interface": { ru: "Контрастная split-композиция, пошаговый тест и адаптивные состояния результата.", en: "A split composition, step-by-step test and responsive result states." },
     "autopost-title": { ru: "AutoPostingTG — AI-автопостинг", en: "AutoPostingTG — AI autoposting" },
-    "autopost-desc": { ru: "Telegram-бот готовит посты для канала: генерирует текст, подбирает изображение, показывает превью и публикует по команде или расписанию.", en: "A Telegram bot that prepares channel posts: generates copy, selects an image, shows a preview and publishes on command or schedule." },
+    "autopost-desc": { ru: "Помогает регулярно готовить посты для канала: текст, изображение, превью и публикация по расписанию.", en: "Helps prepare regular channel posts: copy, image, preview and scheduled publishing." },
     "autopost-task": { ru: "Снять ручную подготовку регулярных публикаций, сохранив контроль перед отправкой в канал.", en: "Remove manual work from recurring posts while keeping review control before publishing." },
-    "autopost-solution": { ru: "Сценарий preview → проверка → post, режимы подачи, защита от повторов и обучение стилю на эталонных постах.", en: "A preview → review → post flow, tone modes, duplicate protection and style training from reference posts." },
-    "c1-title": { ru: "Wildberries & Ozon Аналитика (WB-Ozon-Dashboard)", en: "Wildberries & Ozon Analytics (WB-Ozon-Dashboard)" },
-    "c1-desc": { 
-      ru: "Внутренний личный кабинет и дашборд для отслеживания продаж, остатков товаров, финансов и операций на маркетплейсах.", 
-      en: "Custom internal analytics dashboard and console for tracking sales, stocks, finance, and operations across Wildberries and Ozon." 
+    "autopost-solution": { ru: "Сначала предпросмотр и проверка, затем публикация. Это сохраняет контроль и убирает ручную подготовку с нуля.", en: "First preview and review, then publishing. It keeps control while removing manual preparation from scratch." },
+    "c1-title": { ru: "Панель продаж WB/Ozon", en: "WB/Ozon sales panel" },
+    "c1-desc": {
+      ru: "Единый экран для контроля продаж, остатков, финансов и операционных решений по маркетплейсам.",
+      en: "A single screen for sales, stock, finance and marketplace operations decisions."
     },
     "c1-details": {
-      ru: "Отображение графиков Chart.js, интеграция данных маркетплейсов, товарные срезы, фильтры и интерфейс для операционного контроля.",
-      en: "Chart.js views, marketplace data integration, product slices, filters, and an operational control interface."
+      ru: "Продажи, товары и финансы собраны в одном месте для ежедневных решений.",
+      en: "Sales, products and finance are gathered in one place for daily decisions."
     },
-    "c2-title": { ru: "SaaS Калькулятор Ремонта (RepairCalc)", en: "SaaS Repair Cost Estimator (RepairCalc)" },
-    "c2-desc": { 
-      ru: "Интерактивная панель и калькулятор для точного расчета сметы строительных и ремонтных работ под ключ.", 
-      en: "Interactive SaaS panel and multi-featured calculator for precise construction and renovation cost estimates." 
+    "c2-title": { ru: "Калькулятор ремонта", en: "Renovation cost calculator" },
+    "c2-desc": {
+      ru: "Помогает быстро показать клиенту ориентир по стоимости ремонта и собрать заявку без долгих переписок.",
+      en: "Helps quickly show a renovation budget estimate and collect a lead without long messaging."
     },
     "c2-details": {
-      ru: "Адаптивный интерфейс, динамический пересчет стоимости, сценарии работ и подготовка сметы для передачи клиенту.",
-      en: "Responsive UI, dynamic cost recalculation, work scenarios, and estimate preparation for client handoff."
+      ru: "Клиент видит стоимость по выбранным услугам, а бизнес получает более подготовленную заявку.",
+      en: "The customer sees a cost estimate for selected services, and the business receives a warmer lead."
     },
-    "c3-title": { ru: "Облачный бэкап-планировщик (AgentBackup)", en: "Cloud DB Backup Scheduler (AgentBackup)" },
-    "c3-desc": { 
-      ru: "Автономная система резервного копирования баз данных в облачные хранилища по гибкому расписанию.", 
-      en: "Autonomous system for scheduled database backups to cloud storage targets." 
+    "c3-title": { ru: "Автоматическое резервирование данных", en: "Automatic data backup" },
+    "c3-desc": {
+      ru: "Регулярно сохраняет важные данные и отправляет уведомления о статусе, чтобы команда не контролировала это вручную.",
+      en: "Regularly saves important data and sends status notifications so the team does not control it manually."
     },
     "c3-details": {
-      ru: "Фоновые задания, настройка расписаний, журналирование ошибок и уведомления о статусе резервных копий.",
-      en: "Background jobs, schedule configuration, error logging, and backup status notifications."
+      ru: "Процесс идёт по расписанию, а владелец получает понятные уведомления о состоянии.",
+      en: "The process runs on schedule, and the owner receives clear status notifications."
     },
-    "c4-title": { ru: "Парсер Росаккредитации (Parser-Rosaccreditation)", en: "Rosaccreditation Parser (Parser-Rosaccreditation)" },
-    "c4-desc": { 
-      ru: "Инструмент для сбора, нормализации и подготовки данных из реестров Росаккредитации к дальнейшей работе.", 
-      en: "Tool for collecting, normalizing, and preparing Rosaccreditation registry data for further processing." 
+    "c4-title": { ru: "Сбор данных из реестров", en: "Registry data collection" },
+    "c4-desc": {
+      ru: "Собирает и приводит данные к удобному виду, чтобы их можно было использовать в отчётах и операционной работе.",
+      en: "Collects and prepares data in a usable format for reports and operations."
     },
     "c4-details": {
-      ru: "Парсинг источников, структурирование записей, подготовка выгрузок и проверка данных перед использованием в операционных задачах.",
-      en: "Source parsing, record structuring, export preparation, and data checks before operational use."
+      ru: "Команда получает подготовленные данные быстрее и тратит меньше времени на однотипные операции.",
+      en: "The team receives prepared data faster and spends less time on repetitive operations."
     },
-    "c5-title": { ru: "Маникюр-Бот & CRM (ManicureBot)", en: "Manicure Booking Bot & CRM (ManicureBot)" },
-    "c5-desc": { 
-      ru: "Telegram-бот для автоматической записи клиентов: выбор услуги, мастера, времени и передача заявки в рабочий процесс.", 
-      en: "Telegram bot for automated client booking: service, specialist, time selection, and request handoff into the workflow." 
+    "c5-title": { ru: "Telegram-бот для записи", en: "Telegram booking bot" },
+    "c5-desc": {
+      ru: "Клиент выбирает услугу, мастера и время в Telegram, а бизнес получает заявку без ручной переписки.",
+      en: "A customer chooses service, specialist and time in Telegram, and the business receives a lead without manual messaging."
     },
     "c5-details": {
-      ru: "Сценарии записи, уведомления, хранение заявок и база для дальнейшей CRM-логики салона.",
-      en: "Booking scenarios, notifications, request storage, and a base for further salon CRM logic."
+      ru: "Больше заявок проходят по понятному сценарию, а администратор получает готовую информацию.",
+      en: "More leads go through a clear flow, and the administrator receives ready information."
     },
     "c6-title": { ru: "Сайт психолога", en: "Psychologist website" },
     "c6-desc": {
@@ -310,58 +454,59 @@
     ru: "Первый пример из линейки размещенных сайтов. Дальше этот блок можно расширять новыми live-проектами без перестройки всей секции.",
     en: "The first example in the hosted-sites line. This block can be expanded with new live projects without rebuilding the section."
   },
-    "c7-title": { ru: "Связка amoCRM + Stripe + Google Таблицы", en: "amoCRM + Stripe + Google Sheets Sync" },
+    "c7-title": { ru: "Связка CRM, оплат и таблиц", en: "CRM, payments and sheets sync" },
     "c7-desc": {
-      ru: "Отказоустойчивый связующий мост для синхронизации оплат, статусов сделок в CRM и ведения учета в таблицах.",
-      en: "A fault-tolerant bridge for syncing payments, CRM lead statuses, and Google Sheets bookkeeping."
+      ru: "Автоматически обновляет статусы сделок, оплаты и учёт, чтобы менеджеры не переносили данные вручную.",
+      en: "Automatically updates deal statuses, payments and records so managers do not copy data manually."
     },
     "c7-role-desc": {
-      ru: "Разработка API-коннектора, обработка вебхуков Stripe, автоматическое обновление таблиц.",
-      en: "API connector development, Stripe webhook handling, and automated Google Sheets updates."
+      ru: "Убрать ручной перенос оплат и статусов между сервисами.",
+      en: "Remove manual transfer of payments and statuses between services."
     },
     "case-btn-details": { ru: "Подробнее", en: "Details" },
-    "github-banner-desc": { ru: "Открытые репозитории, пет-проекты и полезные библиотеки в одном месте.", en: "Open repositories, automation wrappers, and structured packages ready for launch." },
-    "github-banner-btn": { ru: "Перейти на GitHub", en: "Explore GitHub" },
- 
+    "github-banner-title": { ru: "Больше рабочих примеров и внутренних инструментов", en: "More working examples and internal tools" },
+    "github-banner-desc": { ru: "Можно посмотреть, как я подхожу к задачам автоматизации, заявок, отчётности и запуска продуктов.", en: "See how I approach automation, leads, reporting and product launch tasks." },
+    "github-banner-btn": { ru: "Посмотреть примеры", en: "View examples" },
+
     // Process Section
     "process-title-main": { ru: "Как я довожу проект до запуска", en: "How I bring a project to launch" },
     "step1-title": { ru: "Диагностика", en: "Diagnostics" },
-    "step1-sub": { ru: "Разбираем задачу и формируем понимание проекта.", en: "Deconstructing goals to compile an analytical layout spec." },
-    "step2-title": { ru: "Реализация + тестирование", en: "Implementation & Testing" },
-    "step2-sub": { ru: "Разрабатываем проект итерациями и тщательно тестируем.", en: "Iterative codebase assembly backed by comprehensive test coverages." },
+    "step1-sub": { ru: "Разбираем задачу, заявки, продажи и ручную работу, которую нужно убрать.", en: "We clarify the task, leads, sales and manual work to remove." },
+    "step2-title": { ru: "Сборка и проверка", en: "Build and check" },
+    "step2-sub": { ru: "Собираю рабочий сценарий и проверяю его на реальных действиях клиента.", en: "I assemble the working flow and check it against real customer actions." },
     "step3-title": { ru: "Запуск и поддержка", en: "Launch & Support" },
     "step3-sub": { ru: "Запускаю проект и обеспечиваю стабильную работу.", en: "Going live with stability monitoring and active runtime support." },
-    
+
     "chat-yes-btn": { ru: "Есть ТЗ", en: "Has Spec" },
     "chat-no-btn": { ru: "Нет ТЗ", en: "No Spec" },
-    "chat-yes-in1": { 
-      ru: "Привет! Нужно сделать спокойный сайт для психолога с записью на консультацию. Вот ТЗ и референсы.", 
-      en: "Hello! I need a calm website for a psychologist with consultation booking. Here is the spec and assets:" 
+    "chat-yes-in1": {
+      ru: "Привет! Нужно сделать спокойный сайт для психолога с записью на консультацию. Вот ТЗ и референсы.",
+      en: "Hello! I need a calm website for a psychologist with consultation booking. Here is the spec and assets:"
     },
-    "chat-yes-out1": { 
-      ru: "Отлично, спасибо! Предварительно оценка такая:<br><strong>Срок:</strong> 5-7 дней<br><strong>Стоимость:</strong> от 25 000 ₽<br>Точную оценку дам после анализа всех деталей.", 
-      en: "Perfect, thanks! Preliminary estimates:<br><strong>Timeframe:</strong> 5-7 days<br><strong>Budget:</strong> from 25,000 RUB<br>I will lock the exact metrics after audit." 
+    "chat-yes-out1": {
+      ru: "Отлично, спасибо! Предварительно оценка такая:<br><strong>Срок:</strong> 5-7 дней<br><strong>Стоимость:</strong> от 25 000 ₽<br>Точную оценку дам после анализа всех деталей.",
+      en: "Perfect, thanks! Preliminary estimates:<br><strong>Timeframe:</strong> 5-7 days<br><strong>Budget:</strong> from 25,000 RUB<br>I will lock the exact metrics after audit."
     },
-    "chat-no-in1": { 
-      ru: "Привет! Нужен бот для автопостинга, но четкого ТЗ нет. Как быть?", 
-      en: "Hello! I need a bot for content scheduling, but don't have a clear spec. How do we proceed?" 
+    "chat-no-in1": {
+      ru: "Привет! Нужен бот для автопостинга, но четкого ТЗ нет. Как быть?",
+      en: "Hello! I need a bot for content scheduling, but don't have a clear spec. How do we proceed?"
     },
-    "chat-no-out1": { 
-      ru: "Привет! Ничего страшного. Отправляю форму-опросник. Заполним вместе и соберем требования за 20 минут!", 
-      en: "Hi! Don't worry. Sending over a brief questionnaire. We will complete it together and gather requirements in 20 minutes!" 
+    "chat-no-out1": {
+      ru: "Привет! Ничего страшного. Отправляю форму-опросник. Заполним вместе и соберем требования за 20 минут!",
+      en: "Hi! Don't worry. Sending over a brief questionnaire. We will complete it together and gather requirements in 20 minutes!"
     },
-    
-    "term-run-btn": { ru: "Run Auto-Tests", en: "Run Auto-Tests" },
+
+    "term-run-btn": { ru: "Проверить сценарии", en: "Check flows" },
     "check-ad": { ru: "Адаптивность", en: "Mobile Responsive" },
     "check-perf": { ru: "Скорость загрузки", en: "Page Load Speed" },
-    "check-forms": { ru: "Формы и интеграции", en: "API Submissions" },
-    "check-ui": { ru: "UI-состояния", en: "Smooth UI States" },
-    "check-seo": { ru: "SEO-структура", en: "SEO Semantics" },
-    "check-edge": { ru: "Ошибки и edge cases", en: "Fault Tolerances" },
-    "gauge-perf": { ru: "Performance", en: "Performance" },
- 
+    "check-forms": { ru: "Заявки и уведомления", en: "Leads and notifications" },
+    "check-ui": { ru: "Путь клиента", en: "Customer path" },
+    "check-seo": { ru: "Подача услуги", en: "Service presentation" },
+    "check-edge": { ru: "Сложные ситуации", en: "Edge situations" },
+    "gauge-perf": { ru: "Проверено по чек-листу", en: "Checked against the launch list" },
+
     "launch-ok-title": { ru: "Запуск проекта - Успешно", en: "Project Launch - Success" },
-    "launch-ok-desc": { ru: "Проект запущен и доступен онлайн", en: "Codebase is live on production and fully accessible" },
+    "launch-ok-desc": { ru: "Проект запущен и доступен онлайн", en: "The project is launched and available online" },
     "lbl-dom": { ru: "Домен подключен", en: "Domain connected" },
     "lbl-ssl": { ru: "SSL сертификат", en: "SSL certificate" },
     "lbl-active": { ru: "Активен", en: "Active" },
@@ -379,77 +524,131 @@
     "lbl-supp": { ru: "Поддержка", en: "Support" },
     "lbl-always": { ru: "Всегда на связи", en: "Always online" },
     "btn-go-site": { ru: "Перейти на сайт", en: "Go to site" },
-    
+
     // Contact Section
     "contact-title-main": { ru: "Контакты", en: "Contacts" },
-    "contact-subtitle": { 
-      ru: "Опишите задачу. Я предложу понятный вариант запуска: что делать, сроки и первый шаг.", 
-      en: "Describe the task. I will suggest a clear launch path: what to build, timing and the first step." 
+    "contact-subtitle": {
+      ru: "Опишите задачу. Я предложу понятный вариант запуска: что делать, сроки и первый шаг.",
+      en: "Describe the task. I will suggest a clear launch path: what to build, timing and the first step."
     },
     "contact-write": { ru: "Написать", en: "Message" },
     "contact-email": { ru: "Отправить письмо", en: "Send an email" },
     "contact-whatsapp": { ru: "Открыть чат", en: "Open chat" },
-    
+    "contact-social-label": { ru: "Я в соцсетях", en: "Socials" },
+
     // Reviews Section
     "reviews-title-main": { ru: "Отзывы клиентов", en: "Client Reviews" },
-    "reviews-subtitle": { 
-      ru: "Клиенты чаще всего отмечают ответственность, сроки, понятные объяснения и спокойный запуск.", 
-      en: "Clients most often mention responsibility, timing, clear explanations and a calm launch." 
+    "reviews-subtitle": {
+      ru: "Клиенты чаще всего отмечают ответственность, сроки, понятные объяснения и спокойный запуск.",
+      en: "Clients most often mention responsibility, timing, clear explanations and a calm launch."
     },
-    "reviews-verified": { ru: "ПРОВЕРЕНО", en: "VERIFIED" },
     "reviews-count-total": { ru: "10 отзывов", en: "10 reviews" },
-    "rev-cat-1": { ru: "Разработка на Python", en: "Python Engineering" },
-    "rev-cat-2": { ru: "Landing page • Создание сайта на Tilda", en: "Landing Page • Tilda Development" },
+    "reviews-proof-kicker": { ru: "Подтверждение отзывов", en: "Review verification" },
+    "reviews-proof-text": {
+      ru: "Отзывы опубликованы на Профи.ру и прошли проверку площадки.",
+      en: "The reviews are published and verified by Profi.ru."
+    },
+    "reviews-proof-action": { ru: "Смотреть все отзывы", en: "View all reviews" },
+    "review-source-link": { ru: "Отзыв подтверждён на Профи.ру", en: "Verified review on Profi.ru" },
+    "rev-cat-1": { ru: "Автоматизация задачи", en: "Task automation" },
+    "rev-cat-2": { ru: "Сайт и интерактивная карта", en: "Website and interactive map" },
     "rev-cat-3": { ru: "Создание форумов", en: "Forum Customization" },
-    "rev-text-1": { 
-      ru: "Специалист полностью выполнил задачи и учел все правки", 
-      en: "The specialist fully completed all requirements and integrated all revisions flawlessly." 
+    "rev-text-1": {
+      ru: "Специалист полностью выполнил задачи и учёл все правки.",
+      en: "The specialist completed the task fully and accounted for every revision."
     },
-    "rev-text-2": { 
-      ru: "Влад помог настроить интерактивную карту с кликабельными зонами на Тильде. Вместо использования стандартных инструментов конструктора - написал код и к нему ещё небольшой инструмент, упрощающий использование + подробные комментарии + созвон с пояснениями. Идеально.", 
-      en: "Vlad helped configure an interactive map with clickable hotspots on Tilda. Instead of using generic builder widgets, he coded custom scripts and built a neat helper tool to simplify usage, complete with rich comments and a walkthrough video call. Absolutely perfect." 
+    "rev-text-2": {
+      ru: "Влад помог настроить интерактивную карту с кликабельными зонами. Дополнительно сделал удобный инструмент для обновлений, подробно объяснил работу и провёл созвон. Идеально.",
+      en: "Vlad helped set up an interactive map with clickable zones. He also made a convenient tool for updates, explained everything clearly and walked me through it on a call. Perfect."
     },
-    "rev-text-3": { 
-      ru: "Молодой, но знающий специалист. Соблюдает сроки, договоренности по цене. Приятно удивлен.", 
-      en: "A young yet highly competent professional. Outstanding adherence to deadlines and agreed budget. Pleasantly surprised." 
+    "rev-text-3": {
+      ru: "Молодой, но знающий специалист. Соблюдает сроки, договоренности по цене. Приятно удивлен.",
+      en: "A young yet highly competent professional. Outstanding adherence to deadlines and agreed budget. Pleasantly surprised."
     },
-    "rev-cat-4": { ru: "Интеграция API • Дашборды", en: "API Integration • Dashboards" },
-    "rev-cat-5": { ru: "Автоматизация • Облачные бэкапы", en: "Automation • Cloud Backups" },
-    "rev-text-4": { 
-      ru: "Разработал отличный аналитический дашборд. Графики строятся мгновенно, данные по API маркетплейсов выгружаются без сбоев. Профессионал.", 
-      en: "Developed a brilliant analytical dashboard. Live charts load instantly, and stock/sales data fetches via marketplace APIs flawlessly. A true professional." 
+    "rev-cat-4": { ru: "Отчёты по продажам", en: "Sales reports" },
+    "rev-cat-5": { ru: "Автоматизация по расписанию", en: "Scheduled automation" },
+    "rev-text-4": {
+      ru: "Разработал отличный экран аналитики. Графики открываются быстро, данные по маркетплейсам подтягиваются стабильно. Профессионал.",
+      en: "Built an excellent analytics screen. Charts open quickly, and marketplace data comes through reliably. A true professional."
     },
-    "rev-text-5": { 
-      ru: "Отличный скрипт автоматизации бэкапов. Настроил резервное копирование в S3 по расписанию, подключил логирование в Telegram. Всё работает идеально.", 
-      en: "Excellent backup automation script. Configured scheduled uploads to S3 cloud storage with Telegram alert notifications. Everything runs perfectly." 
+    "rev-text-5": {
+      ru: "Отличная автоматизация резервного копирования. Настроил работу по расписанию и уведомления в Telegram. Всё работает идеально.",
+      en: "Excellent backup automation. Set up scheduled work and Telegram notifications. Everything runs perfectly."
     },
-    "rev-cat-6": { ru: "SaaS-интерфейс", en: "SaaS Interface" },
+    "rev-cat-6": { ru: "Внутренний сервис", en: "Internal service" },
     "rev-cat-7": { ru: "Telegram-бот", en: "Telegram Bot" },
     "rev-cat-8": { ru: "Сайт на хостинге", en: "Hosted Website" },
-    "rev-text-6": { 
-      ru: "Быстро понял задачу и собрал интерфейс без лишних обсуждений. Видно, что человек думает о продукте, а не только о верстке.", 
-      en: "Quickly understood the task and built the interface without unnecessary back-and-forth. It is clear he thinks about the product, not just layout." 
+    "rev-text-6": {
+      ru: "Быстро понял задачу и собрал удобный рабочий экран без лишних обсуждений. Видно, что человек думает о продукте, а не только о внешнем виде.",
+      en: "Quickly understood the task and created a convenient work screen without unnecessary back-and-forth. It is clear he thinks about the product, not just the visuals."
     },
-    "rev-text-7": { 
-      ru: "Бот запустили спокойно: сценарии понятные, сообщения аккуратные, после запуска Влад помог поправить мелочи.", 
-      en: "The bot launched smoothly: clear flows, polished messages, and Vlad helped tune the details after launch." 
+    "rev-text-7": {
+      ru: "Бот запустили спокойно: сценарии понятные, сообщения аккуратные, после запуска Влад помог поправить мелочи.",
+      en: "The bot launched smoothly: clear flows, polished messages, and Vlad helped tune the details after launch."
     },
-    "rev-text-8": { 
-      ru: "Получился не шаблон, а аккуратный сайт под мой стиль. Отдельно понравилось, что все объяснил простым языком.", 
-      en: "It did not feel like a template. The site matched my style, and I especially liked that everything was explained in plain language." 
+    "rev-text-8": {
+      ru: "Получился не шаблон, а аккуратный сайт под мой стиль. Отдельно понравилось, что все объяснил простым языком.",
+      en: "It did not feel like a template. The site matched my style, and I especially liked that everything was explained in plain language."
     },
-    "rev-cat-9": { ru: "Интеграция API • CRM", en: "API Integration • CRM" },
+    "rev-cat-9": { ru: "CRM и телефония", en: "CRM and telephony" },
     "rev-text-9": {
-      ru: "Интеграция CRM и телефонии. Влад связал все по API, настроил вебхуки. Все работает стабильно, без задержек. Отличная работа.",
-      en: "CRM and telephony integration. Vlad hooked everything via API and setup webhooks. Everything runs stable and without delays. Great work."
+      ru: "Влад связал CRM и телефонию, заявки начали проходить стабильнее и без задержек. Отличная работа.",
+      en: "Vlad connected CRM and telephony, and leads started moving more reliably without delays. Great work."
     },
-    "rev-cat-10": { ru: "Landing page", en: "Landing page" },
+    "rev-cat-10": { ru: "Сайт для заявок", en: "Lead-focused website" },
     "rev-text-10": {
-      ru: "Разработка Landing Page. Очень довольна результатом. Дизайн современный, все элементы анимированы аккуратно, формы отправляют заявки без сбоев.",
-      en: "Landing Page development. Very satisfied with the result. Modern design, clean animations, and forms submit leads without issues."
+      ru: "Очень довольна результатом. Дизайн современный, элементы двигаются аккуратно, формы отправляют заявки без сбоев.",
+      en: "Very satisfied with the result. Modern design, clean motion, and forms send leads without issues."
     },
-    
+
     "footer-copy": { ru: "Все права защищены.", en: "All rights reserved." }
+  };
+
+  const pageMeta = {
+    home: {
+      ru: {
+        title: "Vlad — сайты, Telegram-боты и AI-интеграции",
+        description: "Разрабатываю сайты, AI-ботов и автоматизации для малого бизнеса: заявки, продажи, Telegram, отчётность и экономия времени сотрудников."
+      },
+      en: {
+        title: "Vlad — websites, Telegram bots and AI integrations",
+        description: "Websites, Telegram bots, AI consultants and business automation for faster lead handling and less manual work."
+      }
+    },
+    faq: {
+      ru: {
+        title: "FAQ — Vlad",
+        description: "Ответы о сроках, оплате, правках, поддержке и запуске сайтов, Telegram-ботов и автоматизации."
+      },
+      en: {
+        title: "FAQ — Vlad",
+        description: "Answers about timelines, payment, revisions, support and launching websites, Telegram bots and automation."
+      }
+    }
+  };
+
+  const updateDocumentMeta = (lang) => {
+    const page = document.body.dataset.page === "faq" ? "faq" : "home";
+    const meta = pageMeta[page][lang];
+    document.title = meta.title;
+    const description = document.querySelector('meta[name="description"]');
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    const ogDescription = document.querySelector('meta[property="og:description"]');
+    const twitterTitle = document.querySelector('meta[name="twitter:title"]');
+    const twitterDescription = document.querySelector('meta[name="twitter:description"]');
+    if (description) description.content = meta.description;
+    if (ogTitle) ogTitle.content = meta.title;
+    if (ogDescription) ogDescription.content = meta.description;
+    if (twitterTitle) twitterTitle.content = meta.title;
+    if (twitterDescription) twitterDescription.content = meta.description;
+  };
+
+  const trackEvent = (name, data = {}) => {
+    try {
+      if (typeof window.va === "function") window.va("event", name, data);
+    } catch (_) {
+      // Analytics must never block navigation or form interactions.
+    }
   };
 
   const rafThrottle = (fn) => {
@@ -488,7 +687,7 @@
           observer.unobserve(entry.target);
         });
       },
-      { rootMargin: "0px 0px -12% 0px", threshold: 0.08 }
+      { rootMargin: "0px 0px -4% 0px", threshold: 0.1 }
     );
 
     elements.forEach((element) => observer.observe(element));
@@ -614,46 +813,6 @@
     });
   };
 
-  const initCounters = () => {
-    const counters = Array.from(document.querySelectorAll("[data-counter]"));
-    if (!counters.length) return;
-
-    const animate = (element) => {
-      const target = Number(element.dataset.count || 0);
-      const suffix = element.dataset.suffix || "";
-      const duration = prefersReducedMotion.matches ? 1 : 1500;
-      const start = performance.now();
-
-      const step = (time) => {
-        const progress = Math.min((time - start) / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 4);
-        const current = Math.round(target * eased);
-        element.textContent = `${current.toLocaleString("ru-RU")}${suffix}`;
-        if (progress < 1) requestAnimationFrame(step);
-      };
-
-      requestAnimationFrame(step);
-    };
-
-    if (!("IntersectionObserver" in window)) {
-      counters.forEach(animate);
-      return;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          animate(entry.target);
-          observer.unobserve(entry.target);
-        });
-      },
-      { threshold: 0.45 }
-    );
-
-    counters.forEach((counter) => observer.observe(counter));
-  };
-
   const initTilt = () => {
     if (!canHover.matches || prefersReducedMotion.matches || window.innerWidth < 900) return;
 
@@ -763,49 +922,430 @@
     });
   };
 
-  // Language Switcher Logic
+  const caseMetrics = [
+    {
+      ru: ["быстрый контакт", "доверие к эксперту", "понятная запись"],
+      en: ["fast contact", "expert trust", "clear booking"]
+    },
+    {
+      ru: ["премиальная подача", "программы и FAQ", "запись в Telegram"],
+      en: ["premium presentation", "programs and FAQ", "Telegram booking"]
+    },
+    {
+      ru: ["быстрый контакт", "понятная запись", "ясный оффер"],
+      en: ["fast contact", "clear booking", "clear offer"]
+    },
+    {
+      ru: ["доверие к эксперту", "понятная запись", "мягкая подача"],
+      en: ["expert trust", "clear booking", "calm presentation"]
+    },
+    {
+      ru: ["быстрый контакт", "пробный урок", "понятный формат"],
+      en: ["fast contact", "trial lesson", "clear format"]
+    },
+    {
+      ru: ["удобный расчёт", "меньше уточнений", "готовая заявка"],
+      en: ["easy estimate", "fewer questions", "ready lead"]
+    },
+    {
+      ru: ["контроль продаж", "отчёты без таблиц", "быстрее решения"],
+      en: ["sales control", "reports without sheets", "faster decisions"]
+    },
+    {
+      ru: ["меньше рутины", "контроль перед отправкой", "публикации по расписанию"],
+      en: ["less routine", "review before sending", "scheduled posts"]
+    },
+    {
+      ru: ["понятная запись", "меньше переписки", "заявка в Telegram"],
+      en: ["clear booking", "less messaging", "lead in Telegram"]
+    },
+    {
+      ru: ["меньше ручной работы", "статусы без переноса", "аккуратный учёт"],
+      en: ["less manual work", "statuses without copying", "clean tracking"]
+    },
+    {
+      ru: ["работа по расписанию", "статус в Telegram", "меньше ручных проверок"],
+      en: ["scheduled work", "Telegram status", "fewer manual checks"]
+    },
+    {
+      ru: ["меньше ручного поиска", "данные в отчёте", "регулярная выгрузка"],
+      en: ["less manual search", "data in report", "regular export"]
+    }
+  ];
+
+  const caseMetricIds = [
+    "psych", "olivia", "fitness", "massage", "tutor", "repair", "marketplace",
+    "autopost", "manicure", "crm", "backup", "parser"
+  ];
+  const caseMetricsById = new Map(caseMetricIds.map((id, index) => [id, caseMetrics[index]]));
+
+  const arrangeCases = () => {
+    const primaryContainer = document.querySelector(".cases-bento-grid");
+    const secondaryContainer = document.querySelector(".cases-more-inner");
+    if (!primaryContainer || !secondaryContainer) return;
+
+    const cards = new Map(Array.from(document.querySelectorAll("[data-case-id]")).map((card) => [card.dataset.caseId, card]));
+    ["olivia", "psych", "repair", "manicure", "autopost", "marketplace"].forEach((id) => {
+      const card = cards.get(id);
+      if (card) primaryContainer.appendChild(card);
+    });
+    ["fitness", "massage", "tutor", "crm", "backup", "parser"].forEach((id) => {
+      const card = cards.get(id);
+      if (card) secondaryContainer.appendChild(card);
+    });
+  };
+
+  const renderCaseCommerce = () => {
+    document.querySelectorAll("[data-case-id]").forEach((card) => {
+      const top = card.querySelector(".case-card-top");
+      let kind = card.querySelector(".case-kind-label");
+      if (!kind && top) {
+        kind = document.createElement("span");
+        kind.className = "case-kind-label";
+        const actions = top.querySelector(".case-card-actions");
+        const directLink = top.querySelector(":scope > a");
+        top.insertBefore(kind, actions || directLink || null);
+      }
+      if (kind) {
+        const key = card.dataset.caseKind === "demo" ? "case-kind-demo" : "case-kind-working";
+        kind.textContent = translations[key][currentLang];
+      }
+
+      let priceRow = card.querySelector(".case-price-row");
+      if (!priceRow) {
+        priceRow = document.createElement("div");
+        priceRow.className = "case-price-row";
+        const details = card.querySelector("details");
+        if (details) details.insertAdjacentElement("beforebegin", priceRow);
+      }
+      if (priceRow) {
+        priceRow.innerHTML = `<span>${translations["case-similar-launch"][currentLang]}</span><strong>${translations["price-from"][currentLang]} ${card.dataset.casePrice}</strong>`;
+      }
+    });
+  };
+
+  const renderCaseMetrics = () => {
+    document.querySelectorAll(".case-grid-unit[data-case-id]").forEach((card) => {
+      const metrics = caseMetricsById.get(card.dataset.caseId)?.[currentLang];
+      if (!metrics) return;
+      let container = card.querySelector(".case-benefits-row");
+      if (!container) {
+        container = document.createElement("div");
+        container.className = "case-benefits-row";
+        container.setAttribute("aria-label", currentLang === "ru" ? "Преимущества" : "Benefits");
+        const tags = card.querySelector(".case-card-stack-row");
+        if (tags) tags.insertAdjacentElement("afterend", container);
+      }
+      container.setAttribute("aria-label", currentLang === "ru" ? "Преимущества" : "Benefits");
+      container.innerHTML = metrics.map((benefit) => (
+        `<span class="case-benefit-chip">${benefit}</span>`
+      )).join("");
+    });
+  };
+
+  const initFaqAccordion = () => {
+    const list = document.querySelector("[data-faq-list]");
+    if (!list) return;
+    list.addEventListener("click", (event) => {
+      const summary = event.target.closest("summary");
+      if (!summary || !list.contains(summary)) return;
+      const current = summary.closest("details");
+      if (!current || current.open) return;
+      list.querySelectorAll("details").forEach((item) => {
+        if (item !== current) item.open = false;
+      });
+    });
+  };
+
+  const initBriefQuiz = () => {
+    const form = document.querySelector("[data-quiz-form]");
+    if (!form) return;
+
+    const steps = Array.from(form.querySelectorAll("[data-quiz-step]"));
+    const success = form.querySelector("[data-quiz-success]");
+    const nextButton = form.querySelector("[data-quiz-next]");
+    const backButton = form.querySelector("[data-quiz-back]");
+    const progressLabel = document.querySelector("[data-quiz-progress-label]");
+    const progressBar = document.querySelector("[data-quiz-progress-bar]");
+    const summary = form.querySelector("[data-quiz-summary]");
+    const error = form.querySelector("[data-quiz-error]");
+    const nameInput = form.querySelector("[data-quiz-name]");
+    const contactInput = form.querySelector("[data-quiz-contact]");
+    const telegramLink = form.querySelector("[data-quiz-telegram-link]");
+    const copySource = form.querySelector("[data-quiz-copy-source]");
+    const copyStatus = form.querySelector("[data-quiz-copy-status]");
+    const copyButton = form.querySelector("[data-quiz-copy]");
+    const copyOpenButton = form.querySelector("[data-quiz-copy-open]");
+    const customFields = Array.from(form.querySelectorAll("[data-quiz-custom]"));
+
+    const state = {
+      step: 0,
+      answers: {
+        project: "",
+        features: [],
+        materials: "",
+        timeline: "",
+        budget: "",
+        projectOther: "",
+        featuresOther: "",
+        materialsComment: "",
+        notes: ""
+      }
+    };
+
+    const labels = {
+      project: "quiz-summary-project",
+      features: "quiz-summary-features",
+      materials: "quiz-summary-materials",
+      timeline: "quiz-summary-timeline",
+      budget: "quiz-summary-budget",
+      context: "quiz-summary-context"
+    };
+
+    const getOptionText = (button) => button.querySelector("span")?.textContent.trim() || button.dataset.value || "";
+
+    const setError = (key = "") => {
+      if (!error) return;
+      error.textContent = key ? translations[key][currentLang] : "";
+    };
+
+    const updateSummary = () => {
+      if (!summary) return;
+      const rows = {
+        project: [state.answers.project, state.answers.projectOther].filter(Boolean).join(": "),
+        features: [state.answers.features.join(", "), state.answers.featuresOther].filter(Boolean).join("; "),
+        materials: [state.answers.materials, state.answers.materialsComment].filter(Boolean).join("; "),
+        timeline: state.answers.timeline,
+        budget: state.answers.budget,
+        context: state.answers.notes
+      };
+      summary.innerHTML = Object.entries(labels).map(([name, key]) => {
+        const value = rows[name];
+        return `<div><dt>${translations[key][currentLang]}</dt><dd>${value || "—"}</dd></div>`;
+      }).join("");
+    };
+
+    const updateProgress = () => {
+      const total = steps.length;
+      const current = Math.min(state.step + 1, total);
+      if (progressLabel) progressLabel.textContent = `${String(current).padStart(2, "0")} / ${String(total).padStart(2, "0")}`;
+      if (progressBar) progressBar.style.setProperty("--quiz-progress", `${(current / total) * 100}%`);
+    };
+
+    const showStep = (index) => {
+      state.step = Math.max(0, Math.min(index, steps.length - 1));
+      steps.forEach((step, stepIndex) => step.classList.toggle("is-active", stepIndex === state.step));
+      if (success) success.classList.remove("is-active");
+      if (backButton) backButton.disabled = state.step === 0;
+      if (nextButton) {
+        nextButton.hidden = false;
+        nextButton.querySelector("span").textContent = translations[state.step === steps.length - 1 ? "quiz-submit" : "quiz-next"][currentLang];
+      }
+      if (backButton) backButton.hidden = false;
+      setError();
+      updateSummary();
+      updateProgress();
+    };
+
+    const syncSelected = () => {
+      form.querySelectorAll("[data-quiz-option]").forEach((button) => {
+        const name = button.dataset.name;
+        const text = getOptionText(button);
+        const selected = Array.isArray(state.answers[name])
+          ? state.answers[name].includes(text)
+          : state.answers[name] === text;
+        button.classList.toggle("is-selected", selected);
+        button.setAttribute("aria-pressed", String(selected));
+      });
+    };
+
+    form.addEventListener("click", (event) => {
+      const option = event.target.closest("[data-quiz-option]");
+      if (!option) return;
+
+      const name = option.dataset.name;
+      const text = getOptionText(option);
+      if (!name || !text) return;
+
+      if (option.dataset.multiple === "true") {
+        const values = state.answers[name];
+        if (!Array.isArray(values)) return;
+        if (values.includes(text)) {
+          state.answers[name] = values.filter((value) => value !== text);
+        } else {
+          state.answers[name] = [...values, text];
+        }
+      } else {
+        state.answers[name] = text;
+      }
+      syncSelected();
+      updateSummary();
+      setError();
+    });
+
+    customFields.forEach((field) => {
+      field.addEventListener("input", () => {
+        const key = field.dataset.quizCustom;
+        if (!key) return;
+        state.answers[key] = field.value.trim();
+        updateSummary();
+        setError();
+      });
+    });
+
+    const canContinue = () => {
+      const currentStep = steps[state.step];
+      const options = Array.from(currentStep.querySelectorAll("[data-quiz-option]"));
+      if (!options.length) return true;
+      const names = [...new Set(options.map((button) => button.dataset.name))];
+      return names.every((name) => {
+        const value = state.answers[name];
+        if (name === "project" && state.answers.projectOther) return true;
+        if (name === "features" && state.answers.featuresOther) return true;
+        return Array.isArray(value) ? value.length > 0 : Boolean(value);
+      });
+    };
+
+    const buildTelegramText = () => {
+      const name = nameInput?.value.trim() || "";
+      const contact = contactInput?.value.trim() || "";
+      const values = {
+        project: [state.answers.project, state.answers.projectOther].filter(Boolean).join(": ") || "—",
+        features: [state.answers.features.length ? state.answers.features.join(", ") : "", state.answers.featuresOther].filter(Boolean).join("; ") || "—",
+        materials: [state.answers.materials, state.answers.materialsComment].filter(Boolean).join("; ") || "—",
+        timeline: state.answers.timeline || "—",
+        budget: state.answers.budget || "—",
+        notes: state.answers.notes || "—"
+      };
+      const lines = currentLang === "en" ? [
+        "I would like a project estimate.",
+        `Name: ${name}`,
+        `Contact: ${contact}`,
+        `Format: ${values.project}`,
+        `Features: ${values.features}`,
+        `Materials: ${values.materials}`,
+        `Timeline: ${values.timeline}`,
+        `Budget: ${values.budget}`,
+        `Notes: ${values.notes}`
+      ] : [
+        "Хочу оценить проект.",
+        `Имя: ${name}`,
+        `Контакт: ${contact}`,
+        `Формат: ${values.project}`,
+        `Функции: ${values.features}`,
+        `Материалы: ${values.materials}`,
+        `Сроки: ${values.timeline}`,
+        `Бюджет: ${values.budget}`,
+        `Уточнения: ${values.notes}`
+      ];
+      return lines.join("\n");
+    };
+
+    const copyBrief = async (openTelegram = false) => {
+      const text = copySource?.value || buildTelegramText();
+      let copied = false;
+      try {
+        if (navigator.clipboard?.writeText) {
+          await navigator.clipboard.writeText(text);
+          copied = true;
+        } else if (copySource) {
+          copySource.focus();
+          copySource.select();
+          copied = document.execCommand("copy");
+        }
+      } catch (_) {
+        copied = false;
+      }
+
+      if (copyStatus) copyStatus.textContent = translations[copied ? "quiz-copy-done" : "quiz-copy-error"][currentLang];
+      if (!copied && copySource) {
+        copySource.focus();
+        copySource.select();
+      }
+      if (copied && openTelegram) window.location.href = "https://t.me/ThorBakiN";
+    };
+
+    nextButton?.addEventListener("click", () => {
+      if (state.step < steps.length - 1) {
+        if (!canContinue()) {
+          setError("quiz-error-choice");
+          return;
+        }
+        showStep(state.step + 1);
+        syncSelected();
+        return;
+      }
+
+      if (!nameInput?.value.trim() || !contactInput?.value.trim()) {
+        setError("quiz-error-contact");
+        return;
+      }
+
+      const briefText = buildTelegramText();
+      if (copySource) copySource.value = briefText;
+      if (copyStatus) copyStatus.textContent = "";
+      if (telegramLink) telegramLink.href = "https://t.me/ThorBakiN";
+      steps.forEach((step) => step.classList.remove("is-active"));
+      success?.classList.add("is-active");
+      if (nextButton) nextButton.hidden = true;
+      if (backButton) backButton.hidden = true;
+      trackEvent("quiz_complete", { language: currentLang });
+    });
+
+    copyButton?.addEventListener("click", () => copyBrief(false));
+    copyOpenButton?.addEventListener("click", () => copyBrief(true));
+
+    backButton?.addEventListener("click", () => {
+      showStep(state.step - 1);
+      syncSelected();
+    });
+
+    const refreshQuizLanguage = () => {
+      const previousAnswers = { ...state.answers, features: [...state.answers.features] };
+      Object.keys(state.answers).forEach((key) => {
+        if (Array.isArray(state.answers[key])) state.answers[key] = [];
+        else state.answers[key] = "";
+      });
+      form.querySelectorAll("[data-quiz-option].is-selected").forEach((button) => {
+        const name = button.dataset.name;
+        const text = getOptionText(button);
+        if (button.dataset.multiple === "true") state.answers[name].push(text);
+        else state.answers[name] = text;
+      });
+      if (!Object.values(state.answers).some((value) => Array.isArray(value) ? value.length : value)) {
+        state.answers = previousAnswers;
+      }
+      customFields.forEach((field) => {
+        const key = field.dataset.quizCustom;
+        if (key && previousAnswers[key]) {
+          state.answers[key] = previousAnswers[key];
+          field.value = previousAnswers[key];
+        }
+      });
+      updateSummary();
+      showStep(state.step);
+      syncSelected();
+    };
+
+    window.addEventListener("portfolio:languagechange", refreshQuizLanguage);
+    showStep(0);
+    syncSelected();
+  };
+
+  // Language Switcher Logic: links point to static language routes, so copy is
+  // already correct before scripts run and never causes a visible reflow.
   const initLanguageSwitcher = () => {
     const switchers = document.querySelectorAll(".lang-switcher");
     if (!switchers.length) return;
-
-    const translatePage = (lang) => {
-      currentLang = lang;
-      document.documentElement.lang = lang;
-
-      switchers.forEach((switcher) => {
-        switcher.querySelectorAll(".lang-btn").forEach((btn) => {
-          btn.classList.toggle("active", btn.dataset.lang === lang);
-        });
-      });
-
-      document.body.style.transition = "opacity 0.18s cubic-bezier(0.16, 1, 0.3, 1)";
-      document.body.style.opacity = "0.93";
-
-      setTimeout(() => {
-        document.querySelectorAll("[data-i18n]").forEach((el) => {
-          const key = el.dataset.i18n;
-          if (!translations[key]) return;
-
-          if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
-            el.placeholder = translations[key][lang];
-          } else {
-            el.textContent = translations[key][lang];
-          }
-        });
-
-        syncBentoShowcase();
-        syncLandingGallery();
-        updateChatContent();
-
-        document.body.style.opacity = "1";
-      }, 180);
-    };
-
     switchers.forEach((switcher) => {
-      switcher.addEventListener("click", (e) => {
-        const btn = e.target.closest(".lang-btn");
-        if (!btn || btn.classList.contains("active")) return;
-        translatePage(btn.dataset.lang);
+      switcher.querySelectorAll("[data-lang]").forEach((link) => {
+        const isCurrent = link.dataset.lang === currentLang;
+        link.classList.toggle("active", isCurrent);
+        if (isCurrent) {
+          link.setAttribute("aria-current", "true");
+        } else {
+          link.removeAttribute("aria-current");
+        }
       });
     });
   };
@@ -901,7 +1441,7 @@
     probKey: "showcase-api-prob",
     solKey: "showcase-api-sol",
     resKey: "showcase-api-res",
-    features: ["feat-sync", "feat-webhooks", "feat-crm"],
+    features: ["feat-sync", "feat-auto-updates", "feat-crm"],
     url: "https://github.com/vladkorkishkooff-tech/Parser-Rosaccreditation",
     ctaKey: "showcase-open-repo"
   },
@@ -920,12 +1460,14 @@
 ];
 
   const landingSlides = [
+    { name: { ru: "Olivia Coach", en: "Olivia Coach" }, src: "case_landing_olivia_coach.webp", alt: { ru: "Лендинг Olivia Coach", en: "Olivia Coach landing page" }, url: "https://fitnes-coach.vercel.app/", ratio: "1440 / 1000" },
     { name: { ru: "Сайт психолога", en: "Psychologist website" }, src: "case_premium_visit_card.webp", alt: { ru: "Сайт психолога", en: "Psychologist landing page" }, url: "https://premium-visit-card.vercel.app/", ratio: "1440 / 900" },
     { name: { ru: "Fitness", en: "Fitness" }, src: "case_landing_fitness.webp", alt: { ru: "Лендинг фитнес-тренера", en: "Fitness coach landing page" }, url: "https://01-fitness-coach.vercel.app", ratio: "1440 / 1000" },
     { name: { ru: "Massage", en: "Massage" }, src: "case_landing_massage.webp", alt: { ru: "Лендинг массажной практики", en: "Massage practice landing page" }, url: "https://02-massage-therapist.vercel.app", ratio: "1440 / 1000" },
     { name: { ru: "English tutor", en: "English tutor" }, src: "case_landing_english_tutor.webp", alt: { ru: "Лендинг преподавателя английского", en: "English tutor landing page" }, url: "https://03-english-tutor.vercel.app", ratio: "1440 / 1000" },
   ];
   let activeLandingIndex = 0;
+  let landingTransitionTimer = 0;
 
   const setShowcaseRatio = (ratio = "16 / 10") => {
     const { visualZone } = getShowcaseRefs();
@@ -963,7 +1505,7 @@
 
     const slide = landingSlides[activeLandingIndex];
     const applySlide = () => {
-      image.src = slide.src;
+      image.src = assetUrl(slide.src);
       image.alt = slide.alt[currentLang];
       name.textContent = slide.name[currentLang];
       counter.textContent = `${String(activeLandingIndex + 1).padStart(2, "0")} / ${String(landingSlides.length).padStart(2, "0")}`;
@@ -974,9 +1516,11 @@
       image.classList.remove("is-changing");
     };
 
+    window.clearTimeout(landingTransitionTimer);
+
     if (animate && !prefersReducedMotion.matches) {
       image.classList.add("is-changing");
-      window.setTimeout(applySlide, 180);
+      landingTransitionTimer = window.setTimeout(applySlide, 180);
     } else {
       applySlide();
     }
@@ -987,6 +1531,11 @@
   const initLandingGallery = () => {
     const gallery = document.querySelector("[data-landing-gallery]");
     if (!gallery) return;
+
+    landingSlides.forEach((slide) => {
+      const preload = new Image();
+      preload.src = assetUrl(slide.src);
+    });
 
     const move = (direction) => {
       activeLandingIndex = (activeLandingIndex + direction + landingSlides.length) % landingSlides.length;
@@ -1005,7 +1554,7 @@
     const data = bentoMockupData[activeBentoIndex];
     const refs = getShowcaseRefs();
     setShowcaseRatio(data.ratio || "16 / 10");
-    
+
     // Set showcase pill icon & title
     if (refs.pillIcon) refs.pillIcon.innerHTML = data.icon;
     if (refs.pillTitle) refs.pillTitle.textContent = translations[data.langKey][currentLang];
@@ -1217,26 +1766,25 @@
   const initTestRunner = () => {
     const runBtn = document.querySelector("#trigger-autotests");
     const codeArea = document.querySelector("#editor-code-area");
-    const gaugeCount = document.querySelector("#perf-number-counter");
 
     if (!runBtn || !codeArea) return;
 
     const testLogs = {
       ru: [
-        "Running code linter check... OK",
-        "Compiling component bundle: dashboard.tsx... OK",
-        "Executing core integration tests... SUCCESS",
-        "Verifying SSL handshake... Active",
-        "Optimizing build asset sizes... 98% Score",
-        "Diagnostics finished. System is stable."
+        "Проверка заявки с сайта... Готово",
+        "Проверка ответа клиенту... Готово",
+        "Проверка уведомления в Telegram... Готово",
+        "Проверка отчёта для владельца... Готово",
+        "Проверка мобильного сценария... Готово",
+        "Диагностика завершена. Сценарий готов к запуску."
       ],
       en: [
-        "Running code linter check... OK",
-        "Compiling component bundle: dashboard.tsx... OK",
-        "Executing core integration tests... SUCCESS",
-        "Verifying SSL handshake... Active",
-        "Optimizing build asset sizes... 98% Score",
-        "Diagnostics finished. System is stable."
+        "Checking website lead flow... Done",
+        "Checking customer reply... Done",
+        "Checking Telegram notification... Done",
+        "Checking owner report... Done",
+        "Checking mobile flow... Done",
+        "Diagnostics complete. Flow is ready to launch."
       ]
     };
 
@@ -1260,29 +1808,9 @@
         runBtn.style.opacity = "1";
       };
 
-      const countGauge = () => {
-        if (!gaugeCount) {
-          setTimeout(restore, 700);
-          return;
-        }
-
-        let count = 0;
-        const tick = () => {
-          gaugeCount.textContent = String(Math.min(count, 98));
-          count += 2;
-          if (count <= 100) {
-            setTimeout(tick, 15);
-          } else {
-            setTimeout(restore, 700);
-          }
-        };
-
-        tick();
-      };
-
       const printNextLog = () => {
         if (currentLine >= logs.length) {
-          countGauge();
+          setTimeout(restore, 700);
           return;
         }
 
@@ -1426,25 +1954,82 @@
     track.dataset.carouselReady = "true";
   };
 
+  const initPageStructure = () => {
+    arrangeCases();
+    renderCaseCommerce();
+
+    const contact = document.querySelector("#contact");
+    const quiz = document.querySelector("#brief-quiz");
+    if (contact && quiz) contact.insertAdjacentElement("afterend", quiz);
+  };
+
+  const initQuizDisclosure = () => {
+    const disclosure = document.querySelector("[data-quiz-disclosure]");
+    if (!disclosure) return;
+    const summary = disclosure.querySelector("summary");
+
+    const openQuiz = (focus = false) => {
+      disclosure.open = true;
+      if (focus && summary) {
+        window.setTimeout(() => summary.focus({ preventScroll: true }), prefersReducedMotion.matches ? 0 : 520);
+      }
+    };
+
+    document.querySelectorAll('a[href="#brief-quiz"], [data-open-quiz]').forEach((link) => {
+      link.addEventListener("click", () => openQuiz(true));
+    });
+
+    disclosure.addEventListener("toggle", () => {
+      if (disclosure.open) trackEvent("quiz_open", { source: "portfolio" });
+    });
+
+    if (window.location.hash === "#brief-quiz") openQuiz(true);
+  };
+
+  const initAnalytics = () => {
+    document.querySelectorAll('a[href*="t.me/ThorBakiN"]').forEach((link) => {
+      link.addEventListener("click", () => trackEvent("telegram_cta", { page: document.body.dataset.page || "home" }));
+    });
+    document.querySelectorAll("[data-case-id] .case-card-link-badge").forEach((link) => {
+      link.addEventListener("click", () => trackEvent("case_open", { case: link.closest("[data-case-id]")?.dataset.caseId || "unknown" }));
+    });
+    document.querySelectorAll("[data-case-id] details").forEach((details) => {
+      details.addEventListener("toggle", () => {
+        if (details.open) trackEvent("case_details", { case: details.closest("[data-case-id]")?.dataset.caseId || "unknown" });
+      });
+    });
+  };
+
   const init = () => {
+    initPageStructure();
     setRevealDelays();
     initReveal();
     initHeader();
+    initQuizDisclosure();
     initSmoothAnchors();
     initMobileMenu();
-    initCounters();
     initCasesToggle();
     initDetails();
+    renderCaseMetrics();
+    initBriefQuiz();
+    initFaqAccordion();
     initLanguageSwitcher();
     initBentoShowcase();
     initLandingGallery();
     initReviewsCarousel();
     initChatToggler();
+    initAnalytics();
+    updateDocumentMeta(currentLang);
     document.body.classList.add("loaded");
 
     const runDeferred = () => {
-      initTilt();
-      initHoverScrollMockups();
+      // Nice-to-have pointer effects are the first thing to skip on devices
+      // that report a constrained CPU, memory or data-saving mode. Core UI,
+      // including the Hero cubes, stays intact.
+      if (!isConstrainedDevice) {
+        initTilt();
+        initHoverScrollMockups();
+      }
       initTestRunner();
     };
 
@@ -1515,21 +2100,21 @@ const initHoverScrollMockups = () => {
   // 1. Showcase Mockup Panels (Desktop + Mobile simultaneous scrolling)
   document.querySelectorAll('.visual-mockup').forEach(mockup => {
     const elements = [];
-    
+
     // Desktop browser screen and image
     const browserScreen = mockup.querySelector('.browser-screen');
     const browserImg = mockup.querySelector('.glass-browser-frame .screenshot-img');
     if (browserScreen && browserImg) {
       elements.push({ screen: browserScreen, img: browserImg });
     }
-    
+
     // Mobile phone screen and image
     const phoneScreen = mockup.querySelector('.phone-screen');
     const phoneImg = mockup.querySelector('.glass-phone-frame .screenshot-img');
     if (phoneScreen && phoneImg) {
       elements.push({ screen: phoneScreen, img: phoneImg });
     }
-    
+
     // If it's a standalone mobile mockup (e.g. mockup-3 or mockup-6)
     if (elements.length === 0 && mockup.querySelector('.glass-phone-frame')) {
       const singleScreen = mockup.querySelector('.phone-screen');
@@ -1538,15 +2123,15 @@ const initHoverScrollMockups = () => {
         elements.push({ screen: singleScreen, img: singleImg });
       }
     }
-    
+
     if (elements.length === 0) return;
-    
+
     // Configure core GPU scroll styles
     elements.forEach(item => {
       const { screen, img } = item;
       screen.style.setProperty('position', 'relative', 'important');
       screen.style.setProperty('overflow', 'hidden', 'important');
-      
+
       img.style.setProperty('position', 'absolute', 'important');
       img.style.setProperty('top', '0', 'important');
       img.style.setProperty('left', '0', 'important');
@@ -1559,7 +2144,7 @@ const initHoverScrollMockups = () => {
       img.style.setProperty('transform', 'translateY(0)', 'important');
       img.style.setProperty('transform-origin', 'top center', 'important');
     });
-    
+
     const doScroll = () => {
       elements.forEach(item => {
         const { screen, img } = item;
@@ -1570,19 +2155,19 @@ const initHoverScrollMockups = () => {
         }
       });
     };
-    
+
     const resetScroll = () => {
       elements.forEach(item => {
         const { img } = item;
         img.style.setProperty('transform', 'translateY(0)', 'important');
       });
     };
-    
+
     // Bind only to precise pointing devices. Touch scrolling must stay native.
     mockup.addEventListener('mouseenter', doScroll);
     mockup.addEventListener('mouseleave', resetScroll);
   });
-  
+
   // Case cards intentionally do not use hover-scroll: portfolio previews must
   // remain fully visible and stable at rest on every viewport.
 };

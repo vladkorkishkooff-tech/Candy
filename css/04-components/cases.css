@@ -59,10 +59,10 @@
 }
 
 .case-grid-unit:hover {
-  border-color: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.22);
   background-color: rgba(10, 10, 14, 0.85);
-  transform: translateY(-6px) rotateX(1.2deg) rotateY(-0.8deg) scale3d(1.008, 1.008, 1.008);
-  box-shadow: 0 25px 55px rgba(0, 0, 0, 0.55), 0 0 35px rgba(255,255,255,0.015);
+  transform: translateY(-4px);
+  box-shadow: 0 25px 55px rgba(0, 0, 0, 0.55), 0 0 35px rgba(255,255,255,0.025);
 }
 
 /* Subtle glow for Live projects */
@@ -127,6 +127,28 @@
   justify-content: space-between;
   gap: 12px;
   margin-bottom: 14px;
+}
+
+/* Decks.css uses cover for an earlier prototype. Portfolio screens must stay
+   fully visible, especially in the one-column mobile feed. */
+.case-card-visual-holder .screenshot-img {
+  object-fit: contain;
+  object-position: center;
+  transform: none !important;
+}
+
+.case-card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-left: auto;
+}
+
+.case-card-actions .case-card-link-badge {
+  margin-left: 0;
+  padding-inline: 10px;
 }
 
 .case-kicker {
@@ -204,6 +226,255 @@
   font-size: 11px;
   font-weight: 500;
   color: var(--text-soft);
+}
+
+.case-benefits-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 18px;
+}
+
+.case-benefit-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 30px;
+  padding: 7px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.032);
+  color: var(--text-soft);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.case-kind-label {
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.case-price-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 0 0 14px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.case-price-row span {
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.case-price-row strong {
+  color: #ffffff;
+  font-family: var(--font-display);
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.cases-turnkey-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(180px, .8fr) auto 52px;
+  gap: clamp(20px, 3vw, 42px);
+  align-items: stretch;
+  margin-top: clamp(28px, 4vw, 44px);
+  padding: clamp(26px, 3.4vw, 42px);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 20px;
+  background:
+    radial-gradient(circle at 84% 10%, rgba(255, 255, 255, 0.13), transparent 25%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.105), rgba(255, 255, 255, 0.025) 38%, rgba(255, 255, 255, 0.055)),
+    #09090b;
+  color: #ffffff;
+  text-decoration: none;
+  overflow: hidden;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.24),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.8),
+    0 30px 80px rgba(0, 0, 0, 0.56),
+    0 8px 22px rgba(0, 0, 0, 0.46);
+  transition: transform 0.3s var(--ease), border-color 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+
+.cases-turnkey-row::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.055);
+  border-radius: 14px;
+  pointer-events: none;
+}
+
+.cases-turnkey-row:hover,
+.cases-turnkey-row:focus-visible {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 38px 96px rgba(0, 0, 0, 0.66),
+    0 0 42px rgba(255, 255, 255, 0.045);
+}
+
+.turnkey-offer-head,
+.turnkey-offer-list,
+.turnkey-offer-price,
+.turnkey-offer-action {
+  position: relative;
+  z-index: 1;
+}
+
+.turnkey-offer-head h3 {
+  margin: 12px 0 10px;
+  font-size: clamp(24px, 3vw, 38px);
+  line-height: 1.04;
+}
+
+.turnkey-offer-head p {
+  max-width: 46ch;
+  margin: 0;
+  color: var(--text-soft);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.turnkey-offer-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 10px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.075);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.turnkey-offer-list {
+  display: grid;
+  align-content: center;
+  gap: 11px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.turnkey-offer-list li {
+  position: relative;
+  padding-left: 22px;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.turnkey-offer-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.turnkey-offer-price {
+  display: grid;
+  align-content: center;
+  min-width: 190px;
+  padding: 18px 22px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  background:
+    linear-gradient(150deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.025)),
+    rgba(0, 0, 0, 0.34);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16), 0 18px 38px rgba(0, 0, 0, 0.34);
+}
+
+.turnkey-offer-price small {
+  margin-bottom: 8px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  text-transform: uppercase;
+}
+
+.turnkey-offer-price strong {
+  font-size: clamp(28px, 3.2vw, 42px);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.turnkey-offer-action {
+  align-self: center;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16);
+}
+
+.turnkey-offer-action svg {
+  width: 20px;
+  height: 20px;
+}
+
+.case-result-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0 0 18px;
+}
+
+.case-result-metric {
+  min-width: 0;
+  padding: 10px 10px 9px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  background:
+    linear-gradient(160deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.018)),
+    rgba(255, 255, 255, 0.018);
+}
+
+.case-result-metric strong,
+.case-result-metric span {
+  display: block;
+  min-width: 0;
+}
+
+.case-result-metric strong {
+  overflow: hidden;
+  color: #ffffff;
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.case-result-metric span {
+  margin-top: 5px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1.25;
+  text-transform: uppercase;
 }
 
 /* Details and expansion */
@@ -390,6 +661,12 @@ details {
   .case-grid-unit {
     grid-column: span 12;
   }
+
+  .case-card-visual-holder {
+    height: auto;
+    aspect-ratio: 16 / 10;
+    background: #050506;
+  }
   .cases-github-wide-card {
     flex-direction: column;
     text-align: center;
@@ -397,6 +674,46 @@ details {
   }
   .case-card-link-badge {
     margin-left: 0;
+  }
+
+  .case-card-top {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .case-card-actions {
+    width: 100%;
+    margin-left: 0;
+    justify-content: flex-start;
+  }
+
+  .case-result-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .cases-turnkey-row {
+    grid-template-columns: 1fr auto;
+    gap: 22px 16px;
+    padding: 24px;
+  }
+
+  .turnkey-offer-head,
+  .turnkey-offer-list,
+  .turnkey-offer-price {
+    grid-column: 1;
+  }
+
+  .turnkey-offer-action {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .turnkey-offer-price {
+    min-width: 0;
+  }
+
+  .turnkey-offer-price strong {
+    font-size: clamp(30px, 9vw, 40px);
   }
 }
 

@@ -56,6 +56,21 @@
   gap: 12px;
 }
 
+.footer-text-link {
+  margin-right: 8px;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.25s var(--ease);
+}
+
+.footer-text-link:hover,
+.footer-text-link:focus-visible {
+  color: #ffffff;
+}
+
 .social-icon-btn {
   display: inline-flex;
   align-items: center;

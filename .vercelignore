@@ -4,6 +4,8 @@
 node_modules/
 open-design/
 output/
+outputs/
+.playwright-cli/
 Reference/
 scratch/
 __pycache__/

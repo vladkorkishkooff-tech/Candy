@@ -1,3 +1,5 @@
+.playwright-cli/
+outputs/
 .vercel/
 .playwright-mcp/
 node_modules/
@@ -15,3 +17,6 @@ fix_index.py
 optimize_skill.py
 server.py
 skill.md
+.playwright-cli/
+outputs/
+.vercel
