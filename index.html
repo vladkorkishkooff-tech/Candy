@@ -3,44 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>NERO ATELIER // Haute Protection de Carrosserie</title>
-  <meta name="description" content="Частное ателье прецизионной защиты и детейлинга суперкаров. Антигравийные полиуретаны, нанокерамика 9H, атермальное остекление в чистой зоне ISO 7.">
+  <title>The Art of Automotive Preservation // Atelier Couture</title>
+  <meta name="description" content="Частное ателье кузовной консервации и прецизионной защиты суперкаров. Нанокерамика, антигравийная броня, атермальная защита.">
   <link rel="icon" type="image/png" href="favicon.png">
 
-  <!-- Editorial & Architectural Typography -->
+  <!-- Bespoke Luxury Typography Matching Mockup -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400;1,500&family=Space+Grotesk:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <style>
     /* ==========================================================================
-       ATELIER COUTURE DESIGN TOKENS // SILENT LUXURY
+       ATELIER COUTURE // EXACT MOCKUP SPECIFICATION
        ========================================================================== */
     :root {
-      --bg-base: #09090b;
-      --bg-surface: #0f0f14;
-      --bg-card: #13141a;
-      --bg-card-hover: #181922;
-      --bg-panel: rgba(15, 15, 20, 0.92);
+      --bg-dark: #0a0908;
+      --bg-arch-light: #1f1b16;
+      --gold-primary: #d4b07b;
+      --gold-light: #edd5af;
+      --gold-glow: rgba(212, 176, 123, 0.45);
+      --gold-border: rgba(212, 176, 123, 0.35);
+      
+      --text-white: #f5f2eb;
+      --text-muted: #9c968c;
+      --text-dim: #5c574e;
 
-      --gold: #d4b07b;
-      --gold-light: #f5deb3;
-      --gold-dim: rgba(212, 176, 123, 0.15);
-      --gold-border: rgba(212, 176, 123, 0.25);
-      --gold-glow: rgba(212, 176, 123, 0.4);
-
-      --border-hairline: rgba(255, 255, 255, 0.06);
-      --border-mid: rgba(255, 255, 255, 0.12);
-
-      --text-bright: #f5f2eb;
-      --text-mid: #9b9890;
-      --text-dim: #615e56;
-
-      --font-serif: 'Cinzel', serif;
+      --font-display: 'Cinzel', serif;
+      --font-italic: 'Cormorant Garamond', Georgia, serif;
       --font-sans: 'Space Grotesk', -apple-system, sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
 
-      --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-lux: 0.45s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     *, *::before, *::after {
@@ -51,813 +44,574 @@
       -moz-osx-font-smoothing: grayscale;
     }
 
-    html {
-      scroll-behavior: smooth;
-      background-color: var(--bg-base);
-      color: var(--text-bright);
-      font-family: var(--font-sans);
-      font-size: 15px;
-      line-height: 1.6;
-    }
-
-    body {
-      overflow-x: hidden;
-      background-color: var(--bg-base);
-      background-image: 
-        radial-gradient(circle at 50% 30%, rgba(212, 176, 123, 0.04) 0%, transparent 60%),
-        linear-gradient(rgba(255, 255, 255, 0.012) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
-      background-size: auto, 48px 48px, 48px 48px;
-      min-height: 100vh;
-      position: relative;
-    }
-
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar { width: 5px; height: 5px; }
-    ::-webkit-scrollbar-track { background: var(--bg-base); }
-    ::-webkit-scrollbar-thumb { background: rgba(212, 176, 123, 0.2); border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
-    ::selection { background: var(--gold); color: #000; }
-
-    /* ==========================================================================
-       HEADER & NAVIGATION
-       ========================================================================== */
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(9, 9, 11, 0.94);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border-hairline);
-      padding: 16px 36px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .brand-group {
-      display: flex;
-      align-items: baseline;
-      gap: 14px;
-    }
-
-    .brand-logo {
-      font-family: var(--font-serif);
-      font-size: 19px;
-      font-weight: 700;
-      letter-spacing: 3px;
-      color: var(--gold);
-      text-transform: uppercase;
-      text-decoration: none;
-    }
-
-    .brand-sub {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      letter-spacing: 1px;
-      color: var(--text-dim);
-      text-transform: uppercase;
-    }
-
-    .header-center-info {
-      display: flex;
-      gap: 24px;
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--text-mid);
-    }
-
-    .cleanroom-status {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--text-bright);
-    }
-
-    .css-led-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--gold);
-      box-shadow: 0 0 10px var(--gold-glow);
-    }
-
-    .header-contact-link {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--gold);
-      text-decoration: none;
-      padding: 7px 16px;
-      border: 1px solid var(--gold-border);
-      border-radius: 2px;
-      letter-spacing: 1px;
-      transition: all var(--transition-smooth);
-    }
-
-    .header-contact-link:hover {
-      background: var(--gold);
-      color: #000;
-      box-shadow: 0 0 20px rgba(212, 176, 123, 0.3);
-    }
-
-    /* ==========================================================================
-       MAIN WORKSPACE LAYOUT (EDITORIAL GRID)
-       ========================================================================== */
-    .configurator-grid {
-      display: grid;
-      grid-template-columns: 360px 1fr 390px;
-      height: calc(100vh - 65px);
-      min-height: 720px;
-      position: relative;
-    }
-
-    /* ==========================================================================
-       LEFT COLUMN: BESPOKE OPTIONS & SHADER SWITCHER
-       ========================================================================== */
-    .sidebar-left {
-      background: var(--bg-surface);
-      border-right: 1px solid var(--border-hairline);
-      padding: 28px 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      overflow-y: auto;
-      z-index: 10;
-    }
-
-    .section-eyebrow {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      letter-spacing: 2px;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 6px;
-    }
-
-    .section-heading {
-      font-family: var(--font-serif);
-      font-size: 20px;
-      font-weight: 600;
-      letter-spacing: 1px;
-      color: var(--text-bright);
-      margin-bottom: 20px;
-    }
-
-    /* Material Finish Selector */
-    .finish-selector-group {
-      margin-bottom: 26px;
-    }
-
-    .finish-buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-    }
-
-    .finish-btn {
+    html, body {
       width: 100%;
-      text-align: left;
-      padding: 10px 14px;
-      background: var(--bg-card);
-      border: 1px solid var(--border-hairline);
-      border-radius: 2px;
-      color: var(--text-mid);
-      font-family: var(--font-mono);
-      font-size: 11px;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      transition: all var(--transition-smooth);
-    }
-
-    .finish-btn:hover {
-      border-color: var(--gold-border);
-      color: var(--text-bright);
-    }
-
-    .finish-btn.active {
-      background: rgba(212, 176, 123, 0.08);
-      border-color: var(--gold);
-      color: var(--gold);
-    }
-
-    .finish-btn.active .finish-dot {
-      background: var(--gold);
-      box-shadow: 0 0 8px var(--gold-glow);
-    }
-
-    .finish-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.2);
-      transition: background var(--transition-smooth);
-    }
-
-    /* Service Checkbox Cards */
-    .services-stack {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .service-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-hairline);
-      border-radius: 2px;
-      padding: 12px 14px;
-      cursor: pointer;
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      transition: all var(--transition-smooth);
+      height: 100%;
+      overflow: hidden;
+      background-color: var(--bg-dark);
+      color: var(--text-white);
+      font-family: var(--font-sans);
       user-select: none;
     }
 
-    .service-card:hover {
-      border-color: rgba(212, 176, 123, 0.3);
-      background: var(--bg-card-hover);
-    }
-
-    .service-card.selected {
-      border-color: var(--gold);
-      background: rgba(212, 176, 123, 0.05);
-    }
-
-    /* Strict Pure CSS Checkbox (NO SVG, NO EMOJI) */
-    .css-checkbox {
-      width: 16px;
-      height: 16px;
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      border-radius: 2px;
+    /* Ambient Architectural Gallery Lighting Matching Mockup */
+    .gallery-stage {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      margin-top: 2px;
-      transition: all var(--transition-smooth);
-    }
-
-    .service-card.selected .css-checkbox {
-      border-color: var(--gold);
-      background: var(--gold);
-    }
-
-    .css-checkbox-mark {
-      width: 4px;
-      height: 8px;
-      border: solid #000;
-      border-width: 0 1.5px 1.5px 0;
-      transform: rotate(45deg);
-      opacity: 0;
-      margin-top: -1px;
-      transition: opacity var(--transition-smooth);
-    }
-
-    .service-card.selected .css-checkbox-mark {
-      opacity: 1;
-    }
-
-    .service-body {
-      flex: 1;
-    }
-
-    .service-top-row {
-      display: flex;
+      flex-direction: column;
       justify-content: space-between;
-      align-items: baseline;
-      margin-bottom: 2px;
+      overflow: hidden;
+      background: radial-gradient(circle at 45% 42%, #211c16 0%, #110e0c 50%, #080706 100%);
     }
 
-    .service-title {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text-bright);
+    /* Background Architectural Columns Illusion */
+    .gallery-stage::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 12%;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, rgba(212, 176, 123, 0.08), transparent);
+      pointer-events: none;
     }
-
-    .service-price {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      font-weight: 700;
-      color: var(--gold);
-    }
-
-    .service-meta {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      color: var(--text-dim);
-    }
-
-    .sidebar-left-footer {
-      border-top: 1px solid var(--border-hairline);
-      padding-top: 18px;
-      font-family: var(--font-mono);
-      font-size: 10px;
-      color: var(--text-dim);
-      display: flex;
-      justify-content: space-between;
+    .gallery-stage::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 18%;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, rgba(212, 176, 123, 0.08), transparent);
+      pointer-events: none;
     }
 
     /* ==========================================================================
-       CENTER COLUMN: 3D TURNTABLE VIEWPORT
+       TOP NAVIGATION BAR (MATCHING MOCKUP)
        ========================================================================== */
-    .stage-center {
-      position: relative;
-      background: #070709;
-      overflow: hidden;
+    .top-nav {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 30;
+      padding: 38px 64px;
       display: flex;
-      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    #webgl-canvas-container {
-      width: 100%;
-      height: 100%;
+    /* Monogram Logo */
+    .brand-monogram {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .monogram-crest {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--gold-primary);
+      text-shadow: 0 0 20px rgba(212, 176, 123, 0.4);
+      line-height: 1;
+    }
+
+    .top-nav-right {
+      display: flex;
+      align-items: center;
+      gap: 42px;
+    }
+
+    .nav-link {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--text-white);
+      text-decoration: none;
+      opacity: 0.85;
+      transition: opacity var(--transition-lux), color var(--transition-lux);
+      cursor: pointer;
+    }
+
+    .nav-link:hover {
+      opacity: 1;
+      color: var(--gold-light);
+    }
+
+    .btn-bespoke-inquiry {
+      padding: 11px 26px;
+      background: transparent;
+      border: 1px solid var(--gold-border);
+      border-radius: 4px;
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--text-white);
+      text-decoration: none;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      transition: all var(--transition-lux);
+    }
+
+    .btn-bespoke-inquiry:hover {
+      background: var(--gold-primary);
+      color: #000;
+      border-color: var(--gold-primary);
+      box-shadow: 0 0 28px var(--gold-glow);
+    }
+
+    /* ==========================================================================
+       HERO HEADLINE (LEFT SIDE - EXACT MOCKUP REPRODUCTION)
+       ========================================================================== */
+    .hero-title-zone {
+      position: absolute;
+      top: 140px;
+      left: 64px;
+      z-index: 20;
+      pointer-events: none;
+      max-width: 540px;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: 64px;
+      line-height: 1.12;
+      font-weight: 400;
+      letter-spacing: -0.5px;
+      color: var(--text-white);
+      text-shadow: 0 4px 30px rgba(0, 0, 0, 0.7);
+    }
+
+    .hero-title em {
+      font-family: var(--font-italic);
+      font-size: 74px;
+      font-style: italic;
+      font-weight: 400;
+      color: var(--gold-primary);
+      margin: 0 4px;
+    }
+
+    .hero-subtitle {
+      margin-top: 18px;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 1.5px;
+      color: var(--text-muted);
+      max-width: 380px;
+      line-height: 1.6;
+    }
+
+    /* ==========================================================================
+       CENTER 3D WEBGL VIEWPORT (TURNTABLE ARENA)
+       ========================================================================== */
+    #webgl-stage {
       position: absolute;
       inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 10;
       touch-action: none;
     }
 
-    /* 3D Hotspot Screen-Projected Pins */
-    #hotspots-overlay {
+    /* ==========================================================================
+       RIGHT FLOATING FROSTED GLASS CARDS (MATCHING MOCKUP)
+       ========================================================================== */
+    .floating-cards-zone {
       position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 20;
-    }
-
-    .hotspot-node {
-      position: absolute;
-      transform: translate(-50%, -50%);
-      pointer-events: auto;
-      cursor: pointer;
-    }
-
-    .hotspot-ring {
-      width: 22px;
-      height: 22px;
-      border: 1px solid var(--gold);
-      border-radius: 50%;
-      background: rgba(9, 9, 11, 0.8);
+      top: 190px;
+      right: 70px;
+      z-index: 25;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      transition: all var(--transition-smooth);
-    }
-
-    .hotspot-node:hover .hotspot-ring,
-    .hotspot-node.active .hotspot-ring {
-      border-color: var(--gold-light);
-      background: var(--gold);
-      box-shadow: 0 0 16px var(--gold-glow);
-    }
-
-    .hotspot-center-dot {
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--gold);
-      transition: background var(--transition-smooth);
-    }
-
-    .hotspot-node:hover .hotspot-center-dot,
-    .hotspot-node.active .hotspot-center-dot {
-      background: #000;
-    }
-
-    .hotspot-pulse {
-      position: absolute;
-      inset: -6px;
-      border: 1px solid var(--gold);
-      border-radius: 50%;
-      animation: pulseAnim 2.2s infinite cubic-bezier(0.2, 0.8, 0.2, 1);
+      flex-direction: column;
+      gap: 20px;
       pointer-events: none;
     }
 
-    @keyframes pulseAnim {
-      0% { transform: scale(0.85); opacity: 0.9; }
-      100% { transform: scale(2.0); opacity: 0; }
+    .glass-card {
+      pointer-events: auto;
+      width: 250px;
+      background: rgba(30, 27, 24, 0.45);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      border: 1px solid rgba(212, 176, 123, 0.28);
+      border-radius: 12px;
+      padding: 24px 22px;
+      cursor: pointer;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+      transition: all var(--transition-lux);
+      position: relative;
     }
 
-    .hotspot-tooltip {
-      position: absolute;
-      left: 28px;
-      top: 50%;
-      transform: translateY(-50%);
-      white-space: nowrap;
-      background: rgba(15, 15, 20, 0.95);
-      border: 1px solid var(--gold-border);
-      border-left: 2px solid var(--gold);
-      padding: 4px 10px;
+    /* Staggered Offset matching the mockup */
+    .glass-card:nth-child(1) {
+      transform: translateX(0);
+    }
+    .glass-card:nth-child(2) {
+      transform: translateX(36px);
+      background: rgba(36, 32, 28, 0.55);
+      border-color: rgba(212, 176, 123, 0.38);
+    }
+
+    .glass-card:hover {
+      border-color: var(--gold-primary);
+      background: rgba(44, 38, 32, 0.7);
+      box-shadow: 0 25px 60px rgba(212, 176, 123, 0.2);
+    }
+
+    .glass-card.active {
+      border-color: var(--gold-light);
+      background: rgba(50, 42, 34, 0.85);
+      box-shadow: 0 0 30px rgba(212, 176, 123, 0.35);
+    }
+
+    .card-title {
+      font-family: var(--font-sans);
+      font-size: 15px;
+      font-weight: 500;
+      line-height: 1.35;
+      color: var(--text-white);
+      margin-bottom: 22px;
+      letter-spacing: 0.3px;
+    }
+
+    .card-footer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .card-arrow {
+      font-family: var(--font-sans);
+      font-size: 16px;
+      color: var(--gold-primary);
+      transition: transform var(--transition-lux);
+    }
+
+    .glass-card:hover .card-arrow {
+      transform: translateX(6px);
+      color: var(--gold-light);
+    }
+
+    .card-status-badge {
       font-family: var(--font-mono);
       font-size: 10px;
-      font-weight: 600;
-      color: var(--text-bright);
-      pointer-events: none;
-      transition: all var(--transition-smooth);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+      letter-spacing: 1px;
+      color: var(--gold-primary);
     }
 
-    .hotspot-node:hover .hotspot-tooltip {
-      border-color: var(--gold);
-      background: #181922;
-    }
-
-    /* Top HUD in Viewport */
-    .hud-top-bar {
+    /* ==========================================================================
+       BOTTOM RIGHT ARROWS NAVIGATION (MATCHING MOCKUP)
+       ========================================================================== */
+    .bottom-nav-arrows {
       position: absolute;
-      top: 24px;
-      left: 28px;
-      right: 28px;
+      bottom: 40px;
+      right: 64px;
+      z-index: 30;
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .arrow-btn {
+      background: transparent;
+      border: none;
+      font-family: var(--font-sans);
+      font-size: 24px;
+      font-weight: 300;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: color var(--transition-lux), transform var(--transition-lux);
+      padding: 6px;
+      line-height: 1;
+    }
+
+    .arrow-btn:hover {
+      color: var(--gold-primary);
+      transform: scale(1.15);
+    }
+
+    .turntable-rotate-status {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      color: var(--text-dim);
+    }
+
+    /* ==========================================================================
+       EXPANDABLE BESPOKE ESTIMATE DRAWER
+       ========================================================================== */
+    .inquiry-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 440px;
+      max-width: 95vw;
+      background: rgba(14, 13, 12, 0.96);
+      backdrop-filter: blur(40px);
+      -webkit-backdrop-filter: blur(40px);
+      border-left: 1px solid var(--gold-border);
+      z-index: 100;
+      padding: 48px 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transform: translateX(105%);
+      transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: -20px 0 60px rgba(0, 0, 0, 0.85);
+    }
+
+    .inquiry-drawer.open {
+      transform: translateX(0);
+    }
+
+    .drawer-header {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      z-index: 15;
-      pointer-events: none;
+      border-bottom: 1px solid var(--border-hairline);
+      padding-bottom: 22px;
+      margin-bottom: 26px;
     }
 
-    .hud-model-title {
-      font-family: var(--font-serif);
-      font-size: 16px;
-      letter-spacing: 2px;
-      color: var(--gold);
-      margin-bottom: 2px;
+    .drawer-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      color: var(--gold-primary);
+      letter-spacing: 1px;
     }
 
-    .hud-model-subtitle {
+    .drawer-sub {
       font-family: var(--font-mono);
       font-size: 10px;
-      letter-spacing: 1px;
       color: var(--text-dim);
-    }
-
-    .hud-active-status {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--text-bright);
       margin-top: 4px;
-    }
-
-    .hud-camera-presets {
-      display: flex;
-      gap: 6px;
-      pointer-events: auto;
-    }
-
-    .cam-btn {
-      padding: 6px 12px;
-      background: rgba(15, 15, 20, 0.85);
-      border: 1px solid var(--border-hairline);
-      border-radius: 2px;
-      font-family: var(--font-mono);
-      font-size: 10px;
-      color: var(--text-mid);
-      cursor: pointer;
       letter-spacing: 1px;
-      transition: all var(--transition-smooth);
     }
 
-    .cam-btn:hover {
-      border-color: var(--gold-border);
-      color: var(--text-bright);
+    /* Strict Zero SVG Close Button */
+    .drawer-close-btn {
+      width: 32px;
+      height: 32px;
+      background: transparent;
+      border: 1px solid var(--gold-border);
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 16px;
+      color: var(--gold-primary);
+      transition: all var(--transition-lux);
     }
 
-    .cam-btn.active {
-      border-color: var(--gold);
-      color: var(--gold);
-      background: rgba(212, 176, 123, 0.1);
+    .drawer-close-btn:hover {
+      background: var(--gold-primary);
+      color: #000;
     }
 
-    /* Bottom Turntable HUD Controls */
-    .hud-bottom-bar {
-      position: absolute;
-      bottom: 24px;
-      left: 28px;
-      right: 28px;
+    /* Options Checkboxes List in Drawer */
+    .drawer-options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      overflow-y: auto;
+      margin-bottom: 24px;
+      max-height: 48vh;
+      padding-right: 6px;
+    }
+
+    .drawer-option-card {
+      background: rgba(25, 23, 20, 0.6);
+      border: 1px solid var(--gold-border);
+      border-radius: 6px;
+      padding: 14px 16px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      z-index: 15;
-      pointer-events: none;
-    }
-
-    .turntable-toggle-group {
-      display: flex;
-      gap: 8px;
-      pointer-events: auto;
-    }
-
-    .turntable-btn {
-      padding: 8px 14px;
-      background: rgba(15, 15, 20, 0.85);
-      border: 1px solid var(--border-hairline);
-      border-radius: 2px;
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--text-mid);
       cursor: pointer;
-      transition: all var(--transition-smooth);
+      transition: all var(--transition-lux);
     }
 
-    .turntable-btn:hover {
-      border-color: var(--gold-border);
-      color: var(--text-bright);
+    .drawer-option-card:hover {
+      background: rgba(35, 31, 26, 0.9);
+      border-color: var(--gold-primary);
     }
 
-    .turntable-btn.active {
-      border-color: var(--gold);
-      color: var(--gold);
+    .drawer-option-card.selected {
+      background: rgba(212, 176, 123, 0.12);
+      border-color: var(--gold-primary);
     }
 
-    .gesture-hint {
+    .opt-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-white);
+    }
+
+    .opt-meta {
       font-family: var(--font-mono);
       font-size: 10px;
       color: var(--text-dim);
-      letter-spacing: 1px;
+      margin-top: 2px;
     }
 
-    /* Loading Overlay */
-    .loader-screen {
+    .opt-price {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--gold-primary);
+    }
+
+    /* Pure CSS Checkbox */
+    .css-checkbox-square {
+      width: 14px;
+      height: 14px;
+      border: 1px solid var(--gold-primary);
+      border-radius: 2px;
+      margin-right: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .drawer-option-card.selected .css-checkbox-square::after {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--gold-primary);
+    }
+
+    .drawer-footer {
+      border-top: 1px solid var(--border-hairline);
+      padding-top: 22px;
+    }
+
+    .total-calc-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 18px;
+    }
+
+    .total-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+    }
+
+    .total-amount {
+      font-family: var(--font-display);
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--gold-primary);
+    }
+
+    .btn-send-telegram {
+      width: 100%;
+      padding: 16px;
+      background: var(--gold-primary);
+      border: 1px solid var(--gold-primary);
+      border-radius: 4px;
+      color: #09090b;
+      font-family: var(--font-sans);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      transition: all var(--transition-lux);
+    }
+
+    .btn-send-telegram:hover {
+      background: var(--gold-light);
+      border-color: var(--gold-light);
+      box-shadow: 0 0 30px var(--gold-glow);
+    }
+
+    /* Preloader */
+    .scene-preloader {
       position: absolute;
       inset: 0;
-      background: #09090b;
-      z-index: 40;
+      z-index: 50;
+      background: #0a0908;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       gap: 16px;
-      transition: opacity 0.6s ease;
+      transition: opacity 0.7s ease;
     }
-
-    .loader-screen.hidden {
+    .scene-preloader.fade-out {
       opacity: 0;
       pointer-events: none;
     }
-
-    .loader-brand {
-      font-family: var(--font-serif);
-      font-size: 22px;
-      letter-spacing: 4px;
-      color: var(--gold);
+    .preloader-brand {
+      font-family: var(--font-display);
+      font-size: 20px;
+      letter-spacing: 3px;
+      color: var(--gold-primary);
     }
-
-    .loader-bar-wrap {
-      width: 200px;
-      height: 2px;
-      background: rgba(255, 255, 255, 0.08);
+    .preloader-track {
+      width: 160px;
+      height: 1px;
+      background: rgba(212, 176, 123, 0.2);
       position: relative;
       overflow: hidden;
     }
-
-    .loader-bar-fill {
+    .preloader-bar {
       position: absolute;
       left: 0;
       top: 0;
       bottom: 0;
       width: 0%;
-      background: var(--gold);
+      background: var(--gold-primary);
       transition: width 0.3s ease;
     }
 
-    .loader-text {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      letter-spacing: 2px;
-      color: var(--text-dim);
-    }
-
     /* ==========================================================================
-       RIGHT COLUMN: LIVE SPECIFICATION & TELEGRAM DIRECT
+       RESPONSIVE ADJUSTMENTS
        ========================================================================== */
-    .sidebar-right {
-      background: var(--bg-surface);
-      border-left: 1px solid var(--border-hairline);
-      padding: 28px 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      overflow-y: auto;
-      z-index: 10;
-    }
-
-    .spec-receipt-box {
-      background: var(--bg-card);
-      border: 1px solid var(--gold-border);
-      border-radius: 2px;
-      padding: 20px;
-      margin-bottom: 20px;
-    }
-
-    .receipt-header {
-      border-bottom: 1px dashed rgba(212, 176, 123, 0.25);
-      padding-bottom: 12px;
-      margin-bottom: 14px;
-    }
-
-    .receipt-header-title {
-      font-family: var(--font-serif);
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--gold);
-      letter-spacing: 1px;
-    }
-
-    .receipt-header-code {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      color: var(--text-dim);
-    }
-
-    .receipt-items-list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-bottom: 16px;
-      max-height: 280px;
-      overflow-y: auto;
-    }
-
-    .receipt-item-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      font-size: 12px;
-    }
-
-    .receipt-item-name {
-      color: var(--text-bright);
-      max-width: 220px;
-    }
-
-    .receipt-item-val {
-      font-family: var(--font-mono);
-      color: var(--gold);
-      font-weight: 600;
-    }
-
-    .receipt-divider {
-      border-top: 1px solid var(--border-hairline);
-      margin: 12px 0;
-    }
-
-    .kpi-row {
-      display: flex;
-      justify-content: space-between;
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--text-mid);
-      margin-bottom: 6px;
-    }
-
-    .kpi-row.total-row {
-      border-top: 1px dashed rgba(212, 176, 123, 0.3);
-      padding-top: 10px;
-      margin-top: 10px;
-      font-size: 13px;
-      color: var(--text-bright);
-    }
-
-    .kpi-total-price {
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--gold);
-      letter-spacing: -0.5px;
-    }
-
-    /* Action Buttons (Strict No SVG) */
-    .cta-container {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .btn-telegram-primary {
-      width: 100%;
-      padding: 15px;
-      background: var(--gold);
-      border: 1px solid var(--gold);
-      border-radius: 2px;
-      color: #09090b;
-      font-family: var(--font-mono);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 1px;
-      text-decoration: none;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      cursor: pointer;
-      transition: all var(--transition-smooth);
-    }
-
-    .btn-telegram-primary:hover {
-      background: var(--gold-light);
-      border-color: var(--gold-light);
-      box-shadow: 0 0 24px var(--gold-glow);
-    }
-
-    .css-arrow-right {
-      font-size: 14px;
-      font-weight: bold;
-    }
-
-    .btn-secondary-copy {
-      width: 100%;
-      padding: 12px;
-      background: transparent;
-      border: 1px solid var(--border-mid);
-      border-radius: 2px;
-      color: var(--text-bright);
-      font-family: var(--font-mono);
-      font-size: 11px;
-      letter-spacing: 1px;
-      cursor: pointer;
-      transition: all var(--transition-smooth);
-    }
-
-    .btn-secondary-copy:hover {
-      border-color: var(--gold-border);
-      color: var(--gold);
-    }
-
-    .toast-msg {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      color: var(--gold);
-      text-align: center;
-      margin-top: 6px;
-      min-height: 16px;
-    }
-
-    /* ==========================================================================
-       BOTTOM STUDIO INFO STRIP
-       ========================================================================== */
-    .studio-spec-strip {
-      background: #060608;
-      border-top: 1px solid var(--border-hairline);
-      padding: 24px 36px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 32px;
-    }
-
-    .spec-column-title {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      letter-spacing: 1px;
-      color: var(--gold);
-      margin-bottom: 6px;
-    }
-
-    .spec-column-desc {
-      font-size: 12px;
-      line-height: 1.6;
-      color: var(--text-mid);
-    }
-
-    /* ==========================================================================
-       RESPONSIVE DESIGN (MOBILE & TABLET)
-       ========================================================================== */
-    @media (max-width: 1180px) {
-      .configurator-grid {
-        grid-template-columns: 320px 1fr 340px;
+    @media (max-width: 992px) {
+      .top-nav { padding: 24px 28px; }
+      .top-nav-right { gap: 20px; }
+      .nav-link { display: none; }
+      .hero-title-zone { top: 100px; left: 28px; right: 28px; }
+      .hero-title { font-size: 42px; }
+      .hero-title em { font-size: 48px; }
+      .floating-cards-zone {
+        top: auto;
+        bottom: 90px;
+        left: 28px;
+        right: 28px;
+        flex-direction: row;
+        gap: 12px;
       }
-    }
-
-    @media (max-width: 960px) {
-      .site-header { padding: 14px 20px; }
-      .header-center-info { display: none; }
-      .configurator-grid {
-        display: flex;
-        flex-direction: column;
-        height: auto;
+      .glass-card {
+        width: 50%;
+        transform: none !important;
+        padding: 16px;
       }
-      .stage-center {
-        height: 55vh;
-        min-height: 380px;
-        order: 1;
-      }
-      .sidebar-left {
-        order: 2;
-        border-right: none;
-        border-bottom: 1px solid var(--border-hairline);
-      }
-      .sidebar-right {
-        order: 3;
-        border-left: none;
-      }
-      .studio-spec-strip {
-        grid-template-columns: 1fr;
-        gap: 20px;
-        padding: 24px 20px;
-      }
+      .bottom-nav-arrows { bottom: 24px; right: 28px; }
     }
   </style>
 
-  <!-- Three.js Import Map -->
+  <!-- Three.js ES Modules -->
   <script type="importmap">
     {
       "imports": {
@@ -869,191 +623,109 @@
 </head>
 <body>
 
-  <!-- Top Editorial Header -->
-  <header class="site-header">
-    <div class="brand-group">
-      <a href="#" class="brand-logo">NERO ATELIER</a>
-      <span class="brand-sub">// COUTURE DETAILING</span>
+  <!-- Full Gallery Stage -->
+  <div class="gallery-stage">
+
+    <!-- Top Navigation Matching Mockup -->
+    <header class="top-nav">
+      <a href="#" class="brand-monogram">
+        <span class="monogram-crest">RR</span>
+      </a>
+
+      <nav class="top-nav-right">
+        <a href="#collection" class="nav-link" id="nav-collection">COLLECTION</a>
+        <a href="#services" class="nav-link" id="nav-services">SERVICES</a>
+        <a href="#atelier" class="nav-link" id="nav-atelier">ATELIER</a>
+        <button class="btn-bespoke-inquiry" id="btn-open-inquiry">BESPOKE INQUIRY</button>
+      </nav>
+    </header>
+
+    <!-- Hero Title Zone (Exact Mockup Match) -->
+    <div class="hero-title-zone">
+      <h1 class="hero-title">
+        The Art <em>of</em> Automotive<br>Preservation
+      </h1>
+      <p class="hero-subtitle">
+        Кузовная консервация в чистой зоне ISO 7. Невидимая сатиновая броня и нанокерамическое стекло для коллекционных спорткаров.
+      </p>
     </div>
 
-    <div class="header-center-info">
-      <div class="cleanroom-status">
-        <span class="css-led-dot"></span>
-        <span>ЧИСТАЯ ЗОНА ISO 7: АКТИВНА</span>
+    <!-- 3D WebGL Canvas Container (Turntable Arena) -->
+    <div id="webgl-stage"></div>
+
+    <!-- Floating Frosted Glass Cards (Exact Mockup Match) -->
+    <div class="floating-cards-zone">
+      <!-- Card 1: Ceramic -->
+      <div class="glass-card active" id="card-ceramic" data-shader="ceramic">
+        <div class="card-title">
+          Bespoke Ceramic<br>Glass Infusion
+        </div>
+        <div class="card-footer-row">
+          <span class="card-arrow">→</span>
+          <span class="card-status-badge">[ 9H QUARTZ ]</span>
+        </div>
       </div>
-      <div>24°C // 50% RH</div>
-      <div>КВОТА: 3 АВТО / НЕДЕЛЯ</div>
+
+      <!-- Card 2: Paint Protection Film -->
+      <div class="glass-card" id="card-ppf" data-shader="satin">
+        <div class="card-title">
+          Hand-Tailored<br>Paint Protection<br>Film
+        </div>
+        <div class="card-footer-row">
+          <span class="card-arrow">→</span>
+          <span class="card-status-badge">[ PPF SATIN ]</span>
+        </div>
+      </div>
     </div>
 
+    <!-- Bottom Right Turntable Arrows (Exact Mockup Match) -->
+    <div class="bottom-nav-arrows">
+      <span class="turntable-rotate-status" id="rotate-status-label">[ ПОДИУМ: ВРАЩЕНИЕ ]</span>
+      <button class="arrow-btn" id="btn-prev-angle" title="Повернуть влево">←</button>
+      <button class="arrow-btn" id="btn-next-angle" title="Повернуть вправо">→</button>
+    </div>
+
+  </div>
+
+  <!-- Expandable Bespoke Inquiry Drawer (Interactive Estimate) -->
+  <aside class="inquiry-drawer" id="inquiry-drawer">
     <div>
-      <a href="https://t.me/thor_bakin" target="_blank" rel="noopener noreferrer" class="header-contact-link">
-        СВЯЗЬ С МАСТЕРОМ
+      <div class="drawer-header">
+        <div>
+          <div class="drawer-title">BESPOKE INQUIRY</div>
+          <div class="drawer-sub">СПЕЦИФИКАЦИЯ ПРОЕКТА // ЧИСТАЯ ЗОНА ISO 7</div>
+        </div>
+        <button class="drawer-close-btn" id="btn-close-drawer" title="Закрыть">×</button>
+      </div>
+
+      <div class="drawer-options-list" id="drawer-options-list">
+        <!-- Injected dynamically via JS -->
+      </div>
+    </div>
+
+    <div class="drawer-footer">
+      <div class="total-calc-row">
+        <span class="total-label">ИТОГО К ОПЛАТЕ:</span>
+        <span class="total-amount" id="drawer-total-amount">275 000 ₽</span>
+      </div>
+
+      <a href="#" class="btn-send-telegram" id="btn-send-tg" target="_blank" rel="noopener noreferrer">
+        <span>ОТПРАВИТЬ СМЕТУ В TELEGRAM</span>
+        <span>→</span>
       </a>
     </div>
-  </header>
+  </aside>
 
-  <!-- Main Configurator 3-Column Grid -->
-  <main class="configurator-grid">
-
-    <!-- 1. LEFT COLUMN: Bespoke Finish & Service Selection -->
-    <aside class="sidebar-left">
-      <div>
-        <div class="section-eyebrow">[ ШАГ 01 // ФИНИШ ПОКРЫТИЯ ]</div>
-        <h2 class="section-heading">ОПТИКА КУЗОВА</h2>
-
-        <!-- Finish Shader Selector -->
-        <div class="finish-selector-group">
-          <div class="finish-buttons">
-            <button class="finish-btn active" data-finish="ceramic">
-              <span>01 // КВАРЦЕВЫЙ ЗЕРКАЛЬНЫЙ ЛАК 9H</span>
-              <span class="finish-dot"></span>
-            </button>
-            <button class="finish-btn" data-finish="satin">
-              <span>02 // САТИНОВЫЙ ПОЛИУРЕТАН (MATTE PPF)</span>
-              <span class="finish-dot"></span>
-            </button>
-            <button class="finish-btn" data-finish="shadow">
-              <span>03 // ПАКЕТ SHADOW LINE (PIANO BLACK)</span>
-              <span class="finish-dot"></span>
-            </button>
-          </div>
-        </div>
-
-        <div class="section-eyebrow">[ ШАГ 02 // ПАКЕТЫ УХОДА ]</div>
-        <h2 class="section-heading">ВЫБОР ОПЦИЙ</h2>
-
-        <!-- Services Checkboxes List (Strict Zero SVG) -->
-        <div class="services-stack" id="services-container">
-          <!-- Injected via JS -->
-        </div>
-      </div>
-
-      <div class="sidebar-left-footer">
-        <span>ПЛОТТЕРНЫЙ КРОЙ DAP</span>
-        <span>БЕЗ ЛЕЗВИЙ НА КУЗОВЕ</span>
-      </div>
-    </aside>
-
-    <!-- 2. CENTER STAGE: 3D Turntable Viewport -->
-    <section class="stage-center">
-      <!-- Three.js Canvas Container -->
-      <div id="webgl-canvas-container"></div>
-
-      <!-- 3D Hotspot Screen-Projected Overlay -->
-      <div id="hotspots-overlay"></div>
-
-      <!-- Viewport Top HUD -->
-      <div class="hud-top-bar">
-        <div>
-          <div class="hud-model-title">FERRARI 458 ITALIA</div>
-          <div class="hud-model-subtitle">BESPOKE 3D CONFIGURATOR // TURNTABLE ARENA</div>
-          <div class="hud-active-status" id="hud-finish-label">ФИНИШ: КВАРЦЕВЫЙ ЛАК 9H CERAMIC PRO</div>
-        </div>
-
-        <div class="hud-camera-presets">
-          <button class="cam-btn active" data-cam="turntable">[ ПОДИУМ ]</button>
-          <button class="cam-btn" data-cam="hood">[ КАПОТ ]</button>
-          <button class="cam-btn" data-cam="wheels">[ ДИСКИ ]</button>
-          <button class="cam-btn" data-cam="rear">[ КОРМА ]</button>
-        </div>
-      </div>
-
-      <!-- Viewport Bottom HUD Controls -->
-      <div class="hud-bottom-bar">
-        <div class="turntable-toggle-group">
-          <button class="turntable-btn active" id="btn-toggle-rotate">[ ПОДИУМ: ВРАЩЕНИЕ ]</button>
-          <button class="turntable-btn active" id="btn-toggle-pins">[ МАЯКИ: ВКЛ ]</button>
-        </div>
-        <div class="gesture-hint">
-          ВРАЩЕНИЕ: 1 ПАЛЕЦ / ЗУМ: 2 ПАЛЬЦА
-        </div>
-      </div>
-
-      <!-- Preloader Screen -->
-      <div class="loader-screen" id="preloader">
-        <div class="loader-brand">NERO ATELIER</div>
-        <div class="loader-bar-wrap">
-          <div class="loader-bar-fill" id="loader-fill"></div>
-        </div>
-        <div class="loader-text" id="loader-status">ЗАГРУЗКА 3D АССЕТОВ...</div>
-      </div>
-    </section>
-
-    <!-- 3. RIGHT COLUMN: Live Estimate & Instant Telegram Action -->
-    <aside class="sidebar-right">
-      <div>
-        <div class="section-eyebrow">[ ШАГ 03 // СПЕЦИФИКАЦИЯ ]</div>
-        <h2 class="section-heading">ИНДИВИДУАЛЬНАЯ СМЕТА</h2>
-
-        <!-- Receipt Box -->
-        <div class="spec-receipt-box">
-          <div class="receipt-header">
-            <div class="receipt-header-title">РАСЧЕТ СТОИМОСТИ РАБОТ</div>
-            <div class="receipt-header-code" id="receipt-spec-id">СПЕЦИФИКАЦИЯ: #NA-2026-948</div>
-          </div>
-
-          <div class="receipt-items-list" id="receipt-items">
-            <!-- Dynamic items list -->
-          </div>
-
-          <div class="receipt-divider"></div>
-
-          <div class="kpi-row">
-            <span>Срок выполнения:</span>
-            <span id="kpi-duration" style="color:var(--text-bright);">4 рабочих дня</span>
-          </div>
-          <div class="kpi-row">
-            <span>Гарантия ателье:</span>
-            <span id="kpi-warranty" style="color:var(--text-bright);">5 лет (сертификат)</span>
-          </div>
-
-          <div class="kpi-row total-row">
-            <span>ИТОГО К ОПЛАТЕ:</span>
-            <span class="kpi-total-price" id="kpi-total">262 000 ₽</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Telegram & Copy CTA Container -->
-      <div class="cta-container">
-        <a href="#" class="btn-telegram-primary" id="btn-telegram-direct" target="_blank" rel="noopener noreferrer">
-          <span>ОБСУДИТЬ С МАСТЕРОМ В TELEGRAM</span>
-          <span class="css-arrow-right">→</span>
-        </a>
-
-        <button class="btn-secondary-copy" id="btn-copy-spec">
-          [ СКОПИРОВАТЬ СПЕЦИФИКАЦИЮ В БУФЕР ]
-        </button>
-        <div class="toast-msg" id="toast-notify"></div>
-      </div>
-    </aside>
-
-  </main>
-
-  <!-- Bottom Technical Strip (Cleanroom & Craft Standards) -->
-  <footer class="studio-spec-strip">
-    <div>
-      <div class="spec-column-title">[ 01 // ЧИСТАЯ ЗОНА ISO 7 ]</div>
-      <p class="spec-column-desc">
-        Изолированные боксы с ламинарным потоком очищенного воздуха. Полное отсутствие взвешенной пыли, стабильная температура 24°C и влажность 50% для идеальной полимеризации составов.
-      </p>
+  <!-- Preloader Screen -->
+  <div class="scene-preloader" id="preloader">
+    <div class="preloader-brand">ATELIER COUTURE</div>
+    <div class="preloader-track">
+      <div class="preloader-bar" id="preloader-bar"></div>
     </div>
-    <div>
-      <div class="spec-column-title">[ 02 // ОФИЦИАЛЬНАЯ ГАРАНТИЯ 5 ЛЕТ ]</div>
-      <p class="spec-column-desc">
-        Сертифицированные материалы XPEL Ultimate Plus и Gyeon Quartz. Электронный гарантийный паспорт защищает от отслоения, растрескивания и пожелтения пленки.
-      </p>
-    </div>
-    <div>
-      <div class="spec-column-title">[ 03 // СОХРАННОСТЬ ЗАВОДСКОГО ЛАКА ]</div>
-      <p class="spec-column-desc">
-        Лицензионные электронные лекала DAP исключают контакт ножа с лакокрасочным покрытием авто. Полный отказ от демонтажа сложных кузовных панелей и оптики.
-      </p>
-    </div>
-  </footer>
+  </div>
 
   <!-- ==========================================================================
-       THREE.JS R160 BESPOKE 3D CONFIGURATOR SCRIPT
+       THREE.JS R160 3D ENGINE SCRIPT
        ========================================================================== -->
   <script type="module">
     import * as THREE from 'three';
@@ -1062,194 +734,153 @@
     import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 
     // --------------------------------------------------------------------------
-    // 1. DATA ARCHITECTURE: SERVICES & PRICING
+    // 1. DATA SPECIFICATION (SERVICES & PRICING)
     // --------------------------------------------------------------------------
-    const SERVICES = [
+    const DETAILING_SERVICES = [
       {
-        id: 'ppf_front',
-        title: 'PPF Капот и зоны риска',
-        price: 120000,
-        days: 2,
-        warranty: '5 лет',
-        meta: 'XPEL Ultimate 200 мкм • Капот, бампер, крылья, зеркала',
-        defaultSelected: true,
-        hotspotId: 'hood'
-      },
-      {
-        id: 'ceramic_body',
-        title: 'Нанокерамика кузова 9H (3 слоя)',
+        id: 'ceramic_glass',
+        name: 'Bespoke Ceramic Glass Infusion',
+        meta: '3 слоя кварцевого лака 9H • Глубокий зеркальный блеск',
         price: 65000,
-        days: 2,
-        warranty: '3 года',
-        meta: 'Gyeon Q² Mohs+ • Глубокий зеркальный глянец и гидрофоб',
-        defaultSelected: true,
-        hotspotId: 'body'
+        selected: true,
+        shader: 'ceramic'
       },
       {
-        id: 'tint_llumar',
-        title: 'Атермальная тонировка Llumar',
+        id: 'ppf_satin',
+        name: 'Hand-Tailored Paint Protection Film',
+        meta: 'XPEL Stealth 200 мкм • Сатиновая матовая броня',
+        price: 210000,
+        selected: true,
+        shader: 'satin'
+      },
+      {
+        id: 'tint_athermal',
+        name: 'Athermal Crystal Window Tint',
+        meta: 'Llumar ATR 15% • Блокировка 99% солнечной радиации',
         price: 22000,
-        days: 1,
-        warranty: 'Бессрочно',
-        meta: 'Llumar ATR 15% • Блокировка 99% ультрафиолета',
-        defaultSelected: true,
-        hotspotId: 'glass'
+        selected: false,
+        shader: 'ceramic'
       },
       {
-        id: 'shadow_line',
-        title: 'Пакет Shadow Line (Антихром)',
-        price: 28000,
-        days: 1,
-        warranty: '3 года',
-        meta: 'Окрас молдингов и решеток в рояльный черный лак',
-        defaultSelected: false,
-        hotspotId: 'rear'
-      },
-      {
-        id: 'wheels_ceramic',
-        title: 'Керамика дисков + Суппорты',
-        price: 38000,
-        days: 1,
-        warranty: '2 года',
-        meta: 'Термостойкий кварц 9H + термоэмаль Gold/Acid Green',
-        defaultSelected: false,
-        hotspotId: 'wheels'
-      },
-      {
-        id: 'interior_quartz',
-        title: 'Кварцевая консервация салона',
+        id: 'interior_leather',
+        name: 'Haute Horlogerie Leather Preservation',
+        meta: 'Кварцевая консервация кожи и алькантары',
         price: 45000,
-        days: 1,
-        warranty: '2 года',
-        meta: 'Защита кожи от окраса джинсами и УФ-старения',
-        defaultSelected: false,
-        hotspotId: 'body'
+        selected: false,
+        shader: 'ceramic'
+      },
+      {
+        id: 'titanium_caliper',
+        name: 'Brembo Gold Caliper Enamel',
+        meta: 'Термостойкая эмаль суппортов в шампань/золото',
+        price: 28000,
+        selected: false,
+        shader: 'ceramic'
       }
     ];
 
-    // State
-    const selectedServices = new Set(['ppf_front', 'ceramic_body', 'tint_llumar']);
-    let currentFinish = 'ceramic'; // 'ceramic' | 'satin' | 'shadow'
-
     // --------------------------------------------------------------------------
-    // 2. 3D HOTSPOT LOCATIONS (WORLD COORDINATES)
+    // 2. THREE.JS SCENE SETUP MATCHING THE LUXURY SHOWROOM
     // --------------------------------------------------------------------------
-    const HOTSPOTS = [
-      { id: 'hood', code: '01', title: 'КАПОТ // PPF 200μm', pos: new THREE.Vector3(0.0, 0.72, -1.65), camKey: 'hood' },
-      { id: 'body', code: '02', title: 'КУЗОВ // КЕРАМИКА 9H', pos: new THREE.Vector3(0.78, 0.68, 0.0), camKey: 'turntable' },
-      { id: 'glass', code: '03', title: 'СТЕКЛА // LLUMAR 15%', pos: new THREE.Vector3(0.0, 1.05, -0.35), camKey: 'hood' },
-      { id: 'wheels', code: '04', title: 'ДИСКИ // ТЕРМОСТОЙКИЙ КВАРЦ', pos: new THREE.Vector3(0.88, 0.38, -1.15), camKey: 'wheels' },
-      { id: 'rear', code: '05', title: 'КОРМА // SHADOW LINE', pos: new THREE.Vector3(0.0, 0.72, 2.05), camKey: 'rear' }
-    ];
-
-    // Camera Presets
-    const CAM_PRESETS = {
-      turntable: { pos: new THREE.Vector3(4.5, 1.6, -4.5), target: new THREE.Vector3(0, 0.45, 0) },
-      hood:      { pos: new THREE.Vector3(0.1, 1.5, -3.2), target: new THREE.Vector3(0, 0.6, -1.3) },
-      wheels:    { pos: new THREE.Vector3(1.9, 0.55, -1.5), target: new THREE.Vector3(0.88, 0.38, -1.15) },
-      rear:      { pos: new THREE.Vector3(-0.2, 1.35, 4.3), target: new THREE.Vector3(0, 0.5, 0.8) }
-    };
-
-    // --------------------------------------------------------------------------
-    // 3. THREE.JS SCENE, SHADERS & TURNTABLE SETUP
-    // --------------------------------------------------------------------------
-    const container = document.getElementById('webgl-canvas-container');
-    const overlay = document.getElementById('hotspots-overlay');
+    const stage = document.getElementById('webgl-stage');
 
     const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x070709);
-    scene.fog = new THREE.Fog(0x070709, 8, 22);
+    // Warm dark background fog matching mockup
+    scene.background = new THREE.Color(0x0a0908);
+    scene.fog = new THREE.Fog(0x0a0908, 6, 18);
 
-    const camera = new THREE.PerspectiveCamera(40, container.clientWidth / container.clientHeight, 0.1, 50);
-    camera.position.copy(CAM_PRESETS.turntable.pos);
+    const camera = new THREE.PerspectiveCamera(36, stage.clientWidth / stage.clientHeight, 0.1, 50);
+    // Exact 3/4 front angle as in mockup
+    camera.position.set(3.4, 1.45, -3.9);
 
     const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
-    renderer.setSize(container.clientWidth, container.clientHeight);
+    renderer.setSize(stage.clientWidth, stage.clientHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.75));
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    renderer.toneMappingExposure = 1.05;
+    renderer.toneMappingExposure = 1.15;
     renderer.outputColorSpace = THREE.SRGBColorSpace;
-    container.appendChild(renderer.domElement);
+    stage.appendChild(renderer.domElement);
 
     const controls = new OrbitControls(camera, renderer.domElement);
     controls.enableDamping = true;
     controls.dampingFactor = 0.05;
-    controls.target.copy(CAM_PRESETS.turntable.target);
+    controls.target.set(0.0, 0.42, 0.0);
     controls.maxPolarAngle = Math.PI / 2 - 0.04;
-    controls.minDistance = 2.4;
-    controls.maxDistance = 10.0;
+    controls.minDistance = 2.5;
+    controls.maxDistance = 8.5;
 
-    // Lighting (Warm Champagne Atelier Lighting)
-    const ambientLight = new THREE.AmbientLight(0xfff5ea, 0.85);
+    // Warm Studio Lighting
+    const ambientLight = new THREE.AmbientLight(0xffecd2, 1.1);
     scene.add(ambientLight);
 
-    const keySpot = new THREE.SpotLight(0xffecd2, 4.5);
-    keySpot.position.set(4, 7, -3);
-    keySpot.angle = Math.PI / 5;
-    keySpot.penumbra = 0.8;
-    scene.add(keySpot);
+    // Warm Key Light on the car hood
+    const warmKey = new THREE.SpotLight(0xfff0d8, 5.0);
+    warmKey.position.set(3, 6, -3);
+    warmKey.angle = Math.PI / 4.5;
+    warmKey.penumbra = 0.8;
+    scene.add(warmKey);
 
-    const fillSpot = new THREE.DirectionalLight(0xaaccff, 1.2);
-    fillSpot.position.set(-5, 4, 3);
-    scene.add(fillSpot);
+    // Soft Fill Light from opposite side
+    const fillLight = new THREE.DirectionalLight(0xb5c6e8, 1.0);
+    fillLight.position.set(-4, 4, 3);
+    scene.add(fillLight);
 
-    const warmRim = new THREE.DirectionalLight(0xd4b07b, 2.0);
-    warmRim.position.set(0, 3, 5);
-    scene.add(warmRim);
+    // Warm Bronze Backlight creating rim reflections on car curves
+    const bronzeRim = new THREE.DirectionalLight(0xd4b07b, 2.8);
+    bronzeRim.position.set(0, 2.5, 4.5);
+    scene.add(bronzeRim);
 
-    // Bespoke Rotating Turntable Group
+    // --------------------------------------------------------------------------
+    // 3. BESPOKE TURNTABLE PEDESTAL (NERO MARQUINA + GOLD NEON RING)
+    // --------------------------------------------------------------------------
     const turntableGroup = new THREE.Group();
     scene.add(turntableGroup);
 
-    // Marble Turntable Disk Mesh
-    const diskGeo = new THREE.CylinderGeometry(2.9, 3.0, 0.08, 64);
-    const diskMat = new THREE.MeshStandardMaterial({
-      color: 0x0c0c11,
-      roughness: 0.25,
-      metalness: 0.1
+    // Nero Marquina Dark Marble Disk
+    const pedestalGeo = new THREE.CylinderGeometry(2.85, 2.95, 0.08, 64);
+    const pedestalMat = new THREE.MeshStandardMaterial({
+      color: 0x11100e,
+      roughness: 0.18,
+      metalness: 0.25
     });
-    const diskMesh = new THREE.Mesh(diskGeo, diskMat);
-    diskMesh.position.y = -0.04;
-    turntableGroup.add(diskMesh);
+    const pedestalMesh = new THREE.Mesh(pedestalGeo, pedestalMat);
+    pedestalMesh.position.y = -0.04;
+    turntableGroup.add(pedestalMesh);
 
-    // Glowing Bronze Outer Ring
-    const ringGeo = new THREE.RingGeometry(2.92, 2.96, 64);
-    const ringMat = new THREE.MeshBasicMaterial({ color: 0xd4b07b, side: THREE.DoubleSide });
-    const ringMesh = new THREE.Mesh(ringGeo, ringMat);
-    ringMesh.rotation.x = -Math.PI / 2;
-    ringMesh.position.y = 0.002;
-    turntableGroup.add(ringMesh);
+    // Glowing Golden Neon Ring around turntable edge
+    const goldRingGeo = new THREE.TorusGeometry(2.88, 0.015, 16, 100);
+    const goldRingMat = new THREE.MeshBasicMaterial({
+      color: 0xffdfad
+    });
+    const goldRingMesh = new THREE.Mesh(goldRingGeo, goldRingMat);
+    goldRingMesh.rotation.x = Math.PI / 2;
+    goldRingMesh.position.y = 0.002;
+    turntableGroup.add(goldRingMesh);
 
     // --------------------------------------------------------------------------
-    // 4. BESPOKE PBR MATERIALS
+    // 4. BESPOKE PBR SHADERS (CERAMIC VS SATIN PPF)
     // --------------------------------------------------------------------------
     const materials = {
-      // 01. Ultra-Gloss 9H Ceramic
+      // Bespoke Ceramic Glass Infusion (Mirror Deep Gloss)
       ceramic: new THREE.MeshPhysicalMaterial({
-        color: 0x0b0c10,
-        metalness: 0.15,
-        roughness: 0.1,
+        color: 0x181716,
+        metalness: 0.12,
+        roughness: 0.08,
         clearcoat: 1.0,
         clearcoatRoughness: 0.02,
-        reflectivity: 0.95
+        reflectivity: 0.98
       }),
-      // 02. Satin Matte PPF
+      // Hand-Tailored Paint Protection Film (Satin Matte Sheen)
       satin: new THREE.MeshPhysicalMaterial({
-        color: 0x14151a,
+        color: 0x242220,
         metalness: 0.08,
-        roughness: 0.44,
-        clearcoat: 0.8,
-        clearcoatRoughness: 0.42
+        roughness: 0.46,
+        clearcoat: 0.75,
+        clearcoatRoughness: 0.44
       }),
-      // 03. Shadow Line (Deep Piano Black)
-      shadow: new THREE.MeshStandardMaterial({
-        color: 0x030304,
-        metalness: 0.35,
-        roughness: 0.05
-      }),
-      // Tinted Glass
+      // Glass
       glass: new THREE.MeshPhysicalMaterial({
-        color: 0x08090b,
+        color: 0x08080a,
         metalness: 0.05,
         roughness: 0.0,
         transmission: 0.18,
@@ -1257,71 +888,66 @@
         transparent: true,
         ior: 1.52
       }),
-      // Gold Brembo Calipers
+      // Caliper Champagne Gold
       caliperGold: new THREE.MeshStandardMaterial({
         color: 0xd4b07b,
-        metalness: 0.8,
-        roughness: 0.2
-      }),
-      // Satin Titanium Rims
-      rimTitanium: new THREE.MeshStandardMaterial({
-        color: 0x22242a,
         metalness: 0.85,
-        roughness: 0.3
+        roughness: 0.22
+      }),
+      // Titanium Rims
+      rimTitanium: new THREE.MeshStandardMaterial({
+        color: 0x2b2927,
+        metalness: 0.88,
+        roughness: 0.28
       })
     };
 
-    // --------------------------------------------------------------------------
-    // 5. LOAD CAR MODEL (FERRARI 458 ITALIA + DRACO)
-    // --------------------------------------------------------------------------
-    let carModel = null;
-    let bodyMesh = null;
-    let isAutoRotating = true;
-    let arePinsVisible = true;
+    let carBodyMesh = null;
+    let isRotating = true;
     let needsRender = true;
-
     function requestRender() { needsRender = true; }
 
+    // --------------------------------------------------------------------------
+    // 5. LOAD CAR MODEL (FERRARI 458 + DRACO + SHADOW)
+    // --------------------------------------------------------------------------
     const dracoLoader = new DRACOLoader();
     dracoLoader.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.7/');
 
     const gltfLoader = new GLTFLoader();
     gltfLoader.setDRACOLoader(dracoLoader);
 
-    // Floor Contact Shadow Plane
+    // Contact shadow
     const shadowTex = new THREE.TextureLoader().load(
       'https://cdn.jsdelivr.net/gh/mrdoob/three.js@r160/examples/models/gltf/ferrari_ao.png',
       () => requestRender()
     );
-    const shadowPlane = new THREE.Mesh(
+    const shadowMesh = new THREE.Mesh(
       new THREE.PlaneGeometry(0.655 * 4, 1.3 * 4),
       new THREE.MeshBasicMaterial({
         map: shadowTex,
         blending: THREE.MultiplyBlending,
         toneMapped: false,
         transparent: true,
-        opacity: 0.95
+        opacity: 0.92
       })
     );
-    shadowPlane.rotation.x = -Math.PI / 2;
-    shadowPlane.renderOrder = 2;
-    turntableGroup.add(shadowPlane);
+    shadowMesh.rotation.x = -Math.PI / 2;
+    shadowMesh.renderOrder = 2;
+    turntableGroup.add(shadowMesh);
 
     gltfLoader.load(
       'https://cdn.jsdelivr.net/gh/mrdoob/three.js@r160/examples/models/gltf/ferrari.glb',
       (gltf) => {
-        carModel = gltf.scene.children[0];
+        const car = gltf.scene.children[0];
 
-        // Traverse & Assign Luxury Shaders
-        carModel.traverse((node) => {
+        car.traverse((node) => {
           if (node.isMesh) {
             node.castShadow = true;
             node.receiveShadow = true;
-
             const name = (node.name || '').toLowerCase();
             if (name.includes('body')) {
-              bodyMesh = node;
-              node.material = materials[currentFinish];
+              carBodyMesh = node;
+              node.material = materials.ceramic;
             } else if (name.includes('glass')) {
               node.material = materials.glass;
             } else if (name.includes('brake') || name.includes('caliper')) {
@@ -1332,143 +958,35 @@
           }
         });
 
-        turntableGroup.add(carModel);
+        turntableGroup.add(car);
 
-        // Hide Preloader
-        document.getElementById('loader-fill').style.width = '100%';
+        // Preloader Complete
+        document.getElementById('preloader-bar').style.width = '100%';
         setTimeout(() => {
-          document.getElementById('preloader').classList.add('hidden');
-        }, 300);
+          document.getElementById('preloader').classList.add('fade-out');
+        }, 350);
 
-        initHotspots();
         requestRender();
       },
       (xhr) => {
         if (xhr.lengthComputable) {
           const pct = Math.round((xhr.loaded / xhr.total) * 100);
-          document.getElementById('loader-fill').style.width = pct + '%';
-          document.getElementById('loader-status').textContent = `ПОДГОТОВКА СЦЕНЫ: ${pct}%`;
+          document.getElementById('preloader-bar').style.width = pct + '%';
         }
       },
       (err) => {
         console.error('Model load error:', err);
-        document.getElementById('loader-status').textContent = '[ ОШИБКА ЗАГРУЗКИ МОДЕЛИ ]';
       }
     );
 
     // --------------------------------------------------------------------------
-    // 6. SCREEN-PROJECTED 3D HOTSPOTS
+    // 6. RENDER LOOP (WITH DIRTY RENDERING OPTIMIZATION)
     // --------------------------------------------------------------------------
-    function initHotspots() {
-      overlay.innerHTML = '';
-      HOTSPOTS.forEach((spot) => {
-        const el = document.createElement('div');
-        el.className = 'hotspot-node';
-        el.id = 'pin-' + spot.id;
-        el.innerHTML = `
-          <div class="hotspot-ring">
-            <div class="hotspot-center-dot"></div>
-            <div class="hotspot-pulse"></div>
-          </div>
-          <div class="hotspot-tooltip">${spot.title}</div>
-        `;
-        el.addEventListener('click', (e) => {
-          e.stopPropagation();
-          flyToCamera(spot.camKey);
-        });
-        overlay.appendChild(el);
-        spot.element = el;
-      });
-      updateHotspotPositions();
-    }
+    function renderLoop() {
+      requestAnimationFrame(renderLoop);
 
-    const tempV = new THREE.Vector3();
-    const camDir = new THREE.Vector3();
-
-    function updateHotspotPositions() {
-      if (!camera || !container) return;
-      const w = container.clientWidth;
-      const h = container.clientHeight;
-      camera.getWorldDirection(camDir);
-
-      HOTSPOTS.forEach((spot) => {
-        if (!spot.element) return;
-
-        // Apply turntable rotation to point
-        tempV.copy(spot.pos);
-        tempV.applyEuler(turntableGroup.rotation);
-
-        // Visibility dot product
-        const toSpot = tempV.clone().sub(camera.position).normalize();
-        const dot = camDir.dot(toSpot);
-
-        if (dot < 0.25 || !arePinsVisible) {
-          spot.element.style.display = 'none';
-          return;
-        }
-
-        spot.element.style.display = 'block';
-        tempV.project(camera);
-
-        const x = (tempV.x * 0.5 + 0.5) * w;
-        const y = (-tempV.y * 0.5 + 0.5) * h;
-
-        spot.element.style.left = `${x}px`;
-        spot.element.style.top = `${y}px`;
-      });
-    }
-
-    // --------------------------------------------------------------------------
-    // 7. CAMERA ANIMATION (FLY-TO)
-    // --------------------------------------------------------------------------
-    let isCamMoving = false;
-    let camStartPos = new THREE.Vector3();
-    let camEndPos = new THREE.Vector3();
-    let camStartTarget = new THREE.Vector3();
-    let camEndTarget = new THREE.Vector3();
-    let animProgress = 0;
-
-    function flyToCamera(presetKey) {
-      const preset = CAM_PRESETS[presetKey];
-      if (!preset) return;
-
-      document.querySelectorAll('.cam-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.cam === presetKey);
-      });
-
-      camStartPos.copy(camera.position);
-      camEndPos.copy(preset.pos);
-      camStartTarget.copy(controls.target);
-      camEndTarget.copy(preset.target);
-
-      animProgress = 0;
-      isCamMoving = true;
-      requestRender();
-    }
-
-    // --------------------------------------------------------------------------
-    // 8. RENDER-ON-DEMAND LOOP (DIRTY RENDERING FOR MOBILE)
-    // --------------------------------------------------------------------------
-    function animate() {
-      requestAnimationFrame(animate);
-
-      // Auto-rotation of the turntable
-      if (isAutoRotating) {
-        turntableGroup.rotation.y += 0.0035;
-        needsRender = true;
-      }
-
-      // Camera Fly-to Lerp
-      if (isCamMoving) {
-        animProgress += 0.035;
-        const t = Math.min(animProgress, 1.0);
-        // Smooth cubic ease out
-        const ease = 1 - Math.pow(1 - t, 3);
-
-        camera.position.lerpVectors(camStartPos, camEndPos, ease);
-        controls.target.lerpVectors(camStartTarget, camEndTarget, ease);
-
-        if (t >= 1.0) isCamMoving = false;
+      if (isRotating) {
+        turntableGroup.rotation.y += 0.003;
         needsRender = true;
       }
 
@@ -1476,189 +994,137 @@
 
       if (needsRender) {
         renderer.render(scene, camera);
-        updateHotspotPositions();
         needsRender = false;
       }
     }
-    animate();
+    renderLoop();
 
-    // Event Triggers for Render
-    controls.addEventListener('change', () => {
-      requestRender();
-    });
+    controls.addEventListener('change', () => requestRender());
 
     window.addEventListener('resize', () => {
-      camera.aspect = container.clientWidth / container.clientHeight;
+      camera.aspect = stage.clientWidth / stage.clientHeight;
       camera.updateProjectionMatrix();
-      renderer.setSize(container.clientWidth, container.clientHeight);
+      renderer.setSize(stage.clientWidth, stage.clientHeight);
       requestRender();
     });
 
     // --------------------------------------------------------------------------
-    // 9. UI INTERACTIONS: SERVICES, SHADERS, & ESTIMATE
+    // 7. CARD SWITCHER: CERAMIC VS PPF SATIN SHADERS
     // --------------------------------------------------------------------------
-    const servicesContainer = document.getElementById('services-container');
-    const receiptItemsContainer = document.getElementById('receipt-items');
-    const kpiTotal = document.getElementById('kpi-total');
-    const kpiDuration = document.getElementById('kpi-duration');
-    const kpiWarranty = document.getElementById('kpi-warranty');
-    const btnTelegram = document.getElementById('btn-telegram-direct');
-    const hudFinishLabel = document.getElementById('hud-finish-label');
+    const cardCeramic = document.getElementById('card-ceramic');
+    const cardPpf = document.getElementById('card-ppf');
 
-    // Render Services Stack
-    function renderServices() {
-      servicesContainer.innerHTML = '';
-      SERVICES.forEach((srv) => {
-        const isSel = selectedServices.has(srv.id);
-        const card = document.createElement('div');
-        card.className = `service-card ${isSel ? 'selected' : ''}`;
-        card.innerHTML = `
-          <div class="css-checkbox">
-            <div class="css-checkbox-mark"></div>
-          </div>
-          <div class="service-body">
-            <div class="service-top-row">
-              <span class="service-title">${srv.title}</span>
-              <span class="service-price">${srv.price.toLocaleString('ru-RU')} ₽</span>
-            </div>
-            <div class="service-meta">${srv.meta}</div>
-          </div>
-        `;
-        card.addEventListener('click', () => {
-          toggleService(srv);
-        });
-        servicesContainer.appendChild(card);
-      });
-      updateReceipt();
-    }
-
-    function toggleService(srv) {
-      if (selectedServices.has(srv.id)) {
-        selectedServices.delete(srv.id);
+    function applyShader(mode) {
+      if (!carBodyMesh) return;
+      if (mode === 'ceramic') {
+        carBodyMesh.material = materials.ceramic;
+        cardCeramic.classList.add('active');
+        cardPpf.classList.remove('active');
       } else {
-        selectedServices.add(srv.id);
-        if (srv.hotspotId) flyToCamera(srv.hotspotId);
+        carBodyMesh.material = materials.satin;
+        cardPpf.classList.add('active');
+        cardCeramic.classList.remove('active');
       }
-      renderServices();
+      requestRender();
     }
 
-    // Update Receipt & Telegram Deeplink
-    function updateReceipt() {
-      receiptItemsContainer.innerHTML = '';
-      let sum = 0;
-      let maxDays = 1;
-      let warrText = '3 года';
+    cardCeramic.addEventListener('click', () => applyShader('ceramic'));
+    cardPpf.addEventListener('click', () => applyShader('satin'));
 
+    // --------------------------------------------------------------------------
+    // 8. TURNTABLE ARROWS (← →) & ROTATION TOGGLE
+    // --------------------------------------------------------------------------
+    const btnPrev = document.getElementById('btn-prev-angle');
+    const btnNext = document.getElementById('btn-next-angle');
+    const rotateStatus = document.getElementById('rotate-status-label');
+
+    btnPrev.addEventListener('click', () => {
+      turntableGroup.rotation.y -= 0.35;
+      requestRender();
+    });
+
+    btnNext.addEventListener('click', () => {
+      turntableGroup.rotation.y += 0.35;
+      requestRender();
+    });
+
+    rotateStatus.addEventListener('click', () => {
+      isRotating = !isRotating;
+      rotateStatus.textContent = isRotating ? '[ ПОДИУМ: ВРАЩЕНИЕ ]' : '[ ПОДИУМ: СТАТИКА ]';
+      requestRender();
+    });
+
+    // --------------------------------------------------------------------------
+    // 9. BESPOKE INQUIRY DRAWER & TELEGRAM DEEPLINK
+    // --------------------------------------------------------------------------
+    const drawer = document.getElementById('inquiry-drawer');
+    const btnOpenInquiry = document.getElementById('btn-open-inquiry');
+    const btnCloseDrawer = document.getElementById('btn-close-drawer');
+    const drawerOptionsList = document.getElementById('drawer-options-list');
+    const drawerTotalAmount = document.getElementById('drawer-total-amount');
+    const btnSendTg = document.getElementById('btn-send-tg');
+
+    btnOpenInquiry.addEventListener('click', () => {
+      drawer.classList.add('open');
+    });
+
+    btnCloseDrawer.addEventListener('click', () => {
+      drawer.classList.remove('open');
+    });
+
+    function renderDrawerOptions() {
+      drawerOptionsList.innerHTML = '';
+      let sum = 0;
       const receiptLines = [
         '====================================',
-        'NERO ATELIER // COUTURE DETAILING',
-        'ИНДИВИДУАЛЬНАЯ СПЕЦИФИКАЦИЯ #NA-2026',
+        'ATELIER COUTURE // HAUTE PRESERVATION',
+        'BESPOKE INQUIRY SPECIFICATION',
         'Автомобиль: Ferrari 458 Italia',
         '====================================',
         ''
       ];
 
-      SERVICES.forEach((srv) => {
-        if (selectedServices.has(srv.id)) {
+      DETAILING_SERVICES.forEach((srv) => {
+        if (srv.selected) {
           sum += srv.price;
-          if (srv.days > maxDays) maxDays = srv.days;
-          if (srv.warranty.includes('5 лет') || srv.warranty.includes('Бессрочно')) {
-            warrText = '5 лет (гарантийный сертификат)';
-          }
-
-          const row = document.createElement('div');
-          row.className = 'receipt-item-row';
-          row.innerHTML = `
-            <span class="receipt-item-name">• ${srv.title}</span>
-            <span class="receipt-item-val">${srv.price.toLocaleString('ru-RU')} ₽</span>
-          `;
-          receiptItemsContainer.appendChild(row);
-
-          receiptLines.push(`• ${srv.title} — ${srv.price.toLocaleString('ru-RU')} ₽ (${srv.warranty})`);
+          receiptLines.push(`• ${srv.name} — ${srv.price.toLocaleString('ru-RU')} ₽`);
         }
+
+        const card = document.createElement('div');
+        card.className = `drawer-option-card ${srv.selected ? 'selected' : ''}`;
+        card.innerHTML = `
+          <div style="display:flex; align-items:center;">
+            <div class="css-checkbox-square"></div>
+            <div>
+              <div class="opt-name">${srv.name}</div>
+              <div class="opt-meta">${srv.meta}</div>
+            </div>
+          </div>
+          <div class="opt-price">${srv.price.toLocaleString('ru-RU')} ₽</div>
+        `;
+        card.addEventListener('click', () => {
+          srv.selected = !srv.selected;
+          if (srv.id === 'ppf_satin' && srv.selected) applyShader('satin');
+          if (srv.id === 'ceramic_glass' && srv.selected) applyShader('ceramic');
+          renderDrawerOptions();
+        });
+        drawerOptionsList.appendChild(card);
       });
 
-      kpiTotal.textContent = sum.toLocaleString('ru-RU') + ' ₽';
-      kpiDuration.textContent = `${maxDays}–${maxDays + 1} рабочих дней`;
-      kpiWarranty.textContent = warrText;
-
-      const finishNames = {
-        ceramic: 'Кварцевый ультраглянец 9H',
-        satin: 'Сатиновый полиуретан (PPF Matte)',
-        shadow: 'Пакет Shadow Line (Piano Black)'
-      };
+      drawerTotalAmount.textContent = sum.toLocaleString('ru-RU') + ' ₽';
 
       receiptLines.push('');
-      receiptLines.push(`Финишное покрытие кузова: ${finishNames[currentFinish]}`);
       receiptLines.push(`ИТОГО: ${sum.toLocaleString('ru-RU')} ₽`);
-      receiptLines.push(`Срок: ${maxDays}–${maxDays + 1} рабочих дней`);
-      receiptLines.push(`Гарантия: ${warrText}`);
+      receiptLines.push('Срок: 4-5 рабочих дней в чистой зоне ISO 7');
+      receiptLines.push('Гарантия: 5 лет (сертификат)');
       receiptLines.push('------------------------------------');
-      receiptLines.push('Сформировано через интерактивный 3D-конфигуратор');
+      receiptLines.push('Запрос сформирован через 3D Atelier Couture');
 
-      const fullReceiptText = receiptLines.join('\n');
-
-      // Update Telegram link
-      const tgUrl = 'https://t.me/thor_bakin?text=' + encodeURIComponent(fullReceiptText);
-      btnTelegram.href = tgUrl;
-
-      // Copy Button
-      document.getElementById('btn-copy-spec').onclick = () => {
-        navigator.clipboard.writeText(fullReceiptText).then(() => {
-          const t = document.getElementById('toast-notify');
-          t.textContent = '[ СПЕЦИФИКАЦИЯ СКОПИРОВАНА В БУФЕР ]';
-          setTimeout(() => { t.textContent = ''; }, 2800);
-        });
-      };
+      const fullText = receiptLines.join('\n');
+      btnSendTg.href = 'https://t.me/thor_bakin?text=' + encodeURIComponent(fullText);
     }
 
-    renderServices();
-
-    // Finish Buttons Listener
-    document.querySelectorAll('.finish-btn').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.finish-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        currentFinish = btn.dataset.finish;
-
-        if (bodyMesh) {
-          bodyMesh.material = materials[currentFinish];
-          requestRender();
-        }
-
-        const labels = {
-          ceramic: 'ФИНИШ: КВАРЦЕВЫЙ ЛАК 9H CERAMIC PRO',
-          satin: 'ФИНИШ: САТИНОВЫЙ ПОЛИУРЕТАН (PPF MATTE)',
-          shadow: 'ФИНИШ: ПАКЕТ SHADOW LINE (PIANO BLACK)'
-        };
-        hudFinishLabel.textContent = labels[currentFinish];
-        updateReceipt();
-      });
-    });
-
-    // Camera Preset Buttons
-    document.querySelectorAll('.cam-btn').forEach((btn) => {
-      btn.addEventListener('click', () => {
-        flyToCamera(btn.dataset.cam);
-      });
-    });
-
-    // Turntable Toggle Buttons
-    const btnToggleRotate = document.getElementById('btn-toggle-rotate');
-    btnToggleRotate.addEventListener('click', () => {
-      isAutoRotating = !isAutoRotating;
-      btnToggleRotate.classList.toggle('active', isAutoRotating);
-      btnToggleRotate.textContent = isAutoRotating ? '[ ПОДИУМ: ВРАЩЕНИЕ ]' : '[ ПОДИУМ: СТАТИКА ]';
-      requestRender();
-    });
-
-    const btnTogglePins = document.getElementById('btn-toggle-pins');
-    btnTogglePins.addEventListener('click', () => {
-      arePinsVisible = !arePinsVisible;
-      btnTogglePins.classList.toggle('active', arePinsVisible);
-      btnTogglePins.textContent = arePinsVisible ? '[ МАЯКИ: ВКЛ ]' : '[ МАЯКИ: ВЫКЛ ]';
-      updateHotspotPositions();
-    });
+    renderDrawerOptions();
 
   </script>
 </body>
