@@ -1,0 +1,3217 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>ATELIER NERO // Высокоточный детейлинг и защита кузова суперкаров</title>
+  <meta name="description" content="Премиальное ателье детейлинга и прецизионной защиты кузова. Антигравийные полиуретаны XPEL, нанокерамика 9H, атермальная защита Llumar, окрас суппортов в чистой зоне ISO 7.">
+  <link rel="icon" type="image/png" href="favicon.png">
+  
+  <!-- Architectural Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       DESIGN TOKENS // OBSIDIAN PRECISION SPECIFICATION
+       ========================================================================== */
+    :root {
+      --bg-base: #070709;
+      --bg-surface: #0c0d12;
+      --bg-card: #12141c;
+      --bg-card-hover: #161924;
+      --bg-panel: rgba(12, 13, 18, 0.88);
+      
+      --border-hairline: rgba(255, 255, 255, 0.07);
+      --border-mid: rgba(255, 255, 255, 0.12);
+      --border-bright: rgba(255, 255, 255, 0.22);
+      --border-accent: rgba(200, 255, 0, 0.35);
+      
+      --accent-green: #c8ff00;
+      --accent-green-dim: rgba(200, 255, 0, 0.15);
+      --accent-cyan: #00e5ff;
+      --accent-cyan-dim: rgba(0, 229, 255, 0.15);
+      --accent-ice: #88c0ff;
+      --accent-red: #ff3b30;
+      
+      --text-bright: #f5f6fa;
+      --text-mid: #8f94a6;
+      --text-dim: #545868;
+      
+      --font-display: 'Syne', -apple-system, sans-serif;
+      --font-sans: 'Space Grotesk', -apple-system, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      
+      --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* CSS Reset */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-base);
+      color: var(--text-bright);
+      font-family: var(--font-sans);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    body {
+      overflow-x: hidden;
+      background-color: var(--bg-base);
+      background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+      background-size: 48px 48px;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #070709;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--accent-green);
+    }
+
+    /* Selection */
+    ::selection {
+      background: var(--accent-green);
+      color: #000;
+    }
+
+    /* ==========================================================================
+       STRICT ZERO SVG / ZERO EMOJI CSS GEOMETRY MARKERS
+       ========================================================================== */
+    .css-led-green {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-green);
+      box-shadow: 0 0 8px var(--accent-green);
+      margin-right: 6px;
+      vertical-align: middle;
+      animation: ledPulse 2.4s infinite ease-in-out;
+    }
+
+    .css-led-cyan {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-cyan);
+      box-shadow: 0 0 8px var(--accent-cyan);
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+
+    @keyframes ledPulse {
+      0%, 100% { opacity: 1; filter: drop-shadow(0 0 6px var(--accent-green)); }
+      50% { opacity: 0.35; filter: none; }
+    }
+
+    .css-chevron-right {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-top: 1.5px solid currentColor;
+      border-right: 1.5px solid currentColor;
+      transform: rotate(45deg);
+      vertical-align: middle;
+      margin-left: 6px;
+      transition: transform var(--transition-fast);
+    }
+
+    .css-chevron-down {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-bottom: 1.5px solid currentColor;
+      border-right: 1.5px solid currentColor;
+      transform: rotate(45deg);
+      vertical-align: middle;
+      margin-left: 6px;
+      transition: transform var(--transition-fast);
+    }
+
+    .css-crosshair {
+      position: relative;
+      width: 12px;
+      height: 12px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .css-crosshair::before {
+      content: '';
+      position: absolute;
+      left: 5px;
+      top: 0;
+      width: 2px;
+      height: 12px;
+      background: currentColor;
+    }
+    .css-crosshair::after {
+      content: '';
+      position: absolute;
+      top: 5px;
+      left: 0;
+      width: 12px;
+      height: 2px;
+      background: currentColor;
+    }
+
+    .css-checkbox {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(18, 20, 28, 0.9);
+      border-radius: 2px;
+      position: relative;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      vertical-align: middle;
+      flex-shrink: 0;
+    }
+    .css-checkbox:checked {
+      background: var(--accent-green);
+      border-color: var(--accent-green);
+    }
+    .css-checkbox:checked::after {
+      content: '';
+      position: absolute;
+      left: 5px;
+      top: 2px;
+      width: 4px;
+      height: 8px;
+      border: solid #000;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+
+    /* Common typography helpers */
+    .mono {
+      font-family: var(--font-mono);
+    }
+    .display {
+      font-family: var(--font-display);
+    }
+    .bracket-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-green);
+    }
+
+    /* ==========================================================================
+       HEADER & TELEMETRY SYSTEM BAR
+       ========================================================================== */
+    .top-telemetry-bar {
+      border-bottom: 1px solid var(--border-hairline);
+      background: rgba(7, 7, 9, 0.95);
+      backdrop-filter: blur(12px);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.05em;
+      color: var(--text-dim);
+      padding: 6px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .telemetry-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .telemetry-value {
+      color: var(--text-bright);
+    }
+
+    .site-header {
+      border-bottom: 1px solid var(--border-hairline);
+      background: rgba(12, 13, 18, 0.85);
+      backdrop-filter: blur(16px);
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 31px;
+      z-index: 99;
+      gap: 16px;
+    }
+    .brand-mark {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-bright);
+      flex-shrink: 0;
+    }
+    .brand-title {
+      font-family: var(--font-display);
+      font-size: 19px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+    }
+    .brand-sub {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-dim);
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    .main-nav {
+      display: flex;
+      gap: 16px;
+      list-style: none;
+      flex-wrap: nowrap;
+      align-items: center;
+    }
+    .nav-link {
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      text-decoration: none;
+      color: var(--text-mid);
+      transition: color var(--transition-fast);
+      letter-spacing: 0.03em;
+      white-space: nowrap;
+    }
+    .nav-link:hover {
+      color: var(--accent-green);
+    }
+
+    .btn-tactile {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      padding: 9px 18px;
+      border: 1px solid var(--border-bright);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text-bright);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      border-radius: 2px;
+    }
+    .btn-tactile:hover {
+      border-color: var(--accent-green);
+      background: rgba(200, 255, 0, 0.08);
+      color: var(--accent-green);
+    }
+    .btn-primary {
+      background: var(--accent-green);
+      color: #000;
+      border-color: var(--accent-green);
+    }
+    .btn-primary:hover {
+      background: #d4ff26;
+      color: #000;
+      box-shadow: 0 0 16px rgba(200, 255, 0, 0.4);
+    }
+
+    /* ==========================================================================
+       HERO & 3D WEBGL STUDIO CONFIGURATOR
+       ========================================================================== */
+    .hero-configurator-section {
+      position: relative;
+      padding: 32px 24px 48px;
+      max-width: 1560px;
+      margin: 0 auto;
+    }
+
+    .hero-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--border-hairline);
+      padding-bottom: 16px;
+    }
+    .hero-headline {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 4.2vw, 54px);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      max-width: 900px;
+      color: var(--text-bright);
+    }
+    .hero-sub {
+      color: var(--text-mid);
+      font-size: 14px;
+      max-width: 480px;
+      margin-top: 8px;
+    }
+
+    /* 3D Viewport Frame */
+    .viewport-frame {
+      position: relative;
+      width: 100%;
+      height: clamp(520px, 68vh, 760px);
+      background: radial-gradient(circle at 50% 45%, #151824 0%, #0c0d12 45%, #070709 90%);
+      border: 1px solid var(--border-hairline);
+      border-radius: 3px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+    }
+
+    #webgl-canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+      touch-action: none;
+      outline: none;
+    }
+
+    /* Studio Loading Overlay */
+    .studio-loader {
+      position: absolute;
+      inset: 0;
+      background: #070709;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+    .studio-loader.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .loader-box {
+      width: 320px;
+      border: 1px solid var(--border-hairline);
+      background: rgba(18, 20, 28, 0.95);
+      padding: 24px;
+      font-family: var(--font-mono);
+      text-align: center;
+    }
+    .loader-title {
+      font-size: 12px;
+      color: var(--text-bright);
+      margin-bottom: 12px;
+      letter-spacing: 0.05em;
+    }
+    .loader-progress-track {
+      width: 100%;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+    .loader-progress-bar {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 12%;
+      background: var(--accent-green);
+      box-shadow: 0 0 10px var(--accent-green);
+      transition: width 0.2s ease;
+    }
+    .loader-status {
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+
+    /* 3D Hotspot Screen-Projected Pins */
+    .hotspot-node {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      cursor: pointer;
+      z-index: 25;
+      will-change: transform, opacity;
+      user-select: none;
+      pointer-events: auto;
+    }
+    .hotspot-dot {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(7, 7, 9, 0.85);
+      border: 1px solid var(--accent-green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 0 0 12px rgba(200, 255, 0, 0.35);
+      transition: all var(--transition-fast);
+    }
+    .hotspot-dot::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent-green);
+      transition: background var(--transition-fast);
+    }
+    .hotspot-pulse {
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 1px solid var(--accent-green);
+      animation: pulseRing 2.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+      pointer-events: none;
+    }
+    @keyframes pulseRing {
+      0% { transform: scale(0.6); opacity: 1; }
+      100% { transform: scale(1.9); opacity: 0; }
+    }
+    .hotspot-tag {
+      position: absolute;
+      left: 28px;
+      top: 50%;
+      transform: translateY(-50%);
+      white-space: nowrap;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.05em;
+      color: var(--text-bright);
+      background: rgba(12, 13, 18, 0.92);
+      padding: 5px 10px;
+      border: 1px solid var(--border-hairline);
+      border-left: 2px solid var(--accent-green);
+      backdrop-filter: blur(8px);
+      pointer-events: none;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+      transition: border-color var(--transition-fast), background var(--transition-fast);
+    }
+    .hotspot-node:hover .hotspot-tag {
+      border-color: var(--accent-green);
+      background: rgba(18, 20, 28, 0.98);
+    }
+    .hotspot-node.active .hotspot-dot {
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 18px rgba(0, 229, 255, 0.7);
+    }
+    .hotspot-node.active .hotspot-dot::before {
+      background: var(--accent-cyan);
+    }
+    .hotspot-node.active .hotspot-tag {
+      border-left-color: var(--accent-cyan);
+    }
+
+    /* HUD Telemetry Elements */
+    .hud-top-left {
+      position: absolute;
+      left: 20px;
+      top: 20px;
+      z-index: 20;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.05em;
+      background: rgba(12, 13, 18, 0.85);
+      backdrop-filter: blur(8px);
+      padding: 10px 14px;
+      border: 1px solid var(--border-hairline);
+      border-left: 2px solid var(--accent-green);
+      pointer-events: none;
+    }
+    .hud-top-right {
+      position: absolute;
+      right: 20px;
+      top: 20px;
+      z-index: 20;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.05em;
+      background: rgba(12, 13, 18, 0.85);
+      backdrop-filter: blur(8px);
+      padding: 10px 14px;
+      border: 1px solid var(--border-hairline);
+      text-align: right;
+      color: var(--text-dim);
+      pointer-events: none;
+    }
+
+    .hud-bottom-left {
+      position: absolute;
+      left: 20px;
+      bottom: 20px;
+      z-index: 20;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      max-width: 520px;
+    }
+    .hud-view-btn {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 6px 12px;
+      background: rgba(12, 13, 18, 0.85);
+      border: 1px solid var(--border-hairline);
+      color: var(--text-mid);
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      transition: all var(--transition-fast);
+      border-radius: 2px;
+    }
+    .hud-view-btn:hover {
+      border-color: var(--border-bright);
+      color: var(--text-bright);
+    }
+    .hud-view-btn.active {
+      border-color: var(--accent-green);
+      color: var(--accent-green);
+      background: rgba(200, 255, 0, 0.1);
+    }
+
+    .hud-bottom-center {
+      position: absolute;
+      left: 50%;
+      bottom: 20px;
+      transform: translateX(-50%);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      color: var(--text-dim);
+      background: rgba(7, 7, 9, 0.7);
+      padding: 4px 10px;
+      border: 1px solid var(--border-hairline);
+      pointer-events: none;
+    }
+
+    /* Floating Studio Configurator Deck */
+    .studio-control-deck {
+      margin-top: 24px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: 3px;
+      padding: 24px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+      position: relative;
+    }
+    .deck-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .deck-group-header {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--text-dim);
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-hairline);
+      padding-bottom: 6px;
+    }
+    .deck-group-header .active-val {
+      color: var(--accent-green);
+    }
+
+    /* Finish Selector Tabs */
+    .finish-selector {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .finish-option {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      padding: 9px 12px;
+      background: rgba(18, 20, 28, 0.6);
+      border: 1px solid var(--border-hairline);
+      color: var(--text-mid);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all var(--transition-fast);
+      border-radius: 2px;
+    }
+    .finish-option:hover {
+      border-color: var(--border-bright);
+      color: var(--text-bright);
+    }
+    .finish-option.active {
+      border-color: var(--accent-green);
+      background: rgba(200, 255, 0, 0.08);
+      color: var(--accent-green);
+    }
+    .finish-option .tech-stat {
+      font-size: 10px;
+      color: var(--text-dim);
+    }
+
+    /* Swatches Grid */
+    .swatches-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 8px;
+    }
+    .swatch-btn {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 2px;
+      border: 1px solid var(--border-hairline);
+      cursor: pointer;
+      position: relative;
+      transition: all var(--transition-fast);
+      background: #000;
+      padding: 0;
+    }
+    .swatch-btn:hover {
+      transform: translateY(-2px);
+      border-color: var(--text-bright);
+    }
+    .swatch-btn.active {
+      border: 2px solid var(--accent-green);
+      box-shadow: 0 0 10px rgba(200, 255, 0, 0.4);
+    }
+
+    /* Caliper Selector */
+    .caliper-selector {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+    .caliper-btn {
+      padding: 8px 4px;
+      border: 1px solid var(--border-hairline);
+      background: rgba(18, 20, 28, 0.6);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-align: center;
+      cursor: pointer;
+      color: var(--text-mid);
+      transition: all var(--transition-fast);
+      border-radius: 2px;
+    }
+    .caliper-btn:hover {
+      border-color: var(--border-bright);
+      color: var(--text-bright);
+    }
+    .caliper-btn.active {
+      border-color: var(--accent-green);
+      background: rgba(200, 255, 0, 0.1);
+      color: var(--accent-green);
+    }
+
+    /* Tint Level */
+    .tint-selector {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .tint-btn {
+      padding: 8px 6px;
+      border: 1px solid var(--border-hairline);
+      background: rgba(18, 20, 28, 0.6);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-align: center;
+      cursor: pointer;
+      color: var(--text-mid);
+      transition: all var(--transition-fast);
+      border-radius: 2px;
+    }
+    .tint-btn:hover {
+      border-color: var(--border-bright);
+      color: var(--text-bright);
+    }
+    .tint-btn.active {
+      border-color: var(--accent-cyan);
+      background: rgba(0, 229, 255, 0.1);
+      color: var(--accent-cyan);
+    }
+
+    /* Shadow Line Toggle */
+    .shadow-toggle {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .shadow-btn {
+      padding: 8px;
+      border: 1px solid var(--border-hairline);
+      background: rgba(18, 20, 28, 0.6);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      text-align: center;
+      cursor: pointer;
+      color: var(--text-mid);
+      transition: all var(--transition-fast);
+      border-radius: 2px;
+    }
+    .shadow-btn:hover {
+      border-color: var(--border-bright);
+      color: var(--text-bright);
+    }
+    .shadow-btn.active {
+      border-color: var(--text-bright);
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-bright);
+    }
+
+    /* ==========================================================================
+       SECTION COMMON STYLES
+       ========================================================================== */
+    .section-container {
+      max-width: 1560px;
+      margin: 0 auto;
+      padding: 80px 24px;
+      border-top: 1px solid var(--border-hairline);
+    }
+    .section-header {
+      margin-bottom: 48px;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(26px, 3.4vw, 42px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      color: var(--text-bright);
+      margin: 8px 0 12px;
+    }
+    .section-desc {
+      color: var(--text-mid);
+      font-size: 15px;
+      max-width: 680px;
+    }
+
+    /* ==========================================================================
+       BENTO GRID // COMPARATIVE PHYSICS MATRIX
+       ========================================================================== */
+    .bento-matrix-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px;
+    }
+    .bento-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-hairline);
+      border-radius: 3px;
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color var(--transition-smooth), transform var(--transition-smooth);
+    }
+    .bento-card:hover {
+      border-color: var(--border-bright);
+      transform: translateY(-2px);
+    }
+    .bento-span-4 { grid-column: span 4; }
+    .bento-span-6 { grid-column: span 6; }
+    .bento-span-8 { grid-column: span 8; }
+    .bento-span-12 { grid-column: span 12; }
+
+    .card-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--text-dim);
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .card-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-bright);
+      margin-bottom: 12px;
+    }
+    .card-desc {
+      font-size: 13.5px;
+      color: var(--text-mid);
+      line-height: 1.55;
+    }
+
+    /* Metric Bar Visualization */
+    .metric-bars-stack {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .metric-row {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .metric-meta {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-mid);
+    }
+    .metric-track {
+      width: 100%;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 1px;
+      overflow: hidden;
+    }
+    .metric-fill {
+      height: 100%;
+      background: var(--text-dim);
+      border-radius: 1px;
+    }
+    .metric-fill.highlight {
+      background: var(--accent-green);
+      box-shadow: 0 0 10px rgba(200, 255, 0, 0.4);
+    }
+    .metric-fill.cyan {
+      background: var(--accent-cyan);
+      box-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
+    }
+
+    /* ==========================================================================
+       ENGINEERING PROTOCOLS // 4-STAGE STUDIO PIPELINE
+       ========================================================================== */
+    .protocols-timeline {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+    .protocol-step-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-hairline);
+      padding: 24px;
+      border-radius: 3px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all var(--transition-smooth);
+    }
+    .protocol-step-card:hover {
+      border-color: var(--accent-green);
+      background: var(--bg-card-hover);
+    }
+    .step-number {
+      font-family: var(--font-mono);
+      font-size: 32px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.1);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+    .protocol-step-card:hover .step-number {
+      color: var(--accent-green);
+    }
+    .step-name {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-bright);
+      margin-bottom: 8px;
+    }
+    .step-specs {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--accent-cyan);
+      margin-bottom: 12px;
+    }
+    .step-text {
+      font-size: 13px;
+      color: var(--text-mid);
+      line-height: 1.5;
+    }
+
+    /* ==========================================================================
+       LABORATORY MATERIALS // CHEMICAL FORMULATIONS
+       ========================================================================== */
+    .materials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .material-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-hairline);
+      padding: 24px;
+      border-radius: 3px;
+      transition: all var(--transition-smooth);
+    }
+    .material-item:hover {
+      border-color: var(--border-bright);
+      transform: translateY(-2px);
+    }
+    .mat-origin {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-bottom: 6px;
+    }
+    .mat-name {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-bright);
+      margin-bottom: 8px;
+    }
+    .mat-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      padding: 3px 6px;
+      background: rgba(200, 255, 0, 0.08);
+      border: 1px solid rgba(200, 255, 0, 0.3);
+      color: var(--accent-green);
+      margin-bottom: 12px;
+      border-radius: 2px;
+    }
+    .mat-desc {
+      font-size: 13px;
+      color: var(--text-mid);
+      line-height: 1.5;
+    }
+
+    /* ==========================================================================
+       LIVE CALCULATOR & MONOSPACE RECEIPT ENGINE
+       ========================================================================== */
+    .calculator-layout {
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+    
+    .calc-options-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+    .calc-category-block {
+      background: var(--bg-card);
+      border: 1px solid var(--border-hairline);
+      border-radius: 3px;
+      padding: 20px;
+    }
+    .calc-cat-title {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      color: var(--accent-green);
+      margin-bottom: 14px;
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-hairline);
+      padding-bottom: 6px;
+    }
+    
+    .calc-items-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .calc-row-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px;
+      background: rgba(12, 13, 18, 0.6);
+      border: 1px solid var(--border-hairline);
+      border-radius: 2px;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      user-select: none;
+    }
+    .calc-row-card:hover {
+      border-color: var(--border-bright);
+      background: rgba(18, 20, 28, 0.9);
+    }
+    .calc-row-card.selected {
+      border-color: rgba(200, 255, 0, 0.4);
+      background: rgba(200, 255, 0, 0.04);
+    }
+    .calc-row-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .calc-item-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .calc-item-name {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text-bright);
+    }
+    .calc-item-sub {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+    .calc-row-right {
+      text-align: right;
+    }
+    .calc-item-price {
+      font-family: var(--font-mono);
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text-bright);
+    }
+    .calc-item-days {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-dim);
+    }
+
+    /* Sticky Live Terminal Receipt */
+    .receipt-terminal-dock {
+      position: sticky;
+      top: 96px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-mid);
+      border-radius: 3px;
+      overflow: hidden;
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6);
+    }
+    .terminal-header {
+      background: #0a0b0f;
+      border-bottom: 1px solid var(--border-hairline);
+      padding: 10px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.05em;
+      color: var(--text-dim);
+    }
+    .terminal-dots {
+      display: flex;
+      gap: 6px;
+    }
+    .t-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+    }
+    .terminal-body {
+      padding: 20px;
+    }
+
+    .monospace-receipt-box {
+      background: #06070a;
+      border: 1px solid var(--border-hairline);
+      border-radius: 2px;
+      padding: 16px;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      line-height: 1.55;
+      color: #9da3b4;
+      white-space: pre-wrap;
+      word-break: break-word;
+      max-height: 380px;
+      overflow-y: auto;
+      margin-bottom: 20px;
+    }
+
+    .receipt-kpis {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      border-top: 1px solid var(--border-hairline);
+      border-bottom: 1px solid var(--border-hairline);
+      padding: 16px 0;
+      margin-bottom: 20px;
+    }
+    .kpi-tile {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .kpi-lbl {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-dim);
+      letter-spacing: 0.05em;
+    }
+    .kpi-val {
+      font-family: var(--font-mono);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-bright);
+    }
+    .kpi-val.highlight {
+      color: var(--accent-green);
+    }
+
+    .receipt-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .btn-telegram-direct {
+      width: 100%;
+      padding: 13px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      background: var(--accent-green);
+      color: #000;
+      border: none;
+      border-radius: 2px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all var(--transition-fast);
+      text-decoration: none;
+    }
+    .btn-telegram-direct:hover {
+      background: #dcff33;
+      box-shadow: 0 0 20px rgba(200, 255, 0, 0.4);
+    }
+
+    .btn-secondary-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .btn-sec {
+      padding: 10px 8px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-hairline);
+      color: var(--text-mid);
+      cursor: pointer;
+      border-radius: 2px;
+      text-align: center;
+      text-decoration: none;
+      transition: all var(--transition-fast);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .btn-sec:hover {
+      border-color: var(--border-bright);
+      color: var(--text-bright);
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    /* Toast Notification for Clipboard */
+    .toast-feedback {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--bg-surface);
+      border: 1px solid var(--accent-green);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 15px rgba(200, 255, 0, 0.3);
+      padding: 12px 20px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--accent-green);
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 200;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .toast-feedback.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    /* ==========================================================================
+       STUDIO STANDARDS & INFRASTRUCTURE
+       ========================================================================== */
+    .standards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .standard-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-hairline);
+      padding: 32px 24px;
+      border-radius: 3px;
+      position: relative;
+    }
+    .standard-metric {
+      font-family: var(--font-mono);
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--accent-green);
+      margin-bottom: 8px;
+    }
+    .standard-title {
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-bright);
+      margin-bottom: 10px;
+    }
+    .standard-body {
+      font-size: 13.5px;
+      color: var(--text-mid);
+      line-height: 1.55;
+    }
+
+    /* ==========================================================================
+       TECHNICAL FAQ ACCORDION
+       ========================================================================== */
+    .faq-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    .faq-accordion-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-hairline);
+      border-radius: 3px;
+      overflow: hidden;
+      transition: border-color var(--transition-fast);
+    }
+    .faq-accordion-item:hover {
+      border-color: var(--border-bright);
+    }
+    .faq-question-btn {
+      width: 100%;
+      padding: 20px 24px;
+      background: transparent;
+      border: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      text-align: left;
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-bright);
+    }
+    .faq-question-btn .faq-arrow {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      color: var(--accent-green);
+      transition: transform 0.3s ease;
+    }
+    .faq-accordion-item.open .faq-question-btn .faq-arrow {
+      transform: rotate(90deg);
+    }
+    .faq-answer-panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.35s ease;
+      padding: 0 24px;
+      font-size: 14px;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+    .faq-accordion-item.open .faq-answer-panel {
+      max-height: 400px;
+      padding-bottom: 24px;
+    }
+
+    /* ==========================================================================
+       TERMINAL FOOTER
+       ========================================================================== */
+    .studio-footer {
+      border-top: 1px solid var(--border-hairline);
+      background: #050507;
+      padding: 64px 24px 32px;
+    }
+    .footer-inner {
+      max-width: 1560px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 40px;
+      margin-bottom: 48px;
+    }
+    .footer-col-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--accent-green);
+      margin-bottom: 16px;
+    }
+    .footer-text {
+      color: var(--text-mid);
+      font-size: 13.5px;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .footer-links-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .footer-link {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-mid);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+    .footer-link:hover {
+      color: var(--accent-green);
+    }
+
+    .footer-bottom-bar {
+      max-width: 1560px;
+      margin: 0 auto;
+      border-top: 1px solid var(--border-hairline);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+    .developer-pill {
+      color: var(--text-mid);
+      text-decoration: none;
+      border: 1px solid var(--border-hairline);
+      padding: 4px 10px;
+      border-radius: 2px;
+      transition: all var(--transition-fast);
+    }
+    .developer-pill:hover {
+      border-color: var(--accent-green);
+      color: var(--accent-green);
+    }
+
+    /* ==========================================================================
+       RESPONSIVE ADAPTATIONS
+       ========================================================================== */
+    @media (max-width: 1320px) {
+      .brand-sub {
+        display: none;
+      }
+      .main-nav {
+        gap: 12px;
+      }
+      .nav-link {
+        font-size: 11px;
+      }
+    }
+
+    @media (max-width: 1180px) {
+      .calculator-layout {
+        grid-template-columns: 1fr;
+      }
+      .receipt-terminal-dock {
+        position: static;
+        margin-top: 24px;
+      }
+      .protocols-timeline {
+        grid-template-columns: 1fr 1fr;
+      }
+      .standards-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-inner {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 1040px) {
+      .main-nav {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .top-telemetry-bar {
+        display: none;
+      }
+      .site-header {
+        top: 0;
+        padding: 12px 16px;
+      }
+      .hero-configurator-section {
+        padding: 16px 12px 32px;
+      }
+      .hero-meta-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      .viewport-frame {
+        height: 480px;
+      }
+      .hud-top-right {
+        display: none;
+      }
+      .hud-top-left {
+        font-size: 9px;
+        padding: 6px 8px;
+        max-width: 80%;
+      }
+      .hud-bottom-left {
+        max-width: 100%;
+        gap: 4px;
+      }
+      .hud-view-btn {
+        font-size: 10px;
+        padding: 4px 8px;
+      }
+      .bento-span-4, .bento-span-6, .bento-span-8 {
+        grid-column: span 12;
+      }
+      .protocols-timeline {
+        grid-template-columns: 1fr;
+      }
+      .footer-inner {
+        grid-template-columns: 1fr;
+      }
+      .footer-bottom-bar {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+      }
+    }
+  </style>
+
+  <!-- Three.js r160 ES Module Import Map -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Top Telemetrics Bar -->
+  <div class="top-telemetry-bar">
+    <div class="telemetry-item">
+      <span class="css-led-green"></span>
+      <span>ATELIER STATUS:</span>
+      <span class="telemetry-value">ISO 7 CLEANROOM ONLINE</span>
+    </div>
+    <div class="telemetry-item">
+      <span>LAT/LON:</span>
+      <span class="telemetry-value">55.7558° N, 37.6173° E [ МОСКВА ]</span>
+    </div>
+    <div class="telemetry-item">
+      <span>TEMPERATURE:</span>
+      <span class="telemetry-value">21.4°C // HUMIDITY 45%</span>
+    </div>
+    <div class="telemetry-item">
+      <span>SLOT AVAILABILITY:</span>
+      <span class="telemetry-value" style="color:var(--accent-green)">2 СЛОТА НА ТЕКУЩУЮ НЕДЕЛЮ</span>
+    </div>
+  </div>
+
+  <!-- Main Site Header -->
+  <header class="site-header">
+    <a href="#configurator" class="brand-mark">
+      <span class="brand-title">ATELIER NERO</span>
+      <span class="brand-sub">// SURFACE LAB [ SPEC 01 ]</span>
+    </a>
+
+    <nav>
+      <ul class="main-nav">
+        <li><a href="#configurator" class="nav-link">[ 01 КОНФИГУРАТОР ]</a></li>
+        <li><a href="#comparison" class="nav-link">[ 02 ФИЗИКА ЗАЩИТЫ ]</a></li>
+        <li><a href="#protocols" class="nav-link">[ 03 ПРОТОКОЛЫ ]</a></li>
+        <li><a href="#materials" class="nav-link">[ 04 МАТЕРИАЛЫ ]</a></li>
+        <li><a href="#calculator" class="nav-link">[ 05 СМЕТА ]</a></li>
+        <li><a href="#faq" class="nav-link">[ 06 FAQ ]</a></li>
+      </ul>
+    </nav>
+
+    <div style="display:flex; gap:12px; align-items:center;">
+      <a href="#calculator" class="btn-tactile btn-primary">
+        <span>РАССЧИТАТЬ СМЕТУ</span>
+        <span class="css-chevron-right" style="border-color:#000;"></span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero & 3D Interactive WebGL Configurator -->
+  <section id="configurator" class="hero-configurator-section">
+    <div class="hero-meta-row">
+      <div>
+        <div class="bracket-label">[ 01 // 3D INTERACTIVE SPECIFICATION ]</div>
+        <h1 class="hero-headline">ИНЖЕНЕРИЯ<br>СОВЕРШЕНСТВА</h1>
+        <p class="hero-sub">
+          Прецизионная защита кузова суперкаров, антигравийные полиуретаны XPEL 10 mil и молекулярная нанокерамика 9H в герметичной чистой зоне ISO 7.
+        </p>
+      </div>
+      <div style="display:flex; flex-direction:column; align-items:flex-end; gap:8px;">
+        <div class="mono" style="font-size:12px; color:var(--text-dim);">АРХИТЕКТУРНЫЙ ПРЕСЕТ:</div>
+        <div class="mono" style="font-size:13px; color:var(--accent-green); font-weight:600;">[ XPEL MATTE STEALTH // 9H HYBRID ]</div>
+      </div>
+    </div>
+
+    <!-- 3D Studio Canvas Frame -->
+    <div class="viewport-frame" id="studio-viewport-frame">
+      <canvas id="webgl-canvas"></canvas>
+
+      <!-- Loading State -->
+      <div class="studio-loader" id="studio-loader">
+        <div class="loader-box">
+          <div class="loader-title">[ ЗАГРУЗКА 3D СТУДИИ // WEBGL 2.0 ]</div>
+          <div class="loader-progress-track">
+            <div class="loader-progress-bar" id="loader-progress-bar"></div>
+          </div>
+          <div class="loader-status" id="loader-progress-text">[ КАЛИБРОВКА ОСВЕЩЕНИЯ И PBR ШЕЙДЕРОВ... ]</div>
+        </div>
+      </div>
+
+      <!-- Screen-Projected 3D Hotspots Nodes Container -->
+      <div id="hotspots-container"></div>
+
+      <!-- Viewport HUD Chrome -->
+      <div class="hud-top-left">
+        <div style="color:var(--text-bright); font-weight:600; margin-bottom:2px;">[ SPEC 01: FERRARI 458 ITALIA ]</div>
+        <div style="color:var(--text-mid);">V8 4.5L 570 HP // HIGH-PERFORMANCE TESTBED</div>
+        <div style="color:var(--accent-green); margin-top:4px;" id="hud-active-finish-label">ФИНИШ: ULTRA-GLOSS 9H CERAMIC PRO</div>
+      </div>
+
+      <div class="hud-top-right">
+        <div>ROOM ENVIRONMENT 5500K CRI 98</div>
+        <div>ACES FILMIC TONE MAPPING // SRGB</div>
+        <div style="color:var(--accent-cyan); margin-top:4px;">RENDER-ON-DEMAND: ACTIVE</div>
+      </div>
+
+      <!-- Camera Angle Presets -->
+      <div class="hud-bottom-left">
+        <button class="hud-view-btn active" data-view="studio">[ 3/4 СТУДИЯ ]</button>
+        <button class="hud-view-btn" data-view="hood">[ КАПОТ // PPF ]</button>
+        <button class="hud-view-btn" data-view="side">[ БОК // 9H КЕРАМИКА ]</button>
+        <button class="hud-view-btn" data-view="wheels">[ ДИСКИ // C5 ]</button>
+        <button class="hud-view-btn" data-view="calipers">[ СУППОРТЫ ]</button>
+        <button class="hud-view-btn" data-view="rear">[ КОРМА ]</button>
+        <button class="hud-view-btn" id="btn-toggle-rotate">[ АВТОВРАЩЕНИЕ: ВЫКЛ ]</button>
+        <button class="hud-view-btn active" id="btn-toggle-hotspots">[ ХОТ-СПОТЫ: ВКЛ ]</button>
+      </div>
+
+      <div class="hud-bottom-center">
+        <span>[ ВРАЩЕНИЕ: ЛКМ / СВАЙП — ПРИБЛИЖЕНИЕ: КОЛЕСО / ЩИПОК ]</span>
+      </div>
+    </div>
+
+    <!-- Floating Tactile Control Deck -->
+    <div class="studio-control-deck">
+      <!-- 1. Finish Type -->
+      <div class="deck-group">
+        <div class="deck-group-header">
+          <span>01 // ФИНИШ КУЗОВА</span>
+          <span class="active-val" id="deck-finish-name">9H GLOSS</span>
+        </div>
+        <div class="finish-selector">
+          <div class="finish-option active" data-finish="ceramic-gloss">
+            <span>[ 9H CERAMIC GLOSS ]</span>
+            <span class="tech-stat">Глянец 98 GU // 2 слоя</span>
+          </div>
+          <div class="finish-option" data-finish="ppf-matte">
+            <span>[ SATIN MATTE PPF ]</span>
+            <span class="tech-stat">XPEL Stealth 10 mil</span>
+          </div>
+          <div class="finish-option" data-finish="metallic-nero">
+            <span>[ DEEP METALLIC NERO ]</span>
+            <span class="tech-stat">Зеркальный металлик</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Paint Color Palette -->
+      <div class="deck-group">
+        <div class="deck-group-header">
+          <span>02 // ЦВЕТ КУЗОВА</span>
+          <span class="active-val" id="deck-color-name">Rosso Corsa</span>
+        </div>
+        <div class="swatches-grid">
+          <button class="swatch-btn active" data-color="#cc0000" data-name="Rosso Corsa" style="background:#cc0000;" title="Rosso Corsa"></button>
+          <button class="swatch-btn" data-color="#0c0d10" data-name="Nero Daytona" style="background:#0c0d10;" title="Nero Daytona"></button>
+          <button class="swatch-btn" data-color="#3e434a" data-name="Grigio Silverstone" style="background:#3e434a;" title="Grigio Silverstone"></button>
+          <button class="swatch-btn" data-color="#248c27" data-name="Verde Ithaca" style="background:#248c27;" title="Verde Ithaca"></button>
+          <button class="swatch-btn" data-color="#0072bb" data-name="Miami Blue" style="background:#0072bb;" title="Miami Blue"></button>
+          <button class="swatch-btn" data-color="#c4c6ca" data-name="Chalk Crayon" style="background:#c4c6ca;" title="Chalk Crayon"></button>
+        </div>
+        <div class="mono" style="font-size:11px; color:var(--text-dim); margin-top:4px;">
+          * Заводская палитра суперкаров с PBR-отражением
+        </div>
+      </div>
+
+      <!-- 3. Caliper Paint -->
+      <div class="deck-group">
+        <div class="deck-group-header">
+          <span>03 // СУППОРТЫ</span>
+          <span class="active-val" id="deck-caliper-name">Acid Green</span>
+        </div>
+        <div class="caliper-selector">
+          <button class="caliper-btn active" data-caliper="#c8ff00" data-name="Acid Green">ACID</button>
+          <button class="caliper-btn" data-caliper="#d41414" data-name="Guards Red">RED</button>
+          <button class="caliper-btn" data-caliper="#111215" data-name="Stealth Black">BLACK</button>
+          <button class="caliper-btn" data-caliper="#ffb700" data-name="Speed Yellow">GOLD</button>
+        </div>
+        <div class="mono" style="font-size:11px; color:var(--text-dim); margin-top:4px;">
+          Термостойкая эмаль 650°C с нанесением заводских ливрей
+        </div>
+      </div>
+
+      <!-- 4. Window Tint -->
+      <div class="deck-group">
+        <div class="deck-group-header">
+          <span>04 // ТОНИРОВКА LLUMAR</span>
+          <span class="active-val" id="deck-tint-name">Light Smoke 50%</span>
+        </div>
+        <div class="tint-selector">
+          <button class="tint-btn" data-tint="clear" data-name="Clear 85%">CLEAR</button>
+          <button class="tint-btn active" data-tint="smoke" data-name="Smoke 50%">SMOKE</button>
+          <button class="tint-btn" data-tint="stealth" data-name="Stealth 15%">STEALTH</button>
+        </div>
+        <div class="deck-group-header" style="margin-top:12px;">
+          <span>05 // SHADOW LINE</span>
+          <span class="active-val" id="deck-shadow-name">Piano Black</span>
+        </div>
+        <div class="shadow-toggle">
+          <button class="shadow-btn" data-shadow="chrome" data-name="Chrome">CHROME</button>
+          <button class="shadow-btn active" data-shadow="piano-black" data-name="Piano Black">PIANO BLK</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Comparative Physics Matrix (Bento Grid) -->
+  <section id="comparison" class="section-container">
+    <div class="section-header">
+      <div class="bracket-label">[ 02 // PHYSICAL PERFORMANCE MATRIX ]</div>
+      <h2 class="section-title">МАТРИЦА ФИЗИЧЕСКОЙ ЗАЩИТЫ</h2>
+      <p class="section-desc">
+        Точные технические параметры стойкости материалов. Защита лакокрасочного покрытия на молекулярном и полимерном уровне.
+      </p>
+    </div>
+
+    <div class="bento-matrix-grid">
+      <!-- Bento 1: Thickness -->
+      <div class="bento-card bento-span-4">
+        <div class="card-label">
+          <span>ТОЛЩИНА СЛОЯ</span>
+          <span class="mono" style="color:var(--accent-green);">MICRONS [ μm ]</span>
+        </div>
+        <h3 class="card-title">Физический барьер</h3>
+        <p class="card-desc">
+          Заводской лак имеет толщину всего 120 мкм. Полиуретан XPEL 10 mil добавляет 250 мкм брони с самозатягиванием.
+        </p>
+        <div class="metric-bars-stack">
+          <div class="metric-row">
+            <div class="metric-meta"><span>Заводской лак</span><span>120 μm</span></div>
+            <div class="metric-track"><div class="metric-fill" style="width: 32%;"></div></div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-meta"><span>Керамика 9H (2 слоя)</span><span>+3 μm</span></div>
+            <div class="metric-track"><div class="metric-fill cyan" style="width: 35%;"></div></div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-meta"><span>XPEL Ultimate Plus (10 mil)</span><span>+250 μm</span></div>
+            <div class="metric-track"><div class="metric-fill highlight" style="width: 95%;"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bento 2: Self-Healing Thermal Reversion -->
+      <div class="bento-card bento-span-4">
+        <div class="card-label">
+          <span>РЕГЕНЕРАЦИЯ</span>
+          <span class="mono" style="color:var(--accent-green);">THERMAL RECOVERY</span>
+        </div>
+        <h3 class="card-title">Термо-самозатягивание</h3>
+        <p class="card-desc">
+          Эластомерный полиуретановый топкоут возвращается в исходное состояние при нагреве до 50–60°C (солнце или теплая вода).
+        </p>
+        <div style="margin-top:24px; padding:16px; background:rgba(200,255,0,0.05); border:1px solid rgba(200,255,0,0.2); border-radius:2px;">
+          <div class="mono" style="font-size:12px; color:var(--accent-green); font-weight:600;">ВРЕМЯ РЕАКЦИИ: &lt; 30 СЕКУНД</div>
+          <div style="font-size:12.5px; color:var(--text-mid); margin-top:4px;">
+            Паутинка, голограммы и микроцарапины от моек исчезают бесследно без абразивной полировки.
+          </div>
+        </div>
+      </div>
+
+      <!-- Bento 3: Hydrophobic Contact Angle -->
+      <div class="bento-card bento-span-4">
+        <div class="card-label">
+          <span>ГИДРОФОБНОСТЬ</span>
+          <span class="mono" style="color:var(--accent-cyan);">WATER BEADING</span>
+        </div>
+        <h3 class="card-title">Угол капли 115°</h3>
+        <p class="card-desc">
+          Двойной слой нанокерамики Gtechniq или кварцевый топкоут пленки минимизирует сцепление грязи, реагентов и дорожной соли.
+        </p>
+        <div class="metric-bars-stack">
+          <div class="metric-row">
+            <div class="metric-meta"><span>Базовый чистый лак</span><span>75°</span></div>
+            <div class="metric-track"><div class="metric-fill" style="width: 55%;"></div></div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-meta"><span>Керамическое покрытие 9H</span><span>115°</span></div>
+            <div class="metric-track"><div class="metric-fill cyan" style="width: 95%;"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bento 4: Resale Value Preservation -->
+      <div class="bento-card bento-span-6">
+        <div class="card-label">
+          <span>ИНВЕСТИЦИОННАЯ СТОИМОСТЬ</span>
+          <span class="mono" style="color:var(--accent-green);">RESALE METRIC</span>
+        </div>
+        <h3 class="card-title">100% сохранение оригинального ЛКП</h3>
+        <p class="card-desc">
+          При вторичной продаже суперкара или спорткара отсутствие вторичных окрасов и заводская толщина лака сохраняют от 10% до 18% рыночной стоимости автомобиля.
+        </p>
+        <div style="display:flex; gap:16px; margin-top:20px;">
+          <div style="flex:1; padding:14px; background:rgba(255,255,255,0.02); border:1px solid var(--border-hairline);">
+            <div class="mono" style="font-size:22px; font-weight:700; color:var(--accent-green);">0 МКМ</div>
+            <div style="font-size:12px; color:var(--text-dim); margin-top:2px;">Снятия лака при бронировании</div>
+          </div>
+          <div style="flex:1; padding:14px; background:rgba(255,255,255,0.02); border:1px solid var(--border-hairline);">
+            <div class="mono" style="font-size:22px; font-weight:700; color:var(--accent-cyan);">+15%</div>
+            <div style="font-size:12px; color:var(--text-dim); margin-top:2px;">Ликвидность на вторичном рынке</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bento 5: Optical Clarity -->
+      <div class="bento-card bento-span-6">
+        <div class="card-label">
+          <span>ОПТИЧЕСКАЯ ЧИСТОТА</span>
+          <span class="mono" style="color:var(--accent-green);">ZERO DISTORTION</span>
+        </div>
+        <h3 class="card-title">Прозрачность 99.8% без шагрени</h3>
+        <p class="card-desc">
+          Благодаря запатентованному клеевому слою XPEL клей не желтеет и не образует визуальных искажений, сохраняя аутентичную глубину заводской краски суперкара.
+        </p>
+        <div style="display:flex; gap:16px; margin-top:20px;">
+          <div style="flex:1; padding:14px; background:rgba(255,255,255,0.02); border:1px solid var(--border-hairline);">
+            <div class="mono" style="font-size:22px; font-weight:700; color:var(--text-bright);">99% UV</div>
+            <div style="font-size:12px; color:var(--text-dim); margin-top:2px;">Блокировка ультрафиолета</div>
+          </div>
+          <div style="flex:1; padding:14px; background:rgba(255,255,255,0.02); border:1px solid var(--border-hairline);">
+            <div class="mono" style="font-size:22px; font-weight:700; color:var(--accent-green);">10 ЛЕТ</div>
+            <div style="font-size:12px; color:var(--text-dim); margin-top:2px;">Заводская гарантия на пожелтение</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 3: Engineering Protocols (4-Stage Studio Process) -->
+  <section id="protocols" class="section-container">
+    <div class="section-header">
+      <div class="bracket-label">[ 03 // CLEANROOM PROTOCOLS ]</div>
+      <h2 class="section-title">ПРОТОКОЛЫ ОБРАБОТКИ // ISO 7</h2>
+      <p class="section-desc">
+        Хирургическая чистота, исключение ножей на кузове и строгий контроль толщины лакокрасочного покрытия.
+      </p>
+    </div>
+
+    <div class="protocols-timeline">
+      <!-- Step 1 -->
+      <div class="protocol-step-card">
+        <div>
+          <div class="step-number">01</div>
+          <h3 class="step-name">Деконтаминация</h3>
+          <div class="step-specs">[ 3-ФАЗНАЯ ОЧИСТКА ]</div>
+          <p class="step-text">
+            Химическое удаление металлической колодочной пыли составами Iron Decon, деликатная очистка синтетической глиной без абразивного трения.
+          </p>
+        </div>
+        <div class="mono" style="font-size:11px; color:var(--text-dim); margin-top:20px; border-top:1px solid var(--border-hairline); padding-top:10px;">
+          Регламент: 6-8 часов
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="protocol-step-card">
+        <div>
+          <div class="step-number">02</div>
+          <h3 class="step-name">Микрополировка</h3>
+          <div class="step-specs">[ ТОЛЩИНОМЕТРИЯ ELCOMETER ]</div>
+          <p class="step-text">
+            Ультразвуковой замер ЛКП с шагом 10 см. Эксцентриковая полировка Rupes BigFoot со снятием менее 1.5–2 мкм для сохранения заводского слоя лака.
+          </p>
+        </div>
+        <div class="mono" style="font-size:11px; color:var(--text-dim); margin-top:20px; border-top:1px solid var(--border-hairline); padding-top:10px;">
+          Регламент: 12-16 часов
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="protocol-step-card">
+        <div>
+          <div class="step-number">03</div>
+          <h3 class="step-name">Монтаж XPEL</h3>
+          <div class="step-specs">[ ПЛОТТЕРНЫЙ РАСКРОЙ DAP ]</div>
+          <p class="step-text">
+            Раскрой лекал на японском плоттере Graphtec по заводским базам данных. Нулевой контакт лезвия с кузовом. Подворот краев в пазы.
+          </p>
+        </div>
+        <div class="mono" style="font-size:11px; color:var(--text-dim); margin-top:20px; border-top:1px solid var(--border-hairline); padding-top:10px;">
+          Чистая зона: ISO Class 7
+        </div>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="protocol-step-card">
+        <div>
+          <div class="step-number">04</div>
+          <h3 class="step-name">ИК-Термофиксация</h3>
+          <div class="step-specs">[ HEDSON IRT 70°C ]</div>
+          <p class="step-text">
+            Коротковолновое инфракрасное запекание кромок пленки и полная молекулярная полимеризация кварцевых составов при стабильных 70°C.
+          </p>
+        </div>
+        <div class="mono" style="font-size:11px; color:var(--text-dim); margin-top:20px; border-top:1px solid var(--border-hairline); padding-top:10px;">
+          Выдержка: 8 часов
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: Laboratory Materials & Formulations -->
+  <section id="materials" class="section-container">
+    <div class="section-header">
+      <div class="bracket-label">[ 04 // MATERIAL SPECIFICATIONS ]</div>
+      <h2 class="section-title">ХИМИЧЕСКИЕ СОСТАВЫ И МАТЕРИАЛЫ</h2>
+      <p class="section-desc">
+        Только сертифицированные премиальные компоненты от лидеров мировой индустрии детейлинга.
+      </p>
+    </div>
+
+    <div class="materials-grid">
+      <!-- Item 1 -->
+      <div class="material-item">
+        <div class="mat-origin">USA // SAN ANTONIO</div>
+        <h3 class="mat-name">XPEL Ultimate Plus</h3>
+        <div class="mat-badge">10 MIL POLIURETHANE</div>
+        <p class="mat-desc">
+          Флагманская самозатягивающаяся пленка повышенной толщины. Максимальная защита от гравия на автобане, стойкость к пятнам масел и реагентов.
+        </p>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="material-item">
+        <div class="mat-origin">UK // NORTHAMPTON</div>
+        <h3 class="mat-name">Gtechniq Ultra 10H</h3>
+        <div class="mat-badge">MOLECULAR CERAMIC</div>
+        <p class="mat-desc">
+          Двухкомпонентный состав: гибкий базовый слой 7H предотвращает появление микротрещин от термического расширения, твердый верхний слой 10H защищает от царапин.
+        </p>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="material-item">
+        <div class="mat-origin">USA // KINGSPORT</div>
+        <h3 class="mat-name">Llumar Stratos</h3>
+        <div class="mat-badge">CERAMIC HEAT SHIELD</div>
+        <p class="mat-desc">
+          Двухслойная нанокерамическая пленка с максимальным отражением инфракрасного спектра тепла (до 88%) без помех для мобильной связи и GPS.
+        </p>
+      </div>
+
+      <!-- Item 4 -->
+      <div class="material-item">
+        <div class="mat-origin">SWITZERLAND // FÄLLANDEN</div>
+        <h3 class="mat-name">Swissvax Leather</h3>
+        <div class="mat-badge">BIO-PROTECT SYSTEM</div>
+        <p class="mat-desc">
+          Мануфактурные составы для очистки и консервации кожи Nappa. Сохраняют естественную матовость, эластичность и запах натуральной кожи.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 5: Live Detailing Calculator & Monospace Receipt Engine -->
+  <section id="calculator" class="section-container">
+    <div class="section-header">
+      <div class="bracket-label">[ 05 // REAL-TIME CALCULATION ENGINE ]</div>
+      <h2 class="section-title">ИНТЕРАКТИВНЫЙ РАСЧЕТ СМЕТЫ</h2>
+      <p class="section-desc">
+        Отметьте необходимые компоненты комплекса. Конфигуратор моментально рассчитает точную стоимость, сроки нахождения в боксе и гарантию.
+      </p>
+    </div>
+
+    <div class="calculator-layout">
+      <!-- Left: Granular Options Panel -->
+      <div class="calc-options-panel">
+        
+        <!-- Category 1: Кузов и ЛКП -->
+        <div class="calc-category-block">
+          <div class="calc-cat-title">
+            <span>[ 01 ] ЗАЩИТА КУЗОВА И ЛКП</span>
+            <span>PPF &amp; CERAMIC</span>
+          </div>
+          <div class="calc-items-list">
+            <label class="calc-row-card selected" data-id="ppf-full" data-price="220000" data-days="4" data-warranty="7 лет">
+              <div class="calc-row-left">
+                <input type="checkbox" class="css-checkbox calc-chk" checked>
+                <div class="calc-item-info">
+                  <div class="calc-item-name">Полная оклейка кузова XPEL Ultimate Plus (10 mil)</div>
+                  <div class="calc-item-sub">Все окрашенные элементы + подворот краев в пазы</div>
+                </div>
+              </div>
+              <div class="calc-row-right">
+                <div class="calc-item-price">220 000 ₽</div>
+                <div class="calc-item-days">4 раб. дня</div>
+              </div>
+            </label>
+
+            <label class="calc-row-card" data-id="ppf-front" data-price="85000" data-days="2" data-warranty="5 лет">
+              <div class="calc-row-left">
+                <input type="checkbox" class="css-checkbox calc-chk">
+                <div class="calc-item-info">
+                  <div class="calc-item-name">Зоны риска PPF (Фронтальный пакет)</div>
+                  <div class="calc-item-sub">Капот, бампер, крылья, зеркала, фары, стойки лобового</div>
+                </div>
+              </div>
+              <div class="calc-row-right">
+                <div class="calc-item-price">85 000 ₽</div>
+                <div class="calc-item-days">2 раб. дня</div>
+              </div>
+            </label>
+
+            <label class="calc-row-card selected" data-id="ceramic-top" data-price="45000" data-days="1" data-warranty="3 года">
+              <div class="calc-row-left">
+                <input type="checkbox" class="css-checkbox calc-chk" checked>
+                <div class="calc-item-info">
+                  <div class="calc-item-name">Керамический гидрофоб поверх пленки (2 слоя 9H)</div>
+                  <div class="calc-item-sub">Усиление блеска + защита пленки от въедания битума</div>
+                </div>
+              </div>
+              <div class="calc-row-right">
+                <div class="calc-item-price">45 000 ₽</div>
+                <div class="calc-item-days">+1 раб. день</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Category 2: Остекление -->
+        <div class="calc-category-block">
+          <div class="calc-cat-title">
+            <span>[ 02 ] ОСТЕКЛЕНИЕ И АТЕРМАЛЬНАЯ ЗАЩИТА</span>
+            <span>LLUMAR CERAMIC</span>
+          </div>
+          <div class="calc-items-list">
+            <label class="calc-row-card selected" data-id="tint-front" data-price="28000" data-days="0.5" data-warranty="5 лет">
+              <div class="calc-row-left">
+                <input type="checkbox" class="css-checkbox calc-chk" checked>
+                <div class="calc-item-info">
+                  <div class="calc-item-name">Атермальная пленка Llumar AIR80 (Лобовое + 2 передних)</div>
+                  <div class="calc-item-sub">Защита от перегрева салона, соответствует ГОСТ</div>
+                </div>
+              </div>
+              <div class="calc-row-right">
+                <div class="calc-item-price">28 000 ₽</div>
+                <div class="calc-item-days">+0.5 дня</div>
+              </div>
+            </label>
+
+            <label class="calc-row-card" data-id="windshield-armor" data-price="35000" data-days="0.5" data-warranty="2 года">
+              <div class="calc-row-left">
+                <input type="checkbox" class="css-checkbox calc-chk">
+                <div class="calc-item-info">
+                  <div class="calc-item-name">Бронирование лобового стекла ClearPlex / Stek</div>
+                  <div class="calc-item-sub">Защита от сколов и трещин на автостраде</div>
+                </div>
+              </div>
+              <div class="calc-row-right">
+                <div class="calc-item-price">35 000 ₽</div>
+                <div class="calc-item-days">+0.5 дня</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Category 3: Диски и Суппорты -->
+        <div class="calc-category-block">
+          <div class="calc-cat-title">
+            <span>[ 03 ] КОЛЕСНАЯ ГРУППА И ТОРМОЗА</span>
+            <span>C5 &amp; CALIPER LAB</span>
+          </div>
+          <div class="calc-items-list">
+            <label class="calc-row-card selected" data-id="caliper-paint" data-price="36000" data-days="2" data-warranty="5 лет">
+              <div class="calc-row-left">
+                <input type="checkbox" class="css-checkbox calc-chk" checked>
+                <div class="calc-item-info">
+                  <div class="calc-item-name">Порошковый окрас суппортов (Acid Green / Guards Red)</div>
+                  <div class="calc-item-sub">Полный разбор, пескоструй, термопечь + заводские трафареты</div>
+                </div>
+              </div>
+              <div class="calc-row-right">
+                <div class="calc-item-price">36 000 ₽</div>
+                <div class="calc-item-days">+2 дня</div>
+              </div>
+            </label>
+
+            <label class="calc-row-card selected" data-id="rim-ceramic" data-price="24000" data-days="0.5" data-warranty="2 года">
+              <div class="calc-row-left">
+                <input type="checkbox" class="css-checkbox calc-chk" checked>
+                <div class="calc-item-info">
+                  <div class="calc-item-name">Керамическое термопокрытие дисков Gtechniq C5 (4 шт)</div>
+                  <div class="calc-item-sub">Термостойкость до 600°C, защита от въедания колодочной пыли</div>
+                </div>
+              </div>
+              <div class="calc-row-right">
+                <div class="calc-item-price">24 000 ₽</div>
+                <div class="calc-item-days">+0.5 дня</div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Category 4: Экстерьер и Антихром -->
+        <div class="calc-category-block">
+          <div class="calc-cat-title">
+            <span>[ 04 ] СТАЙЛИНГ И ИНТЕРЬЕР</span>
+            <span>SHADOW LINE &amp; INTERIOR</span>
+          </div>
+          <div class="calc-items-list">
+            <label class="calc-row-card selected" data-id="shadow-line" data-price="26000" data-days="1" data-warranty="3 года">
+              <div class="calc-row-left">
+                <input type="checkbox" class="css-checkbox calc-chk" checked>
+                <div class="calc-item-info">
+                  <div class="calc-item-name">Shadow Line (Антихром оконных молдингов и решеток)</div>
+                  <div class="calc-item-sub">Глянцевый полиуретан Piano Black без демонтажа деталей</div>
+                </div>
+              </div>
+              <div class="calc-row-right">
+                <div class="calc-item-price">26 000 ₽</div>
+                <div class="calc-item-days">+1 день</div>
+              </div>
+            </label>
+
+            <label class="calc-row-card" data-id="interior-swissvax" data-price="34000" data-days="1" data-warranty="2 года">
+              <div class="calc-row-left">
+                <input type="checkbox" class="css-checkbox calc-chk">
+                <div class="calc-item-info">
+                  <div class="calc-item-name">Детейлинг салона + консервация кожи Swissvax</div>
+                  <div class="calc-item-sub">Глубокая био-очистка пор кожи и нанесение Leather Shield</div>
+                </div>
+              </div>
+              <div class="calc-row-right">
+                <div class="calc-item-price">34 000 ₽</div>
+                <div class="calc-item-days">+1 день</div>
+              </div>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Sticky Monospace Receipt Terminal -->
+      <div class="receipt-terminal-dock">
+        <div class="terminal-header">
+          <div class="terminal-dots">
+            <span class="t-dot"></span>
+            <span class="t-dot"></span>
+            <span class="t-dot"></span>
+          </div>
+          <span>[ ТЕХНИЧЕСКИЙ РЕГИСТР СМЕТЫ #AN-2026 ]</span>
+          <span class="css-led-green"></span>
+        </div>
+
+        <div class="terminal-body">
+          <div class="monospace-receipt-box" id="monospace-receipt-view">
+            <!-- Dynamically populated receipt content -->
+          </div>
+
+          <div class="receipt-kpis">
+            <div class="kpi-tile">
+              <span class="kpi-lbl">ИТОГО К ОПЛАТЕ:</span>
+              <span class="kpi-val highlight" id="calc-kpi-total">341 100 ₽</span>
+            </div>
+            <div class="kpi-tile">
+              <span class="kpi-lbl">СРОК РАБОТ:</span>
+              <span class="kpi-val" id="calc-kpi-duration">4–5 дней</span>
+            </div>
+            <div class="kpi-tile">
+              <span class="kpi-lbl">ГАРАНТИЯ:</span>
+              <span class="kpi-val" id="calc-kpi-warranty">7 лет</span>
+            </div>
+          </div>
+
+          <div class="receipt-actions">
+            <a href="#" class="btn-telegram-direct" id="btn-telegram-estimate" target="_blank" rel="noopener noreferrer">
+              <span>ПОЛУЧИТЬ СМЕТУ В TELEGRAM</span>
+              <span class="css-chevron-right" style="border-color:#000;"></span>
+            </a>
+
+            <div class="btn-secondary-row">
+              <a href="#" class="btn-sec" id="btn-whatsapp-estimate" target="_blank" rel="noopener noreferrer">
+                <span>В WHATSAPP</span>
+                <span class="css-chevron-right"></span>
+              </a>
+              <button class="btn-sec" id="btn-copy-receipt">
+                <span id="btn-copy-text">СКОПИРОВАТЬ СМЕТУ</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: Studio Standards & Infrastructure -->
+  <section class="section-container">
+    <div class="section-header">
+      <div class="bracket-label">[ 06 // ATELIER STANDARDS ]</div>
+      <h2 class="section-title">СТАНДАРТЫ И ОСНАЩЕНИЕ АТЕЛЬЕ</h2>
+      <p class="section-desc">
+        Инфраструктура высшего дивизиона, созданная для бескомпромиссной работы с коллекционными и спортивными автомобилями.
+      </p>
+    </div>
+
+    <div class="standards-grid">
+      <div class="standard-card">
+        <div class="standard-metric">ISO 7</div>
+        <h3 class="standard-title">Чистая комната</h3>
+        <p class="standard-body">
+          Изолированный бокс с избыточным атмосферным давлением и каскадной фильтрацией воздуха HEPA H14. Полное исключение пылинок под пленкой.
+        </p>
+      </div>
+
+      <div class="standard-card">
+        <div class="standard-metric">CRI 98+</div>
+        <h3 class="standard-title">Спектральный свет</h3>
+        <p class="standard-body">
+          Бестеневой инспекционный свет Scangrip с цветовой температурой 5500K и максимальным индексом цветопередачи для контроля микроцарапин.
+        </p>
+      </div>
+
+      <div class="standard-card">
+        <div class="standard-metric">24/7 VIP</div>
+        <h3 class="standard-title">Охрана и телеметрия</h3>
+        <p class="standard-body">
+          Закрытый охраняемый бокс, круглосуточная охрана, видеонаблюдение высокой четкости с персональным онлайн-доступом владельца к камерам.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 7: Technical FAQ Accordion -->
+  <section id="faq" class="section-container">
+    <div class="section-header" style="text-align:center;">
+      <div class="bracket-label">[ 07 // FREQUENTLY ASKED SPECIFICATIONS ]</div>
+      <h2 class="section-title">ВОПРОСЫ И ОТВЕТЫ</h2>
+      <p class="section-desc" style="margin:0 auto;">
+        Инженерные ответы на главные вопросы об уходе за пленкой и керамикой.
+      </p>
+    </div>
+
+    <div class="faq-stack">
+      <div class="faq-accordion-item open">
+        <button class="faq-question-btn">
+          <span>В чем разница между винилом и антигравийным полиуретаном XPEL?</span>
+          <span class="faq-arrow">→</span>
+        </button>
+        <div class="faq-answer-panel">
+          Винил (ПВХ) — тонкая (80–100 мкм) декоративная пленка, которая не защищает от гравия и трескается от мороза. Полиуретан XPEL (250 мкм) — прочный эластичный полимер с самозатягивающимся слоем, выдерживающий удары камней на скорости свыше 200 км/ч.
+        </div>
+      </div>
+
+      <div class="faq-accordion-item">
+        <button class="faq-question-btn">
+          <span>Сохраняется ли заводская гарантия дилера после оклейки?</span>
+          <span class="faq-arrow">→</span>
+        </button>
+        <div class="faq-answer-panel">
+          Да, на 100%. Мы используем лицензионные плоттерные лекала DAP, исключающие контакт лезвий с лаком и демонтаж сложных кузовных панелей. Все официальные дилеры Porsche, Ferrari, BMW и Mercedes-Benz одобряют нанесение пленок XPEL.
+        </div>
+      </div>
+
+      <div class="faq-accordion-item">
+        <button class="faq-question-btn">
+          <span>Как правильно мыть автомобиль после нанесения керамики и пленки?</span>
+          <span class="faq-arrow">→</span>
+        </button>
+        <div class="faq-answer-panel">
+          В течение первых 10–14 дней после запекания рекомендуется воздержаться от моек высокого давления для финальной стабилизации молекулярной решетки. В дальнейшем допускается регулярная 2-фазная или 3-фазная детейлинг-мойка с PH-нейтральной пеной.
+        </div>
+      </div>
+
+      <div class="faq-accordion-item">
+        <button class="faq-question-btn">
+          <span>Что произойдет с пленкой через 5–7 лет при снятии?</span>
+          <span class="faq-arrow">→</span>
+        </button>
+        <div class="faq-answer-panel">
+          Оригинальный клей XPEL удаляется бесследно с помощью пара без повреждения заводского лака. Под пленкой автомобиль сохраняет состояние абсолютно нового музейного экспоната без единого скола и микроцарапины.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 8: Terminal Footer -->
+  <footer class="studio-footer">
+    <div class="footer-inner">
+      <div>
+        <div class="brand-title" style="margin-bottom:8px;">ATELIER NERO</div>
+        <div class="mono" style="font-size:11px; color:var(--text-dim); margin-bottom:16px;">
+          HIGH-END BESPOKE AUTOMOTIVE SURFACE LAB // SPEC 01
+        </div>
+        <p class="footer-text">
+          Прецизионная защита кузова суперкаров, спорткаров и представительского класса. Закрытый чистый бокс класса ISO 7 в центре Москвы.
+        </p>
+      </div>
+
+      <div>
+        <div class="footer-col-title">[ НАВИГАЦИЯ ]</div>
+        <ul class="footer-links-list">
+          <li><a href="#configurator" class="footer-link">3D Конфигуратор</a></li>
+          <li><a href="#comparison" class="footer-link">Физика защиты</a></li>
+          <li><a href="#protocols" class="footer-link">Протоколы ISO 7</a></li>
+          <li><a href="#materials" class="footer-link">Материалы</a></li>
+          <li><a href="#calculator" class="footer-link">Расчет сметы</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title">[ КОНТАКТЫ ]</div>
+        <ul class="footer-links-list">
+          <li><a href="https://t.me/thor_bakin" target="_blank" rel="noopener noreferrer" class="footer-link">Telegram: @thor_bakin</a></li>
+          <li><a href="tel:+79521049810" class="footer-link">+7 (952) 104-98-10</a></li>
+          <li><span class="footer-link" style="color:var(--text-dim);">Москва, Кутузовский пр-т</span></li>
+          <li><span class="footer-link" style="color:var(--text-dim);">Ежедневно: 10:00 — 22:00</span></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="footer-col-title">[ СТАТУС СИСТЕМЫ ]</div>
+        <p class="footer-text" style="font-size:12px; font-family:var(--font-mono);">
+          RENDER PIPELINE: THREE.JS R160<br>
+          TONE MAPPING: ACES FILMIC<br>
+          ENCRYPTED SPEC: #AN-2026<br>
+          STRICT ZERO SVG / ZERO EMOJI COMPLIANT
+        </p>
+      </div>
+    </div>
+
+    <div class="footer-bottom-bar">
+      <div>© 2026 ATELIER NERO. ВСЕ ПРАВА ЗАЩИЩЕНЫ. ОФИЦИАЛЬНАЯ ГАРАНТИЯ.</div>
+      <div>
+        <a href="vlad.html" class="developer-pill">[ ИНЖЕНЕРНЫЙ ПОРТАЛ // VLAD ]</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification Box -->
+  <div class="toast-feedback" id="toast-notify">
+    <span class="css-led-green"></span>
+    <span id="toast-notify-text">ТЕХНИЧЕСКАЯ СМЕТА СКОПИРОВАНА В БУФЕР ОБМЕНА</span>
+  </div>
+
+  <!-- ==========================================================================
+       THREE.JS R160 3D CONFIGURATOR SCRIPT & INTERACTION ENGINE
+       ========================================================================== -->
+  <script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+    import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+    import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
+    import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+
+    // State Variables
+    let scene, camera, renderer, controls;
+    let carModel = null;
+    let needsRender = true;
+    let autoRotate = false;
+    let isCameraAnimating = false;
+    let cameraTweenId = null;
+
+    // Active Configurator Values
+    let currentFinish = 'ceramic-gloss';
+    let currentFinishName = 'Ultra-Gloss 9H Ceramic';
+    let currentColorHex = '#cc0000';
+    let currentColorName = 'Rosso Corsa';
+    let currentCaliperHex = '#c8ff00';
+    let currentCaliperName = 'Acid Green';
+    let currentTintLevel = 'smoke';
+    let currentTintName = 'Llumar Smoke (50% VLT)';
+    let currentShadowLine = 'piano-black';
+    let currentShadowName = 'Piano Black Shadow Line';
+
+    // Materials
+    let bodyMaterial, trimMaterial, glassMaterial, rimMaterial, caliperMaterial;
+
+    // View Container
+    const container = document.getElementById('studio-viewport-frame');
+    const canvas = document.getElementById('webgl-canvas');
+    const hotspotsContainer = document.getElementById('hotspots-container');
+
+    // Hotspots 3D Coordinates & Camera Targets
+    const HOTSPOTS = [
+      {
+        id: 'ppf',
+        code: '01',
+        title: 'PPF ARMOR (КАПОТ)',
+        detail: 'XPEL Ultimate Plus 10 mil // Самозатягивающийся полиуретан',
+        pos: new THREE.Vector3(0, 0.76, -1.45),
+        camPos: new THREE.Vector3(0.15, 1.6, -3.1),
+        camTarget: new THREE.Vector3(0, 0.6, -1.2),
+        calcRowId: 'ppf-full'
+      },
+      {
+        id: 'ceramic',
+        code: '02',
+        title: 'КЕРАМИКА 9H (КУЗОВ)',
+        detail: 'Gtechniq Crystal Serum Ultra // Двойной молекулярный слой',
+        pos: new THREE.Vector3(1.10, 0.68, 0.35),
+        camPos: new THREE.Vector3(2.7, 1.2, 0.8),
+        camTarget: new THREE.Vector3(0.4, 0.6, 0.2),
+        calcRowId: 'ceramic-top'
+      },
+      {
+        id: 'tint',
+        code: '03',
+        title: 'LLUMAR (СТЕКЛА)',
+        detail: 'Llumar Stratos Ceramic // Задержка 88% тепловой энергии',
+        pos: new THREE.Vector3(0.52, 1.08, -0.22),
+        camPos: new THREE.Vector3(1.9, 1.5, -0.9),
+        camTarget: new THREE.Vector3(0.1, 0.85, -0.1),
+        calcRowId: 'tint-front'
+      },
+      {
+        id: 'wheels',
+        code: '04',
+        title: 'КЕРАМИКА ДИСКОВ C5',
+        detail: 'Gtechniq C5 Wheel Armour // Термостойкость до 600°C',
+        pos: new THREE.Vector3(0.98, 0.38, -1.15),
+        camPos: new THREE.Vector3(2.0, 0.5, -1.5),
+        camTarget: new THREE.Vector3(0.88, 0.38, -1.15),
+        calcRowId: 'rim-ceramic'
+      },
+      {
+        id: 'calipers',
+        code: '05',
+        title: 'ACID GREEN (СУППОРТЫ)',
+        detail: 'Порошковый окрас в термопечи // Заводская гарантия 5 лет',
+        pos: new THREE.Vector3(0.86, 0.44, -1.05),
+        camPos: new THREE.Vector3(1.65, 0.48, -1.2),
+        camTarget: new THREE.Vector3(0.84, 0.42, -1.05),
+        calcRowId: 'caliper-paint'
+      },
+      {
+        id: 'shadow',
+        code: '06',
+        title: 'SHADOW LINE (АНТИХРОМ)',
+        detail: 'Piano Black молдинги // Полное удаление хрома',
+        pos: new THREE.Vector3(0.92, 0.82, -0.32),
+        camPos: new THREE.Vector3(2.2, 1.25, -0.6),
+        camTarget: new THREE.Vector3(0.65, 0.8, -0.3),
+        calcRowId: 'shadow-line'
+      }
+    ];
+
+    // Request Render Helper
+    function requestRender() {
+      needsRender = true;
+    }
+
+    // Initialize 3D Scene
+    function initStudio() {
+      // 1. Renderer
+      renderer = new THREE.WebGLRenderer({
+        canvas: canvas,
+        antialias: true,
+        alpha: false,
+        powerPreference: 'high-performance'
+      });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setSize(container.clientWidth, container.clientHeight);
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.toneMappingExposure = 0.95;
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+
+      // 2. Scene
+      scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x08090d);
+
+      // 3. Camera
+      camera = new THREE.PerspectiveCamera(38, container.clientWidth / container.clientHeight, 0.1, 60);
+      camera.position.set(4.4, 1.6, -4.6);
+
+      // 4. Controls
+      controls = new OrbitControls(camera, canvas);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.05;
+      controls.maxDistance = 8.5;
+      controls.minDistance = 2.8;
+      controls.maxPolarAngle = Math.PI / 2 - 0.02; // Prevent going underground
+      controls.target.set(0, 0.45, 0);
+      controls.update();
+      controls.addEventListener('change', requestRender);
+
+      // 5. Studio Environment Lighting
+      const pmremGenerator = new THREE.PMREMGenerator(renderer);
+      pmremGenerator.compileEquirectangularShader();
+      const roomEnv = new RoomEnvironment();
+      scene.environment = pmremGenerator.fromScene(roomEnv).texture;
+      roomEnv.dispose();
+
+      // Studio Key Light (Directional cold white)
+      const keyLight = new THREE.DirectionalLight(0xffffff, 2.4);
+      keyLight.position.set(5, 7, 4);
+      scene.add(keyLight);
+
+      // Studio Fill Light
+      const fillLight = new THREE.DirectionalLight(0xcfd8eb, 1.1);
+      fillLight.position.set(-5, 4, -3);
+      scene.add(fillLight);
+
+      // Studio Rim Backlight (Electric cold blue)
+      const rimLight = new THREE.DirectionalLight(0x7fb5ff, 3.4);
+      rimLight.position.set(0, 5, -6);
+      scene.add(rimLight);
+
+      // Ground subtle bounce
+      const groundBounce = new THREE.DirectionalLight(0x1a2030, 0.8);
+      groundBounce.position.set(0, -4, 0);
+      scene.add(groundBounce);
+
+      // Floor Precision Grid
+      const grid = new THREE.GridHelper(16, 32, 0x222633, 0x111319);
+      grid.position.y = -0.01;
+      grid.material.opacity = 0.35;
+      grid.material.transparent = true;
+      scene.add(grid);
+
+      // 6. Setup Materials
+      setupMaterials();
+
+      // 7. Load Car Model & Contact Shadow
+      loadCarModel();
+
+      // 8. Create Hotspots HTML Elements
+      createHotspotElements();
+
+      // 9. Window Resize Listener
+      window.addEventListener('resize', onWindowResize);
+
+      // 10. Start Render Loop
+      startRenderLoop();
+    }
+
+    // Material Definitions
+    function setupMaterials() {
+      // Body Material (MeshPhysicalMaterial with clearcoat)
+      bodyMaterial = new THREE.MeshPhysicalMaterial({
+        color: new THREE.Color(currentColorHex),
+        metalness: 0.15,
+        roughness: 0.04,
+        clearcoat: 1.0,
+        clearcoatRoughness: 0.02
+      });
+
+      // Chrome / Shadow Line Trim
+      trimMaterial = new THREE.MeshStandardMaterial({
+        color: new THREE.Color(0x08080a),
+        metalness: 0.2,
+        roughness: 0.08
+      });
+
+      // Window Glass
+      glassMaterial = new THREE.MeshPhysicalMaterial({
+        color: new THREE.Color(0x3a3f4a),
+        metalness: 0.1,
+        roughness: 0.02,
+        transmission: 0.65,
+        transparent: true,
+        opacity: 1.0,
+        ior: 1.52
+      });
+
+      // Wheel Rims
+      rimMaterial = new THREE.MeshStandardMaterial({
+        color: new THREE.Color(0x181920),
+        metalness: 0.85,
+        roughness: 0.25
+      });
+
+      // Brake Calipers
+      caliperMaterial = new THREE.MeshStandardMaterial({
+        color: new THREE.Color(currentCaliperHex),
+        metalness: 0.3,
+        roughness: 0.25
+      });
+    }
+
+    // Load Car Model
+    function loadCarModel() {
+      // Contact Shadow Plane
+      const shadowLoader = new THREE.TextureLoader();
+      const shadowTex = shadowLoader.load(
+        'https://cdn.jsdelivr.net/gh/mrdoob/three.js@r160/examples/models/gltf/ferrari_ao.png',
+        () => requestRender()
+      );
+
+      const shadowMesh = new THREE.Mesh(
+        new THREE.PlaneGeometry(0.655 * 4, 1.3 * 4),
+        new THREE.MeshBasicMaterial({
+          map: shadowTex,
+          blending: THREE.MultiplyBlending,
+          toneMapped: false,
+          transparent: true,
+          opacity: 0.88
+        })
+      );
+      shadowMesh.rotation.x = -Math.PI / 2;
+      shadowMesh.renderOrder = 2;
+
+      // DRACO & GLTF Loader
+      const dracoLoader = new DRACOLoader();
+      dracoLoader.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.7/');
+
+      const gltfLoader = new GLTFLoader();
+      gltfLoader.setDRACOLoader(dracoLoader);
+
+      gltfLoader.load(
+        'https://cdn.jsdelivr.net/gh/mrdoob/three.js@r160/examples/models/gltf/ferrari.glb',
+        (gltf) => {
+          carModel = gltf.scene.children[0];
+
+          carModel.traverse((child) => {
+            if (!child.isMesh) return;
+            const name = child.name;
+            if (name === 'body') {
+              child.material = bodyMaterial;
+            } else if (name.startsWith('rim_')) {
+              child.material = rimMaterial;
+            } else if (name === 'trim') {
+              child.material = trimMaterial;
+            } else if (name === 'glass') {
+              child.material = glassMaterial;
+            } else if (name === 'brake' || name === 'brakes') {
+              child.material = caliperMaterial;
+            }
+          });
+
+          carModel.add(shadowMesh);
+          scene.add(carModel);
+
+          // Hide Loader
+          const loaderEl = document.getElementById('studio-loader');
+          if (loaderEl) loaderEl.classList.add('hidden');
+
+          requestRender();
+        },
+        (xhr) => {
+          if (xhr.lengthComputable) {
+            const pct = Math.round((xhr.loaded / xhr.total) * 100);
+            const pBar = document.getElementById('loader-progress-bar');
+            const pText = document.getElementById('loader-progress-text');
+            if (pBar) pBar.style.width = pct + '%';
+            if (pText) pText.textContent = `[ ЗАГРУЗКА 3D МОДЕЛИ: ${pct}% ]`;
+          }
+        },
+        (err) => {
+          console.error('Three.js model load error:', err);
+          const pText = document.getElementById('loader-progress-text');
+          if (pText) pText.textContent = '[ ОШИБКА СЕТИ ПРИ ЗАГРУЗКЕ МОДЕЛИ ]';
+        }
+      );
+    }
+
+    // Hotspot HTML Elements
+    function createHotspotElements() {
+      hotspotsContainer.innerHTML = '';
+      HOTSPOTS.forEach((spot) => {
+        const node = document.createElement('div');
+        node.className = 'hotspot-node';
+        node.id = 'hotspot-' + spot.id;
+        node.innerHTML = `
+          <div class="hotspot-dot">
+            <div class="hotspot-pulse"></div>
+          </div>
+          <div class="hotspot-tag">
+            <span style="color:var(--accent-green);font-weight:700;">[ ${spot.code} ]</span> ${spot.title}
+          </div>
+        `;
+
+        node.addEventListener('click', (e) => {
+          e.stopPropagation();
+          selectHotspot(spot);
+        });
+
+        hotspotsContainer.appendChild(node);
+        spot.element = node;
+      });
+    }
+
+    // Select Hotspot & Smooth Fly-To
+    function selectHotspot(spot) {
+      // Highlight pin
+      HOTSPOTS.forEach(s => s.element?.classList.remove('active'));
+      spot.element?.classList.add('active');
+
+      // Camera Fly-To
+      animateCameraTo(spot.camPos, spot.camTarget, 1100);
+
+      // Also highlight corresponding option in calculator
+      const calcRow = document.querySelector(`.calc-row-card[data-id="${spot.calcRowId}"]`);
+      if (calcRow) {
+        calcRow.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        calcRow.style.boxShadow = '0 0 15px rgba(200, 255, 0, 0.5)';
+        setTimeout(() => {
+          calcRow.style.boxShadow = '';
+        }, 1500);
+      }
+    }
+
+    // Update Hotspots Screen Positions
+    const tempProjV = new THREE.Vector3();
+    const camDir = new THREE.Vector3();
+
+    function updateHotspotsScreen() {
+      if (!camera || !container) return;
+      const w = container.clientWidth;
+      const h = container.clientHeight;
+      const halfW = w / 2;
+      const halfH = h / 2;
+
+      camera.getWorldDirection(camDir);
+
+      HOTSPOTS.forEach((spot) => {
+        if (!spot.element) return;
+        tempProjV.copy(spot.pos);
+
+        // Vector from camera to hotspot
+        const toSpot = tempProjV.clone().sub(camera.position).normalize();
+        const dot = camDir.dot(toSpot);
+
+        tempProjV.project(camera);
+
+        // If behind camera plane or facing away
+        if (tempProjV.z > 1 || dot < 0.2) {
+          spot.element.style.opacity = '0';
+          spot.element.style.pointerEvents = 'none';
+          return;
+        }
+
+        const x = (tempProjV.x * halfW) + halfW;
+        const y = -(tempProjV.y * halfH) + halfH;
+
+        spot.element.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+        spot.element.style.opacity = '1';
+        spot.element.style.pointerEvents = 'auto';
+      });
+    }
+
+    // Camera Lerp Animation
+    function animateCameraTo(targetPos, targetLookAt, duration = 1200) {
+      if (cameraTweenId) cancelAnimationFrame(cameraTweenId);
+
+      const startPos = camera.position.clone();
+      const startTarget = controls.target.clone();
+      const startTime = performance.now();
+      isCameraAnimating = true;
+      requestRender();
+
+      function step(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1.0);
+        // Cubic smoothstep
+        const t = progress < 0.5
+          ? 4 * progress * progress * progress
+          : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+
+        camera.position.lerpVectors(startPos, targetPos, t);
+        controls.target.lerpVectors(startTarget, targetLookAt, t);
+        controls.update();
+        requestRender();
+
+        if (progress < 1.0) {
+          cameraTweenId = requestAnimationFrame(step);
+        } else {
+          isCameraAnimating = false;
+          cameraTweenId = null;
+        }
+      }
+      cameraTweenId = requestAnimationFrame(step);
+    }
+
+    // Resize Handler
+    function onWindowResize() {
+      if (!camera || !renderer || !container) return;
+      camera.aspect = container.clientWidth / container.clientHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(container.clientWidth, container.clientHeight);
+      requestRender();
+    }
+
+    // Render-On-Demand (Dirty Rendering) Loop
+    const lastCamPos = new THREE.Vector3();
+    const lastCamTarget = new THREE.Vector3();
+
+    function startRenderLoop() {
+      function tick() {
+        requestAnimationFrame(tick);
+
+        if (autoRotate) {
+          controls.autoRotate = true;
+          controls.autoRotateSpeed = 1.0;
+          needsRender = true;
+        } else {
+          controls.autoRotate = false;
+        }
+
+        controls.update();
+
+        // Check if camera moved due to damping or user drag
+        const moved = lastCamPos.distanceToSquared(camera.position) > 0.000001 ||
+                      lastCamTarget.distanceToSquared(controls.target) > 0.000001;
+
+        if (moved) {
+          lastCamPos.copy(camera.position);
+          lastCamTarget.copy(controls.target);
+          needsRender = true;
+        }
+
+        if (needsRender || isCameraAnimating) {
+          renderer.render(scene, camera);
+          updateHotspotsScreen();
+          needsRender = false;
+        }
+      }
+      tick();
+    }
+
+    // ==========================================================================
+    // CONFIGURATOR UI EVENT BINDINGS
+    // ==========================================================================
+
+    // 1. Camera View Presets
+    const cameraPresets = {
+      'studio': { pos: new THREE.Vector3(4.4, 1.6, -4.6), target: new THREE.Vector3(0, 0.45, 0) },
+      'hood': { pos: new THREE.Vector3(0.15, 1.6, -3.1), target: new THREE.Vector3(0, 0.6, -1.2) },
+      'side': { pos: new THREE.Vector3(2.7, 1.2, 0.8), target: new THREE.Vector3(0.4, 0.6, 0.2) },
+      'wheels': { pos: new THREE.Vector3(2.0, 0.5, -1.5), target: new THREE.Vector3(0.88, 0.38, -1.15) },
+      'calipers': { pos: new THREE.Vector3(1.65, 0.48, -1.2), target: new THREE.Vector3(0.84, 0.42, -1.05) },
+      'rear': { pos: new THREE.Vector3(-0.1, 1.4, 4.4), target: new THREE.Vector3(0, 0.5, 0.8) }
+    };
+
+    document.querySelectorAll('.hud-view-btn[data-view]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.hud-view-btn[data-view]').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const view = btn.dataset.view;
+        const preset = cameraPresets[view];
+        if (preset) {
+          animateCameraTo(preset.pos, preset.target, 1100);
+        }
+      });
+    });
+
+    // Auto-Rotate Button
+    const btnToggleRotate = document.getElementById('btn-toggle-rotate');
+    if (btnToggleRotate) {
+      btnToggleRotate.addEventListener('click', () => {
+        autoRotate = !autoRotate;
+        btnToggleRotate.textContent = autoRotate ? '[ АВТОВРАЩЕНИЕ: ВКЛ ]' : '[ АВТОВРАЩЕНИЕ: ВЫКЛ ]';
+        btnToggleRotate.classList.toggle('active', autoRotate);
+        requestRender();
+      });
+    }
+
+    // Hotspots Visibility Toggle Button
+    const btnToggleHotspots = document.getElementById('btn-toggle-hotspots');
+    let hotspotsVisible = true;
+    if (btnToggleHotspots) {
+      btnToggleHotspots.addEventListener('click', () => {
+        hotspotsVisible = !hotspotsVisible;
+        btnToggleHotspots.textContent = hotspotsVisible ? '[ ХОТ-СПОТЫ: ВКЛ ]' : '[ ХОТ-СПОТЫ: ВЫКЛ ]';
+        btnToggleHotspots.classList.toggle('active', hotspotsVisible);
+        hotspotsContainer.style.display = hotspotsVisible ? 'block' : 'none';
+        requestRender();
+      });
+    }
+
+    // 2. Finish Switching
+    document.querySelectorAll('.finish-option').forEach((opt) => {
+      opt.addEventListener('click', () => {
+        document.querySelectorAll('.finish-option').forEach(o => o.classList.remove('active'));
+        opt.classList.add('active');
+
+        const finish = opt.dataset.finish;
+        currentFinish = finish;
+
+        if (finish === 'ceramic-gloss') {
+          currentFinishName = 'Ultra-Gloss 9H Ceramic';
+          bodyMaterial.roughness = 0.04;
+          bodyMaterial.metalness = 0.15;
+          bodyMaterial.clearcoat = 1.0;
+          bodyMaterial.clearcoatRoughness = 0.02;
+        } else if (finish === 'ppf-matte') {
+          currentFinishName = 'XPEL Stealth Satin PPF';
+          bodyMaterial.roughness = 0.45;
+          bodyMaterial.metalness = 0.05;
+          bodyMaterial.clearcoat = 0.8;
+          bodyMaterial.clearcoatRoughness = 0.42;
+        } else if (finish === 'metallic-nero') {
+          currentFinishName = 'Deep Metallic Gloss';
+          bodyMaterial.roughness = 0.12;
+          bodyMaterial.metalness = 0.85;
+          bodyMaterial.clearcoat = 1.0;
+          bodyMaterial.clearcoatRoughness = 0.04;
+        }
+
+        document.getElementById('deck-finish-name').textContent = opt.querySelector('span').textContent.replace(/[\[\]]/g, '').trim();
+        document.getElementById('hud-active-finish-label').textContent = 'ФИНИШ: ' + currentFinishName.toUpperCase();
+        requestRender();
+        updateReceiptTerminal();
+      });
+    });
+
+    // 3. Body Color Swatches
+    document.querySelectorAll('.swatch-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.swatch-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        currentColorHex = btn.dataset.color;
+        currentColorName = btn.dataset.name;
+
+        bodyMaterial.color.set(currentColorHex);
+        document.getElementById('deck-color-name').textContent = currentColorName;
+        requestRender();
+        updateReceiptTerminal();
+      });
+    });
+
+    // 4. Caliper Color
+    document.querySelectorAll('.caliper-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.caliper-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        currentCaliperHex = btn.dataset.caliper;
+        currentCaliperName = btn.dataset.name;
+
+        caliperMaterial.color.set(currentCaliperHex);
+        document.getElementById('deck-caliper-name').textContent = currentCaliperName;
+        requestRender();
+        updateReceiptTerminal();
+      });
+    });
+
+    // 5. Tint Selector
+    document.querySelectorAll('.tint-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tint-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        currentTintLevel = btn.dataset.tint;
+        currentTintName = btn.dataset.name;
+
+        if (currentTintLevel === 'clear') {
+          glassMaterial.color.set(0xffffff);
+          glassMaterial.transmission = 0.94;
+          glassMaterial.roughness = 0.0;
+        } else if (currentTintLevel === 'smoke') {
+          glassMaterial.color.set(0x3a3f4a);
+          glassMaterial.transmission = 0.65;
+          glassMaterial.roughness = 0.02;
+        } else if (currentTintLevel === 'stealth') {
+          glassMaterial.color.set(0x0a0c12);
+          glassMaterial.transmission = 0.18;
+          glassMaterial.roughness = 0.05;
+        }
+
+        document.getElementById('deck-tint-name').textContent = currentTintName;
+        requestRender();
+        updateReceiptTerminal();
+      });
+    });
+
+    // 6. Shadow Line Toggle
+    document.querySelectorAll('.shadow-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.shadow-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        currentShadowLine = btn.dataset.shadow;
+        currentShadowName = btn.dataset.name;
+
+        if (currentShadowLine === 'piano-black') {
+          trimMaterial.color.set(0x08080a);
+          trimMaterial.metalness = 0.2;
+          trimMaterial.roughness = 0.08;
+        } else {
+          trimMaterial.color.set(0xcccccc);
+          trimMaterial.metalness = 0.95;
+          trimMaterial.roughness = 0.12;
+        }
+
+        document.getElementById('deck-shadow-name').textContent = currentShadowName;
+        requestRender();
+        updateReceiptTerminal();
+      });
+    });
+
+    // ==========================================================================
+    // LIVE CALCULATOR & MONOSPACE RECEIPT ENGINE
+    // ==========================================================================
+    const calcRows = document.querySelectorAll('.calc-row-card');
+
+    function formatNumber(num) {
+      return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+    }
+
+    calcRows.forEach((row) => {
+      row.addEventListener('click', (e) => {
+        const chk = row.querySelector('.calc-chk');
+        if (e.target !== chk) {
+          chk.checked = !chk.checked;
+        }
+        row.classList.toggle('selected', chk.checked);
+        updateReceiptTerminal();
+      });
+    });
+
+    function getSelectedOptions() {
+      const selected = [];
+      calcRows.forEach((row) => {
+        const chk = row.querySelector('.calc-chk');
+        if (chk && chk.checked) {
+          selected.push({
+            id: row.dataset.id,
+            title: row.querySelector('.calc-item-name').textContent.trim(),
+            sub: row.querySelector('.calc-item-sub').textContent.trim(),
+            price: parseInt(row.dataset.price, 10),
+            days: parseFloat(row.dataset.days),
+            warranty: row.dataset.warranty
+          });
+        }
+      });
+      return selected;
+    }
+
+    function calculateEstimate() {
+      const items = getSelectedOptions();
+      let subtotal = 0;
+      let totalDays = 0;
+      let maxWarrantyYears = 0;
+
+      items.forEach((item) => {
+        subtotal += item.price;
+        totalDays += item.days;
+        const wMatch = item.warranty.match(/(\d+)/);
+        if (wMatch) {
+          const yrs = parseInt(wMatch[1], 10);
+          if (yrs > maxWarrantyYears) maxWarrantyYears = yrs;
+        }
+      });
+
+      // Package discount rule: >= 3 items -> 10% discount, >= 4 items -> 12% discount
+      let discountPct = 0;
+      if (items.length >= 4) discountPct = 12;
+      else if (items.length >= 3) discountPct = 10;
+
+      const discountAmount = Math.round(subtotal * (discountPct / 100));
+      const finalPrice = subtotal - discountAmount;
+
+      // Format work duration string
+      let durationStr = '1–2 раб. дня';
+      const roundedDays = Math.ceil(totalDays);
+      if (roundedDays >= 5) durationStr = '5–6 раб. дней';
+      else if (roundedDays >= 3) durationStr = '3–4 раб. дня';
+      else if (roundedDays === 2) durationStr = '2–3 раб. дня';
+
+      const warrantyStr = maxWarrantyYears > 0 ? `${maxWarrantyYears} лет` : '2 года';
+
+      return {
+        items,
+        subtotal,
+        discountPct,
+        discountAmount,
+        finalPrice,
+        durationStr,
+        warrantyStr
+      };
+    }
+
+    function generateReceiptMonospaceText(calc) {
+      const receiptNo = 'AN-8842-SPEC';
+      const today = new Date().toLocaleDateString('ru-RU');
+
+      let lines = [];
+      lines.push('================================================');
+      lines.push('  ATELIER NERO // ТЕХНИЧЕСКИЙ РЕГИСТР СМЕТЫ');
+      lines.push(`  СПЕЦИФИКАЦИЯ: #${receiptNo} // ДАТА: ${today}`);
+      lines.push('================================================');
+      lines.push('');
+      lines.push('[ КОНФИГУРАЦИЯ АВТОМОБИЛЯ ]');
+      lines.push(`• Модель: Ferrari 458 Italia / Supercar Spec`);
+      lines.push(`• Цвет кузова: ${currentColorName}`);
+      lines.push(`• Финишное покрытие: ${currentFinishName}`);
+      lines.push(`• Тонировка Llumar: ${currentTintName}`);
+      lines.push(`• Суппорты: ${currentCaliperName}`);
+      lines.push(`• Оконная линия: ${currentShadowName}`);
+      lines.push('');
+      lines.push('[ ВЫБРАННЫЕ ДЕТЕЙЛИНГ-ОПЦИИ ]');
+
+      if (calc.items.length === 0) {
+        lines.push('  (Опции не выбраны. Отметьте позиции в конфигураторе)');
+      } else {
+        calc.items.forEach((item, idx) => {
+          const num = idx + 1 < 10 ? '0' + (idx + 1) : idx + 1;
+          lines.push(`+ [${num}] ${item.title}`);
+          lines.push(`      Стоимость: ${formatNumber(item.price)} ₽ // Срок: ${item.days} дн.`);
+        });
+      }
+
+      lines.push('------------------------------------------------');
+      if (calc.discountPct > 0) {
+        lines.push(`Базовая сумма:        ${formatNumber(calc.subtotal)} ₽`);
+        lines.push(`Пакетная скидка (${calc.discountPct}%): -${formatNumber(calc.discountAmount)} ₽`);
+      }
+      lines.push(`ИТОГО К ОПЛАТЕ:       ${formatNumber(calc.finalPrice)} ₽`);
+      lines.push(`СРОК РАБОТ В БОКСЕ:   ${calc.durationStr}`);
+      lines.push(`СЕРТИФИКАТ ГАРАНТИИ:  ${calc.warrantyStr}`);
+      lines.push(`СТАНДАРТ ЧИСТОТЫ:     ISO Class 7 Cleanroom`);
+      lines.push('================================================');
+      lines.push('Сформировано в конфигураторе ATELIER NERO');
+
+      return lines.join('\n');
+    }
+
+    function updateReceiptTerminal() {
+      const calc = calculateEstimate();
+      const text = generateReceiptMonospaceText(calc);
+
+      // Update terminal view
+      const box = document.getElementById('monospace-receipt-view');
+      if (box) box.textContent = text;
+
+      // Update KPIs
+      const kpiTotal = document.getElementById('calc-kpi-total');
+      const kpiDur = document.getElementById('calc-kpi-duration');
+      const kpiWar = document.getElementById('calc-kpi-warranty');
+
+      if (kpiTotal) kpiTotal.textContent = formatNumber(calc.finalPrice) + ' ₽';
+      if (kpiDur) kpiDur.textContent = calc.durationStr;
+      if (kpiWar) kpiWar.textContent = calc.warrantyStr;
+
+      // Update Telegram Link
+      const btnTg = document.getElementById('btn-telegram-estimate');
+      if (btnTg) {
+        const tgUrl = 'https://t.me/share/url?url=' + encodeURIComponent('https://t.me/thor_bakin') + '&text=' + encodeURIComponent(text);
+        btnTg.href = tgUrl;
+      }
+
+      // Update WhatsApp Link
+      const btnWa = document.getElementById('btn-whatsapp-estimate');
+      if (btnWa) {
+        const waUrl = 'https://wa.me/79521049810?text=' + encodeURIComponent(text);
+        btnWa.href = waUrl;
+      }
+    }
+
+    // Copy to Clipboard
+    const btnCopy = document.getElementById('btn-copy-receipt');
+    const toastEl = document.getElementById('toast-notify');
+
+    if (btnCopy) {
+      btnCopy.addEventListener('click', () => {
+        const calc = calculateEstimate();
+        const text = generateReceiptMonospaceText(calc);
+        navigator.clipboard.writeText(text).then(() => {
+          showToast('ТЕХНИЧЕСКАЯ СМЕТА СКОПИРОВАНА В БУФЕР ОБМЕНА');
+          const btnTxt = document.getElementById('btn-copy-text');
+          if (btnTxt) {
+            btnTxt.textContent = '[ СКОПИРОВАНО ]';
+            btnTxt.style.color = 'var(--accent-green)';
+            setTimeout(() => {
+              btnTxt.textContent = 'СКОПИРОВАТЬ СМЕТУ';
+              btnTxt.style.color = '';
+            }, 2500);
+          }
+        }).catch(() => {
+          showToast('ОШИБКА ДОСТУПА К БУФЕРУ ОБМЕНА');
+        });
+      });
+    }
+
+    function showToast(msg) {
+      const toastText = document.getElementById('toast-notify-text');
+      if (toastText) toastText.textContent = msg;
+      if (toastEl) {
+        toastEl.classList.add('visible');
+        setTimeout(() => {
+          toastEl.classList.remove('visible');
+        }, 3200);
+      }
+    }
+
+    // ==========================================================================
+    // FAQ ACCORDION ENGINE
+    // ==========================================================================
+    document.querySelectorAll('.faq-accordion-item').forEach((item) => {
+      const btn = item.querySelector('.faq-question-btn');
+      if (btn) {
+        btn.addEventListener('click', () => {
+          const isOpen = item.classList.contains('open');
+          document.querySelectorAll('.faq-accordion-item').forEach(i => i.classList.remove('open'));
+          if (!isOpen) item.classList.add('open');
+        });
+      }
+    });
+
+    // Boot Studio
+    window.addEventListener('DOMContentLoaded', () => {
+      initStudio();
+      updateReceiptTerminal();
+    });
+  </script>
+</body>
+</html>
